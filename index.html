@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smey Lov - សេវាកម្ម SMM កម្ពុជា</title>
+    <!-- Tailwind CSS សម្រាប់រចនា UI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Kantumruy Pro', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen">
+
+    <!-- Header / Navbar -->
+    <nav class="flex items-center justify-between px-6 py-4 bg-slate-900/80 border-b border-slate-800 backdrop-blur sticky top-0">
+        <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+            Smey Lov
+        </div>
+        <div class="space-x-3">
+            <button class="px-4 py-2 text-sm text-slate-300 hover:text-white">ចូលប្រើ (Login)</button>
+            <button class="px-4 py-2 text-sm bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg font-medium hover:opacity-90 transition">ចុះឈ្មោះ</button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-bold mb-3">សេវាកម្មបង្កើនការគាំទ្របណ្ដាញសង្គម</h1>
+            <p class="text-slate-400">ផ្ដល់ជូនសេវាកម្ម Facebook, TikTok, Telegram, YouTube គុណភាពខ្ពស់ និងរហ័សទាន់ចិត្ត</p>
+        </div>
+
+        <!-- Order Form Card -->
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 shadow-xl">
+            <h2 class="text-xl font-semibold mb-6 border-b border-slate-800 pb-3 text-pink-400">🛒 បញ្ជាទិញសេវាកម្ម (New Order)</h2>
+            
+            <form class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">ជ្រើសរើសប្រភេទ (Category)</label>
+                    <select class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-pink-500">
+                        <option>📱 TikTok (Followers / Likes / Views)</option>
+                        <option>👍 Facebook (Page Likes / Follow / Shares)</option>
+                        <option>✈️ Telegram (Members / Post Views)</option>
+                        <option>▶️ YouTube (Subscribers / Watch Hours)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">ជ្រើសរើសសេវាកម្ម (Service)</label>
+                    <select class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-pink-500">
+                        <option>TikTok Likes [Real & Non-Drop] - $0.50 / 1000</option>
+                        <option>TikTok Followers [High Quality] - $1.20 / 1000</option>
+                        <option>Facebook Followers [Profile/Page] - $1.00 / 1000</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">តំណភ្ជាប់ (Link / URL)</label>
+                    <input type="url" placeholder="https://..." class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-pink-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-slate-300 mb-2">ចំនួន (Quantity)</label>
+                    <input type="number" placeholder="ឧទាហរណ៍៖ 1000" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2.5 text-white focus:outline-none focus:border-pink-500">
+                </div>
+
+                <div class="pt-2">
+                    <button type="button" class="w-full py-3 bg-gradient-to-r from-pink-500 to-purple-600 rounded-lg font-semibold hover:opacity-90 transition">
+                        ដាក់បញ្ជាទិញ (Submit Order)
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
