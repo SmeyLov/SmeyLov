@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smey Lov - New Order Dashboard</title>
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -16,21 +16,16 @@
             font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', sans-serif;
             background-color: #f1f5f9;
         }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #f1f5f9; }
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
     </style>
 </head>
 <body class="text-slate-700 min-h-screen flex flex-col">
 
-    <!-- Top Navbar (Header Bar) -->
+    <!-- Top Navbar -->
     <header class="bg-[#0070e0] text-white px-4 py-2.5 flex items-center justify-between shadow-sm sticky top-0 z-50">
         <div class="flex items-center gap-4">
-            <!-- Brand Logo -->
             <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg border border-white/20">
                 <i class="fa-solid fa-crown text-amber-300 text-lg"></i>
                 <span class="font-extrabold tracking-wider text-lg">SMEY LOV</span>
@@ -40,22 +35,14 @@
             </button>
         </div>
 
-        <!-- Middle Announcement -->
         <div class="hidden lg:block text-xs font-semibold tracking-wide text-blue-100 animate-pulse">
-            🌸 សូមស្វាគមន៍មកកាន់ Smey Lov SMM Panel 🌸
+            🌸 សូមស្វាគមន៍មកកាន់ Smey Lov SMM 🌸
         </div>
 
-        <!-- User Quick Actions & Balance -->
         <div class="flex items-center gap-3">
-            <button class="w-8 h-8 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center text-xs shadow-sm transition" title="YouTube">
-                <i class="fa-brands fa-youtube"></i>
-            </button>
-            <button class="w-8 h-8 rounded-full bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold flex items-center justify-center text-xs shadow-sm transition" title="Deposit">
-                <i class="fa-solid fa-dollar-sign"></i>
-            </button>
-            <button class="w-8 h-8 rounded-full bg-sky-400 hover:bg-sky-500 flex items-center justify-center text-xs shadow-sm transition" title="Support">
-                <i class="fa-solid fa-headset"></i>
-            </button>
+            <button class="w-8 h-8 rounded-full bg-red-500 hover:bg-red-600 flex items-center justify-center text-xs text-white shadow-sm"><i class="fa-brands fa-youtube"></i></button>
+            <button class="w-8 h-8 rounded-full bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold flex items-center justify-center text-xs shadow-sm"><i class="fa-solid fa-dollar-sign"></i></button>
+            <button class="w-8 h-8 rounded-full bg-sky-400 hover:bg-sky-500 flex items-center justify-center text-xs text-white shadow-sm"><i class="fa-solid fa-headset"></i></button>
             <div class="w-8 h-8 rounded-full bg-slate-200 border border-white overflow-hidden flex items-center justify-center">
                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Smey" alt="Avatar" class="w-full h-full object-cover">
             </div>
@@ -65,21 +52,20 @@
     <div class="flex flex-1 overflow-hidden">
         
         <!-- Left Sidebar Navigation -->
-        <aside class="w-64 bg-[#0971dc] text-white flex flex-col p-4 space-y-4 shrink-0 shadow-inner hidden md:flex">
-            
-            <!-- User Profile Box -->
+        <aside class="w-64 bg-[#0971dc] text-white flex flex-col p-4 space-y-4 shrink-0 hidden md:flex">
+            <!-- User Info Box -->
             <div class="relative bg-gradient-to-b from-sky-400 to-blue-600 rounded-2xl p-4 text-center border border-blue-300/30 shadow-md">
-                <span class="absolute top-2 right-2 bg-red-500 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full text-white tracking-wider">New</span>
+                <span class="absolute top-2 right-2 bg-red-500 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full text-white">New</span>
                 <div class="w-16 h-16 rounded-full bg-white/20 border-2 border-white mx-auto p-0.5 mb-2 overflow-hidden shadow-inner">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Smey" alt="User Avatar" class="w-full h-full">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Smey" alt="User" class="w-full h-full">
                 </div>
-                <p class="text-xs text-blue-100 font-medium">Balance: <span class="font-bold text-amber-300">$100.00</span></p>
+                <p class="text-xs text-blue-100 font-medium">Balance: <span class="font-bold text-amber-300" id="user-balance">$50.00</span></p>
                 <h4 class="text-sm font-bold mt-0.5">User: SmeyLov</h4>
             </div>
 
-            <!-- Nav Links -->
+            <!-- Menus -->
             <nav class="flex-1 space-y-1.5 text-xs font-semibold">
-                <a href="#" class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white text-blue-700 shadow-md transition font-bold">
+                <a href="#" class="flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white text-blue-700 shadow-md font-bold">
                     <i class="fa-solid fa-cart-shopping w-4 text-center"></i>
                     <span>New order</span>
                 </a>
@@ -106,63 +92,55 @@
                     <i class="fa-solid fa-layer-group w-4 text-center"></i>
                     <span>Mass order</span>
                 </a>
-                <a href="#" class="flex items-center justify-between px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 transition">
-                    <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-ellipsis w-4 text-center"></i>
-                        <span>Show more</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-down text-[10px]"></i>
-                </a>
             </nav>
         </aside>
 
-        <!-- Main Dashboard Content Area -->
+        <!-- Main Workspace -->
         <main class="flex-1 p-4 lg:p-6 overflow-y-auto space-y-4">
             
-            <!-- Statistics Banner Bar -->
-            <div class="bg-white border border-slate-200 rounded-xl px-5 py-3.5 flex flex-wrap items-center justify-between gap-4 text-xs font-semibold text-slate-600 shadow-sm">
+            <!-- Statistics Bar -->
+            <div class="bg-white border border-slate-200 rounded-xl px-5 py-3 flex flex-wrap items-center justify-between gap-4 text-xs font-semibold text-slate-600 shadow-sm">
                 <div>You are currently on: <span class="text-blue-600 font-bold">New order</span></div>
-                <div>Panel Orders: <span class="text-blue-600 font-bold">2,481,920</span></div>
-                <div>My Orders: <span class="text-blue-600 font-bold">0</span></div>
-                <div>Total Spend: <span class="text-blue-600 font-bold">$0.00</span></div>
-                <div>Welcome <span class="text-blue-600 font-bold">SmeyLov</span> Your Balance is: <span class="text-blue-600 font-bold">$100.00</span></div>
+                <div>Panel Orders: <span class="text-blue-600 font-bold">3,772,052</span></div>
+                <div>My Orders: <span class="text-blue-600 font-bold">30</span></div>
+                <div>Total Spend: <span class="text-blue-600 font-bold">$23.10</span></div>
+                <div>Welcome <span class="text-blue-600 font-bold">SmeyLov</span> Your Balance is : <span class="text-blue-600 font-bold">$50.00</span></div>
             </div>
 
-            <!-- Social Quick Filter Buttons -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-3">
-                <button class="flex items-center justify-center gap-2 py-2.5 px-4 bg-white hover:bg-blue-50/50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
+            <!-- Quick Filter Category Buttons -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-4 gap-2.5">
+                <button onclick="filterCategory('all')" class="cat-btn flex items-center justify-center gap-2 py-2 px-3 bg-white hover:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
                     <i class="fa-solid fa-table-cells-large text-blue-500"></i> Everythings
                 </button>
-                <button class="flex items-center justify-center gap-2 py-2.5 px-4 bg-white hover:bg-blue-50/50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
+                <button onclick="filterCategory('tiktok')" class="cat-btn flex items-center justify-center gap-2 py-2 px-3 bg-white hover:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
                     <i class="fa-brands fa-tiktok text-black"></i> TikTok
                 </button>
-                <button class="flex items-center justify-center gap-2 py-2.5 px-4 bg-white hover:bg-blue-50/50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
+                <button onclick="filterCategory('facebook')" class="cat-btn flex items-center justify-center gap-2 py-2 px-3 bg-white hover:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
                     <i class="fa-brands fa-facebook text-blue-600"></i> Facebook
                 </button>
-                <button class="flex items-center justify-center gap-2 py-2.5 px-4 bg-white hover:bg-blue-50/50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
+                <button onclick="filterCategory('facebook_live')" class="cat-btn flex items-center justify-center gap-2 py-2 px-3 bg-white hover:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
                     <i class="fa-solid fa-video text-blue-600"></i> Facebook Live
                 </button>
-                <button class="flex items-center justify-center gap-2 py-2.5 px-4 bg-white hover:bg-blue-50/50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
+                <button onclick="filterCategory('youtube')" class="cat-btn flex items-center justify-center gap-2 py-2 px-3 bg-white hover:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
                     <i class="fa-brands fa-youtube text-red-600"></i> YouTube
                 </button>
-                <button class="flex items-center justify-center gap-2 py-2.5 px-4 bg-white hover:bg-blue-50/50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
+                <button onclick="filterCategory('telegram')" class="cat-btn flex items-center justify-center gap-2 py-2 px-3 bg-white hover:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
                     <i class="fa-brands fa-telegram text-sky-500"></i> Telegram
                 </button>
-                <button class="flex items-center justify-center gap-2 py-2.5 px-4 bg-white hover:bg-blue-50/50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
+                <button onclick="filterCategory('instagram')" class="cat-btn flex items-center justify-center gap-2 py-2 px-3 bg-white hover:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
                     <i class="fa-brands fa-instagram text-pink-600"></i> Instagram
                 </button>
-                <button class="flex items-center justify-center gap-2 py-2.5 px-4 bg-white hover:bg-blue-50/50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
+                <button onclick="filterCategory('website')" class="cat-btn flex items-center justify-center gap-2 py-2 px-3 bg-white hover:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm transition">
                     <i class="fa-solid fa-globe text-amber-600"></i> Website Traffic
                 </button>
             </div>
 
-            <!-- Two-Column Order Area -->
+            <!-- Two-Column Form & Details Area -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
                 
-                <!-- Left Box: Place Order Form -->
+                <!-- Left: Order Form -->
                 <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
                     
-                    <!-- Tabs -->
                     <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-xl">
                         <button class="py-2 text-xs font-bold rounded-lg bg-[#0070e0] text-white shadow-sm flex items-center justify-center gap-2">
                             <i class="fa-solid fa-cart-shopping"></i> New Order
@@ -177,44 +155,46 @@
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
                             <i class="fa-solid fa-magnifying-glass text-xs"></i>
                         </span>
-                        <input type="text" placeholder="Search service..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-blue-500">
+                        <input type="text" id="search-service" oninput="searchServices()" placeholder="Search..." class="w-full pl-9 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-blue-500">
                     </div>
 
-                    <!-- Category Field -->
+                    <!-- Category Select -->
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
-                            <i class="fa-solid fa-cubes text-blue-500"></i> Category
+                            <i class="fa-solid fa-table-cells text-blue-500"></i> Category
                         </label>
-                        <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-500">
-                            <option>🔥 Facebook - Post Reaction 🔥 [Global Data - Fast Speed] [Cheapest]</option>
-                            <option>📱 TikTok - Followers & Likes [Non Drop]</option>
-                            <option>✈️ Telegram - Members [Real Active]</option>
-                            <option>▶️ YouTube - Views & Subscribers</option>
+                        <select id="category-select" onchange="onCategoryChange()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-500">
+                            <!-- populated by JS -->
                         </select>
                     </div>
 
-                    <!-- Service Field -->
+                    <!-- Service Select -->
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1 flex items-center gap-1.5">
                             <i class="fa-solid fa-shield text-blue-500"></i> Service
                         </label>
-                        <select class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-500">
-                            <option>17095 - Facebook Post Likes 🔥 - Max 100k - 50k/day - Instant - NO REFILL - $0.1311 per 1000</option>
-                            <option>17096 - Facebook Page Followers - Real - $0.95 per 1000</option>
+                        <select id="service-select" onchange="onServiceChange()" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-500">
+                            <!-- populated by JS -->
                         </select>
                     </div>
 
-                    <!-- Link Field -->
+                    <!-- Link -->
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">Link</label>
-                        <input type="url" placeholder="https://..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-blue-500">
+                        <input type="url" id="order-link" placeholder="https://..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-blue-500">
                     </div>
 
-                    <!-- Quantity Field -->
+                    <!-- Quantity -->
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">Quantity</label>
-                        <input type="number" placeholder="Min: 10 - Max: 100 000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-blue-500">
-                        <p class="text-[11px] text-slate-400 mt-1">Min: 10 - Max: 100 000</p>
+                        <input type="number" id="order-qty" oninput="calculateCharge()" placeholder="Min: 10 - Max: 100 000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs focus:outline-none focus:border-blue-500">
+                        <p class="text-[11px] text-slate-400 mt-1" id="min-max-text">Min: 10 - Max: 100 000</p>
+                    </div>
+
+                    <!-- Charge -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Charge</label>
+                        <input type="text" id="order-charge" readonly value="$0.00" class="w-full bg-slate-100 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-bold text-blue-600 focus:outline-none">
                     </div>
 
                     <div class="flex items-center gap-2 pt-1">
@@ -224,16 +204,16 @@
 
                     <div>
                         <p class="text-xs font-bold text-slate-700">Average time <i class="fa-solid fa-circle-info text-slate-400 text-[10px]"></i></p>
-                        <p class="text-xs text-slate-500 mt-0.5">7 minutes</p>
+                        <p class="text-xs text-slate-500 mt-0.5" id="avg-time-text">7 minutes</p>
                     </div>
 
                     <!-- Submit Button -->
-                    <button class="w-full py-3 bg-[#0070e0] hover:bg-blue-600 text-white font-bold rounded-xl shadow-md shadow-blue-500/20 text-xs transition">
-                        Submit Order
+                    <button onclick="submitOrder()" class="w-full py-3 bg-[#0070e0] hover:bg-blue-600 text-white font-bold rounded-xl shadow-md shadow-blue-500/20 text-xs transition">
+                        Submit
                     </button>
                 </div>
 
-                <!-- Right Box: Service Details -->
+                <!-- Right: Service Details -->
                 <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
                     
                     <div class="flex items-center justify-between gap-3">
@@ -245,61 +225,54 @@
 
                     <!-- Details Grid -->
                     <div class="grid grid-cols-2 gap-3 pt-2">
-                        <!-- Example Link -->
                         <div class="bg-slate-50 border border-slate-100 rounded-xl p-3">
                             <span class="text-[11px] font-bold text-slate-600 block mb-1">Example Link</span>
-                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                                <i class="fa-solid fa-link text-rose-500"></i> -
+                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700 truncate" id="detail-example">
+                                <i class="fa-solid fa-link text-rose-500 shrink-0"></i> <span>-</span>
                             </div>
                         </div>
 
-                        <!-- Speed -->
                         <div class="bg-slate-50 border border-slate-100 rounded-xl p-3">
                             <span class="text-[11px] font-bold text-slate-600 block mb-1">Speed</span>
-                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                                <i class="fa-solid fa-truck-fast text-purple-500"></i> 50k/day
+                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700" id="detail-speed">
+                                <i class="fa-solid fa-truck-fast text-purple-500"></i> <span>50k/day</span>
                             </div>
                         </div>
 
-                        <!-- Start Time -->
                         <div class="bg-slate-50 border border-slate-100 rounded-xl p-3">
                             <span class="text-[11px] font-bold text-slate-600 block mb-1">Start Time</span>
-                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                                <i class="fa-solid fa-cloud text-sky-500"></i> Instant
+                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700" id="detail-start">
+                                <i class="fa-solid fa-cloud text-sky-500"></i> <span>Instant</span>
                             </div>
                         </div>
 
-                        <!-- Average Time -->
                         <div class="bg-slate-50 border border-slate-100 rounded-xl p-3">
                             <span class="text-[11px] font-bold text-slate-600 block mb-1">Average Time</span>
-                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                                <i class="fa-solid fa-stopwatch text-blue-500"></i> 7 minutes
+                            <div class="flex items-center gap-2 text-xs font-semibold text-slate-700" id="detail-avg">
+                                <i class="fa-solid fa-stopwatch text-blue-500"></i> <span>7 minutes</span>
                             </div>
                         </div>
 
-                        <!-- Guarantee -->
                         <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 col-span-2">
                             <span class="text-[11px] font-bold text-slate-600 block mb-1">Guarantee</span>
-                            <div class="flex items-center gap-2 text-xs font-semibold text-green-600">
-                                <i class="fa-solid fa-arrows-rotate"></i> No Refill
+                            <div class="flex items-center gap-2 text-xs font-semibold text-green-600" id="detail-guarantee">
+                                <i class="fa-solid fa-arrows-rotate"></i> <span>No Refill</span>
                             </div>
                         </div>
                     </div>
 
-                    <!-- More Details Text -->
+                    <!-- Description Area -->
                     <div class="border-t border-slate-100 pt-3 text-xs space-y-2">
                         <h4 class="font-bold text-slate-800">More Details</h4>
-                        <div class="text-slate-500 text-[11px] space-y-1">
-                            <p>Link: Text/Images Full link</p>
-                            <p>Start: 0-5 Minutes</p>
-                            <p>Speed: 50k per days</p>
-                            <p>Refill: No refill</p>
+                        <div class="text-slate-500 text-[11px] space-y-1" id="detail-desc">
+                            <!-- populated by JS -->
                         </div>
 
                         <h4 class="font-bold text-slate-800 pt-2">Important Notes:</h4>
                         <ul class="list-disc pl-4 text-[11px] text-slate-500 space-y-1">
                             <li>When the service is experiencing high demand, the starting speed may vary.</li>
                             <li>Please avoid placing a second order on the same link until the current order is fully completed.</li>
+                            <li>In case of any problems with the service, please contact support.</li>
                         </ul>
                     </div>
 
@@ -311,12 +284,300 @@
 
     </div>
 
-    <!-- Floating Live Chat Support -->
+    <!-- Live Floating Support Button -->
     <div class="fixed bottom-5 right-5 z-50">
         <button class="w-12 h-12 rounded-full bg-[#0070e0] hover:bg-blue-600 text-white shadow-xl flex items-center justify-center text-lg transition">
             <i class="fa-solid fa-comments"></i>
         </button>
     </div>
 
+    <!-- SMM Dynamic Logic (Interactive Script) -->
+    <script>
+        // Database of SMM Services
+        const smmData = [
+            {
+                catId: "tiktok_reposts",
+                categoryName: "📱 TikTok - Reposts",
+                type: "tiktok",
+                services: [
+                    {
+                        id: "18494",
+                        name: "18494 - TikTok Reposts | Max 10K | HQ Accounts | No Refill ⚠️ | Instant Start | Day 10K ✔️ - $1.04 per 1000",
+                        ratePer1k: 1.04,
+                        min: 10,
+                        max: 10000,
+                        example: "https://www.tiktok.com/@username/video/1234567890",
+                        speed: "10k/day",
+                        start: "Instant (0-10 Mins)",
+                        avgTime: "15 minutes",
+                        guarantee: "No Refill ⚠️",
+                        desc: "<p>Link: TikTok Video Link</p><p>Location: Worldwide 🌐</p><p>Start: 0-10 Minutes</p><p>Speed: Day 10K ✔️</p><p>Refill Time: No Refill ⚠️</p>"
+                    }
+                ]
+            },
+            {
+                catId: "fb_reactions",
+                categoryName: "🔥 Facebook - Post Reaction 🔥 [Global Data - Fast Speed] [Cheapest]",
+                type: "facebook",
+                services: [
+                    {
+                        id: "17095",
+                        name: "17095 - Facebook Post Likes 🔥 - Max 100k - 50k/day - Instant - NO REFILL - $0.1311 per 1000",
+                        ratePer1k: 0.1311,
+                        min: 10,
+                        max: 100000,
+                        example: "https://www.facebook.com/user/posts/123456789",
+                        speed: "50k/day",
+                        start: "Instant",
+                        avgTime: "7 minutes",
+                        guarantee: "No Refill",
+                        desc: "<p>Link: Text/Images Full link</p><p>Start: 0-5 Minutes</p><p>Speed: 50k per days</p><p>Refill: No refill</p>"
+                    },
+                    {
+                        id: "17096",
+                        name: "17096 - Facebook Love / Care Reactions ❤️ - Instant - $0.25 per 1000",
+                        ratePer1k: 0.25,
+                        min: 50,
+                        max: 50000,
+                        example: "https://www.facebook.com/user/posts/123456789",
+                        speed: "30k/day",
+                        start: "Instant",
+                        avgTime: "10 minutes",
+                        guarantee: "30 Days Refill",
+                        desc: "<p>Quality: High Quality Profiles</p><p>Start: Instant</p><p>Refill: 30 Days Auto-Refill</p>"
+                    }
+                ]
+            },
+            {
+                catId: "fb_live",
+                categoryName: "🎥 Facebook Live Stream Viewers [Instant - Stable]",
+                type: "facebook_live",
+                services: [
+                    {
+                        id: "18021",
+                        name: "18021 - Facebook Live Stream Viewers [30 Minutes] - Instant - $2.50 per 1000",
+                        ratePer1k: 2.50,
+                        min: 20,
+                        max: 5000,
+                        example: "https://www.facebook.com/watch/live/?v=123456",
+                        speed: "Instant Speed",
+                        start: "0-3 Minutes",
+                        avgTime: "Instant",
+                        guarantee: "Real-time Watching",
+                        desc: "<p>Duration: 30 Minutes Watch Time</p><p>Start: 0-3 Minutes after order</p>"
+                    }
+                ]
+            },
+            {
+                catId: "telegram_members",
+                categoryName: "✈️ Telegram - Channel / Group Members [Cheapest]",
+                type: "telegram",
+                services: [
+                    {
+                        id: "19050",
+                        name: "19050 - Telegram Channel Members [Non Drop] [30 Days Guarantee] - $0.85 per 1000",
+                        ratePer1k: 0.85,
+                        min: 50,
+                        max: 50000,
+                        example: "https://t.me/channel_name",
+                        speed: "20k/day",
+                        start: "0-1 Hour",
+                        avgTime: "30 minutes",
+                        guarantee: "30 Days Guarantee",
+                        desc: "<p>Channel/Group must be PUBLIC</p><p>Speed: 20,000 members per day</p>"
+                    }
+                ]
+            },
+            {
+                catId: "youtube_services",
+                categoryName: "▶️ YouTube - Views & Subscribers [High Retention]",
+                type: "youtube",
+                services: [
+                    {
+                        id: "20011",
+                        name: "20011 - YouTube Video Views [Non-Drop] [Lifetime Refill] - $1.80 per 1000",
+                        ratePer1k: 1.80,
+                        min: 100,
+                        max: 1000000,
+                        example: "https://youtu.be/watch?v=xxxxxx",
+                        speed: "10k-50k/day",
+                        start: "0-1 Hour",
+                        avgTime: "1 hour",
+                        guarantee: "Lifetime Refill",
+                        desc: "<p>Retention: 1-3 Minutes average</p><p>Source: External & Suggested</p>"
+                    }
+                ]
+            },
+            {
+                catId: "instagram_services",
+                categoryName: "📸 Instagram - Followers & Likes [Real Active]",
+                type: "instagram",
+                services: [
+                    {
+                        id: "21040",
+                        name: "21040 - Instagram Likes [HQ - Instant Start] - $0.30 per 1000",
+                        ratePer1k: 0.30,
+                        min: 20,
+                        max: 100000,
+                        example: "https://www.instagram.com/p/xxxxx/",
+                        speed: "50k/day",
+                        start: "Instant",
+                        avgTime: "5 minutes",
+                        guarantee: "No Refill",
+                        desc: "<p>Quality: Real HQ Accounts</p><p>Start: Instant Start</p>"
+                    }
+                ]
+            },
+            {
+                catId: "website_traffic",
+                categoryName: "🌐 Website Traffic [Organic Google Search]",
+                type: "website",
+                services: [
+                    {
+                        id: "22010",
+                        name: "22010 - High Quality Google Organic Search Visitors - $0.50 per 1000",
+                        ratePer1k: 0.50,
+                        min: 500,
+                        max: 500000,
+                        example: "https://yourwebsite.com",
+                        speed: "10k/day",
+                        start: "1-3 Hours",
+                        avgTime: "2 hours",
+                        guarantee: "Google Analytics Supported",
+                        desc: "<p>Analytics: 100% Trackable in GA4</p><p>Duration: 30-60s on page</p>"
+                    }
+                ]
+            }
+        ];
+
+        let currentFilteredCats = smmData;
+        let selectedService = smmData[0].services[0];
+
+        // Initialize App
+        function init() {
+            renderCategories(smmData);
+            onCategoryChange();
+        }
+
+        // Filter by Quick Buttons
+        function filterCategory(type) {
+            if (type === 'all') {
+                currentFilteredCats = smmData;
+            } else {
+                currentFilteredCats = smmData.filter(c => c.type === type);
+                if (currentFilteredCats.length === 0) currentFilteredCats = smmData;
+            }
+            renderCategories(currentFilteredCats);
+            onCategoryChange();
+        }
+
+        function renderCategories(categories) {
+            const catSelect = document.getElementById('category-select');
+            catSelect.innerHTML = '';
+            categories.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.catId;
+                opt.textContent = c.categoryName;
+                catSelect.appendChild(opt);
+            });
+        }
+
+        function onCategoryChange() {
+            const catSelect = document.getElementById('category-select');
+            const catId = catSelect.value;
+            const currentCat = smmData.find(c => c.catId === catId) || smmData[0];
+
+            const servSelect = document.getElementById('service-select');
+            servSelect.innerHTML = '';
+            currentCat.services.forEach(s => {
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.textContent = s.name;
+                servSelect.appendChild(opt);
+            });
+
+            onServiceChange();
+        }
+
+        function onServiceChange() {
+            const servSelect = document.getElementById('service-select');
+            const servId = servSelect.value;
+
+            for (const cat of smmData) {
+                const s = cat.services.find(item => item.id === servId);
+                if (s) {
+                    selectedService = s;
+                    break;
+                }
+            }
+
+            updateDetailsUI();
+            calculateCharge();
+        }
+
+        function updateDetailsUI() {
+            if (!selectedService) return;
+
+            document.getElementById('min-max-text').textContent = `Min: ${selectedService.min} - Max: ${selectedService.max.toLocaleString()}`;
+            document.getElementById('order-qty').placeholder = `Min: ${selectedService.min} - Max: ${selectedService.max.toLocaleString()}`;
+            
+            // Right Side
+            document.getElementById('detail-example').innerHTML = `<i class="fa-solid fa-link text-rose-500 shrink-0"></i> <span class="truncate">${selectedService.example}</span>`;
+            document.getElementById('detail-speed').innerHTML = `<i class="fa-solid fa-truck-fast text-purple-500"></i> <span>${selectedService.speed}</span>`;
+            document.getElementById('detail-start').innerHTML = `<i class="fa-solid fa-cloud text-sky-500"></i> <span>${selectedService.start}</span>`;
+            document.getElementById('detail-avg').innerHTML = `<i class="fa-solid fa-stopwatch text-blue-500"></i> <span>${selectedService.avgTime}</span>`;
+            document.getElementById('avg-time-text').textContent = selectedService.avgTime;
+            document.getElementById('detail-guarantee').innerHTML = `<i class="fa-solid fa-arrows-rotate"></i> <span>${selectedService.guarantee}</span>`;
+            document.getElementById('detail-desc').innerHTML = selectedService.desc;
+        }
+
+        function calculateCharge() {
+            const qtyInput = document.getElementById('order-qty');
+            const qty = parseFloat(qtyInput.value) || 0;
+            if (!selectedService) return;
+
+            const total = (qty / 1000) * selectedService.ratePer1k;
+            document.getElementById('order-charge').value = `$${total.toFixed(4)}`;
+        }
+
+        function searchServices() {
+            const term = document.getElementById('search-service').value.toLowerCase();
+            const matchedCats = [];
+
+            smmData.forEach(cat => {
+                const matchedServices = cat.services.filter(s => 
+                    s.name.toLowerCase().includes(term) || cat.categoryName.toLowerCase().includes(term)
+                );
+                if (matchedServices.length > 0) {
+                    matchedCats.push({ ...cat, services: matchedServices });
+                }
+            });
+
+            if (matchedCats.length > 0) {
+                renderCategories(matchedCats);
+                onCategoryChange();
+            }
+        }
+
+        function submitOrder() {
+            const link = document.getElementById('order-link').value;
+            const qty = parseInt(document.getElementById('order-qty').value);
+
+            if (!link) {
+                alert("សូមបញ្ចូលតំណភ្ជាប់ (Link)!");
+                return;
+            }
+            if (!qty || qty < selectedService.min || qty > selectedService.max) {
+                alert(`សូមបញ្ចូលចំនួន Quantity ចន្លោះពី ${selectedService.min} ដល់ ${selectedService.max}!`);
+                return;
+            }
+
+            const charge = ((qty / 1000) * selectedService.ratePer1k).toFixed(4);
+            alert(`🎉 បញ្ជាទិញបានជោគជ័យ!\n- សេវាកម្ម: ${selectedService.name}\n- ចំនួន: ${qty}\n- តម្លៃសរុប: $${charge}\n- Link: ${link}`);
+        }
+
+        // Run on start
+        window.onload = init;
+    </script>
 </body>
 </html>
