@@ -317,7 +317,7 @@
                 </div>
             </div>
 
-            <!-- ================= 6. MASS ORDER ================= -->
+            <!-- ================= 6-13. OTHER VIEWS ================= -->
             <div id="view-massorder" class="space-y-4 hidden">
                 <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
                     <label class="block text-xs font-bold text-slate-700">One order per line in format (service_id | link | quantity)</label>
@@ -325,14 +325,7 @@
                     <button onclick="submitMassOrder()" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit Order</button>
                 </div>
             </div>
-
-            <!-- ================= 7-13. OTHER VIEWS ================= -->
-            <div id="view-api" class="space-y-4 hidden">
-                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
-                    <h3 class="text-base font-bold text-slate-800">API Documentation</h3>
-                    <input type="text" readonly value="smeylov_api_9f82d1c08e5e34a2" class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono">
-                </div>
-            </div>
+            <div id="view-api" class="space-y-4 hidden"><div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm"><h3 class="text-base font-bold text-slate-800">API Documentation</h3><input type="text" readonly value="smeylov_api_9f82d1c08e5e34a2" class="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono"></div></div>
             <div id="view-dashboard" class="space-y-4 hidden"><div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm"><h4>Dashboard Statistics</h4></div></div>
             <div id="view-affiliates" class="space-y-4 hidden"><div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm"><h4>Affiliate Referral Link</h4></div></div>
             <div id="view-childpanel" class="space-y-4 hidden"><div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm"><h4>Child Panel ($10/mo)</h4></div></div>
@@ -344,46 +337,52 @@
 
     </div>
 
-    <!-- ================= LIVE SUPPORT CHAT WIDGET POPUP (CRISP STYLE) ================= -->
+    <!-- ================= LIVE SUPPORT CHAT WIDGET POPUP (CRISP STYLE EXACT) ================= -->
     <div id="live-chat-modal" class="fixed bottom-20 right-5 w-[330px] sm:w-[350px] bg-white rounded-3xl shadow-2xl border border-slate-200 z-50 overflow-hidden hidden flex flex-col animate-in fade-in slide-in-from-bottom-5 duration-200">
         
-        <!-- Chat Header -->
-        <div class="chat-pattern p-5 text-white relative">
+        <!-- Screen 1: Home View Header -->
+        <div id="chat-home-header" class="chat-pattern p-5 text-white relative">
             <div class="flex items-center justify-between">
-                <!-- Brand Avatar -->
                 <div class="w-11 h-11 rounded-full bg-white flex items-center justify-center p-1.5 shadow-md">
                     <i class="fa-solid fa-crown text-blue-600 text-lg"></i>
                 </div>
-                
-                <!-- Header Actions -->
                 <div class="flex items-center gap-2">
-                    <button onclick="toggleChatLanguage()" id="chat-lang-btn" class="px-2.5 py-1 bg-white/20 hover:bg-white/30 rounded-full text-[11px] font-bold backdrop-blur transition">
-                        EN
-                    </button>
-                    <button onclick="toggleLiveChatWidget()" class="w-7 h-7 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-xs backdrop-blur transition">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
+                    <button onclick="toggleChatLanguage()" id="chat-lang-btn" class="px-2.5 py-1 bg-white/20 hover:bg-white/30 rounded-full text-[11px] font-bold backdrop-blur transition">EN</button>
+                    <button onclick="toggleLiveChatWidget()" class="w-7 h-7 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-xs backdrop-blur transition"><i class="fa-solid fa-xmark"></i></button>
                 </div>
             </div>
-
-            <!-- Greeting Text -->
             <div class="mt-4">
-                <h3 class="text-lg font-black tracking-tight flex items-center gap-1.5">
-                    សួស្ដី <span id="chat-username">SmeyLov</span> 👋
-                </h3>
+                <h3 class="text-lg font-black tracking-tight">សួស្ដី <span id="chat-username">SmeyLov</span> 👋</h3>
                 <p class="text-xs font-semibold text-blue-100 mt-0.5">តើមានបញ្ហាអ្វីឲ្យជួយ?</p>
             </div>
         </div>
 
-        <!-- Chat Body Content -->
+        <!-- Screen 2: Direct Conversation View Header (ដូចក្នុងរូបភាពពិតៗ) -->
+        <div id="chat-conv-header" class="bg-[#0066b3] p-3 text-white flex items-center justify-between shadow-sm hidden">
+            <div class="flex items-center gap-2.5">
+                <button onclick="backToChatHome()" class="w-8 h-8 rounded-full bg-white/15 hover:bg-white/25 flex items-center justify-center text-xs transition">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center p-1 shadow-sm shrink-0">
+                    <i class="fa-solid fa-crown text-[#0066b3] text-sm"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold tracking-tight">Smey Lov — Online Support</h4>
+                    <p class="text-[10px] text-green-300 font-semibold flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse"></span> ឆ្លើយតបជាធម្មតា ១–៣០ នាទី
+                    </p>
+                </div>
+            </div>
+            <button onclick="toggleLiveChatWidget()" class="w-7 h-7 bg-white/15 hover:bg-white/25 rounded-full flex items-center justify-center text-xs transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Screen 1: Home View Menu Body -->
         <div id="chat-home-view" class="p-3.5 space-y-2.5 bg-slate-50 flex-1 max-h-[380px] overflow-y-auto">
-            
-            <!-- Menu Item 1: Send Message -->
             <div onclick="openDirectChatScreen()" class="bg-white hover:bg-blue-50/70 p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between cursor-pointer transition group">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-[#006cb8] text-white flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition">
-                        <i class="fa-solid fa-comment-dots"></i>
-                    </div>
+                    <div class="w-10 h-10 rounded-full bg-[#006cb8] text-white flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition"><i class="fa-solid fa-comment-dots"></i></div>
                     <div>
                         <h4 class="text-xs font-bold text-slate-800">ផ្ញើសារមកយើង</h4>
                         <p class="text-[10px] text-slate-400">ជាធម្មតាយើងឆ្លើយតបក្នុងរយៈពេល ១-៣០ នាទី</p>
@@ -395,12 +394,9 @@
                 </div>
             </div>
 
-            <!-- Menu Item 2: Speed Up / Cancel Order -->
             <div onclick="switchTab('orders'); toggleLiveChatWidget();" class="bg-white hover:bg-blue-50/70 p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between cursor-pointer transition group">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-[#0070ba] text-white flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition">
-                        <i class="fa-solid fa-circle-check"></i>
-                    </div>
+                    <div class="w-10 h-10 rounded-full bg-[#0070ba] text-white flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition"><i class="fa-solid fa-circle-check"></i></div>
                     <div>
                         <h4 class="text-xs font-bold text-slate-800">បោះបង់ ឬ បង្កើនល្បឿនការបញ្ជាទិញ</h4>
                         <p class="text-[10px] text-slate-400">ពិនិត្យការបញ្ជាទិញ និងស្នើសុំការផ្លាស់ប្ដូរ</p>
@@ -409,12 +405,9 @@
                 <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
             </div>
 
-            <!-- Menu Item 3: View Services & Pricing -->
             <div onclick="switchTab('services'); toggleLiveChatWidget();" class="bg-white hover:bg-blue-50/70 p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between cursor-pointer transition group">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-[#00a884] text-white flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition">
-                        <i class="fa-solid fa-robot"></i>
-                    </div>
+                    <div class="w-10 h-10 rounded-full bg-[#00a884] text-white flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition"><i class="fa-solid fa-robot"></i></div>
                     <div>
                         <h4 class="text-xs font-bold text-slate-800">មើលសេវាកម្ម និងតម្លៃ</h4>
                         <p class="text-[10px] text-slate-400">ស្វែងរកការ – ឆ្លើយភ្លាមៗ</p>
@@ -423,12 +416,9 @@
                 <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
             </div>
 
-            <!-- Menu Item 4: Video Tutorials -->
-            <div onclick="alert('វីដេអូបង្រៀនកំពុងរៀបចំជូន (Tutorial Video Coming Soon)')" class="bg-white hover:bg-blue-50/70 p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between cursor-pointer transition group">
+            <div onclick="alert('វីដេអូបង្រៀនកំពុងរៀបចំជូន')" class="bg-white hover:bg-blue-50/70 p-3.5 rounded-2xl border border-slate-100 shadow-sm flex items-center justify-between cursor-pointer transition group">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-[#0070ba] text-white flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition">
-                        <i class="fa-solid fa-circle-play"></i>
-                    </div>
+                    <div class="w-10 h-10 rounded-full bg-[#0070ba] text-white flex items-center justify-center text-sm shadow-sm group-hover:scale-105 transition"><i class="fa-solid fa-circle-play"></i></div>
                     <div>
                         <h4 class="text-xs font-bold text-slate-800">មើលវីដេអូបង្រៀន</h4>
                         <p class="text-[10px] text-slate-400">វីដេអូណែនាំពីរបៀបការងារ</p>
@@ -436,30 +426,72 @@
                 </div>
                 <i class="fa-solid fa-chevron-right text-slate-300 text-xs"></i>
             </div>
-
         </div>
 
-        <!-- Direct Chat Screen (When user clicks 'ផ្ញើសារមកយើង') -->
-        <div id="chat-conversation-view" class="p-3 space-y-3 bg-slate-50 flex-1 max-h-[380px] overflow-y-auto hidden">
-            <button onclick="backToChatHome()" class="text-xs text-blue-600 font-bold flex items-center gap-1.5 hover:underline">
-                <i class="fa-solid fa-arrow-left"></i> ត្រឡប់ក្រោយ
-            </button>
-            <div class="space-y-2 text-xs" id="chat-messages-box">
+        <!-- Screen 2: Direct Conversation View (ដូចរូបភាព Screenshot របស់អ្នក ១០០%) -->
+        <div id="chat-conversation-view" class="flex flex-col bg-white flex-1 max-h-[420px] hidden">
+            
+            <!-- Messages Scroll Area -->
+            <div id="chat-messages-box" class="flex-1 p-3.5 space-y-3 overflow-y-auto bg-slate-50/60 max-h-[330px]">
+                
+                <!-- Date Badge -->
+                <div class="text-center">
+                    <span class="px-3 py-1 bg-slate-200/70 text-slate-500 rounded-full text-[10px] font-bold">Today</span>
+                </div>
+
+                <!-- Admin Welcome Bubble -->
                 <div class="flex gap-2 items-start">
-                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] shrink-0 font-bold">SL</div>
-                    <div class="bg-white p-2.5 rounded-2xl rounded-tl-none border border-slate-200 text-slate-700 shadow-sm max-w-[80%]">
-                        សួស្ដីបាទ! តើប្អូនមានបញ្ហាអ្វីដែរ? សូមផ្ញើសារមកខាងយើងខ្ញុំ។
+                    <div class="w-7 h-7 rounded-full bg-[#0066b3] text-white flex items-center justify-center text-xs shrink-0 shadow-sm">
+                        <i class="fa-solid fa-crown text-[10px]"></i>
+                    </div>
+                    <div>
+                        <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 text-slate-800 text-xs shadow-sm leading-relaxed max-w-[240px]">
+                            សួស្ដី 👋 តើយើងអាចជួយអ្វីបានដែរថ្ងៃនេះ? គ្រាន់តែផ្ញើសាររបស់អ្នកមក ក្រុមការងាររបស់យើងនឹងឆ្លើយតបក្នុងពេលឆាប់ៗ។
+                        </div>
+                        <span class="text-[10px] text-slate-400 mt-1 ml-1 block" id="welcome-chat-time">6:42 AM</span>
                     </div>
                 </div>
+
+                <!-- Quick Suggested Question Chips (ចុចបានពិតៗ) -->
+                <div class="space-y-2 pt-1">
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="handleQuickChatQuestion('តម្លៃប៉ុន្មាន?')" class="px-3 py-1.5 bg-white border border-[#0066b3] text-[#0066b3] hover:bg-blue-50 rounded-full text-xs font-bold shadow-sm transition">
+                            តម្លៃប៉ុន្មាន?
+                        </button>
+                        <button onclick="handleQuickChatQuestion('ការបញ្ជាទិញរបស់ខ្ញុំនៅឯណា?')" class="px-3 py-1.5 bg-white border border-[#0066b3] text-[#0066b3] hover:bg-blue-50 rounded-full text-xs font-bold shadow-sm transition">
+                            ការបញ្ជាទិញរបស់ខ្ញុំនៅឯណា?
+                        </button>
+                    </div>
+                    <div>
+                        <button onclick="handleQuickChatQuestion('តើបង់ប្រាក់យ៉ាងដូចម្តេច?')" class="px-3 py-1.5 bg-white border border-[#0066b3] text-[#0066b3] hover:bg-blue-50 rounded-full text-xs font-bold shadow-sm transition">
+                            តើបង់ប្រាក់យ៉ាងដូចម្តេច?
+                        </button>
+                    </div>
+                </div>
+
             </div>
-            <div class="flex gap-2 pt-2">
-                <input type="text" id="chat-input-text" placeholder="វាយសាររបស់អ្នក..." class="flex-1 px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs focus:outline-none">
-                <button onclick="sendChatMessage()" class="px-3 py-2 bg-[#0070e0] text-white rounded-xl text-xs font-bold hover:bg-blue-600"><i class="fa-solid fa-paper-plane"></i></button>
+
+            <!-- Bottom Chat Input Bar (ដូចរូបភាព) -->
+            <div class="p-2.5 bg-white border-t border-slate-100 flex items-center gap-2">
+                <!-- Attach Image Icon -->
+                <button onclick="document.getElementById('chat-file-input').click()" class="text-slate-400 hover:text-blue-600 p-1.5 transition">
+                    <i class="fa-regular fa-image text-lg"></i>
+                </button>
+                <input type="file" id="chat-file-input" class="hidden" onchange="alert('បានភ្ជាប់រូបភាពជោគជ័យ!')">
+
+                <!-- Text Input -->
+                <input type="text" id="chat-input-text" onkeypress="if(event.key==='Enter') sendChatMessage()" placeholder="សរសេរសារ..." class="flex-1 px-3 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs text-slate-800 focus:outline-none focus:bg-white focus:border-blue-500 transition">
+
+                <!-- Send Button -->
+                <button onclick="sendChatMessage()" class="w-9 h-9 rounded-full bg-[#0066b3] hover:bg-blue-700 text-white flex items-center justify-center text-xs shadow-md transition shrink-0">
+                    <i class="fa-solid fa-paper-plane text-xs"></i>
+                </button>
             </div>
+
         </div>
 
-        <!-- Bottom Chat Navigation -->
-        <div class="bg-white border-t border-slate-100 p-2.5 grid grid-cols-3 text-center text-xs font-bold text-slate-500">
+        <!-- Bottom Chat Navigation (Home View Only) -->
+        <div id="chat-bottom-nav" class="bg-white border-t border-slate-100 p-2.5 grid grid-cols-3 text-center text-xs font-bold text-slate-500">
             <button onclick="backToChatHome()" class="flex flex-col items-center gap-1 text-blue-600">
                 <i class="fa-solid fa-house text-sm"></i>
                 <span class="text-[10px]">ដើម</span>
@@ -532,40 +564,85 @@
         }
 
         function openDirectChatScreen() {
+            document.getElementById('chat-home-header').classList.add('hidden');
             document.getElementById('chat-home-view').classList.add('hidden');
+            document.getElementById('chat-bottom-nav').classList.add('hidden');
+
+            document.getElementById('chat-conv-header').classList.remove('hidden');
             document.getElementById('chat-conversation-view').classList.remove('hidden');
         }
 
         function backToChatHome() {
+            document.getElementById('chat-conv-header').classList.add('hidden');
             document.getElementById('chat-conversation-view').classList.add('hidden');
+
+            document.getElementById('chat-home-header').classList.remove('hidden');
             document.getElementById('chat-home-view').classList.remove('hidden');
+            document.getElementById('chat-bottom-nav').classList.remove('hidden');
+        }
+
+        function handleQuickChatQuestion(questionText) {
+            appendMessage(questionText, 'user');
+
+            setTimeout(() => {
+                let botReply = "សូមអរគុណ! ក្រុមការងារយើងនឹងឆ្លើយតបក្នុងពេលឆាប់ៗ។";
+                if (questionText === 'តម្លៃប៉ុន្មាន?') {
+                    botReply = "តម្លៃសេវាកម្មចាប់ផ្ដើមពី $0.13/1000 ឡើងទៅ! លោកអ្នកអាចចុចមើលតារាងតម្លៃក្នុងទំព័រ Services បាន។";
+                } else if (questionText === 'ការបញ្ជាទិញរបស់ខ្ញុំនៅឯណា?') {
+                    botReply = "លោកអ្នកអាចតាមដានស្ថានភាព Order ក្នុងផ្ទាំង My Orders ដោយបញ្ចូល ID ឬ Link។";
+                } else if (questionText === 'តើបង់ប្រាក់យ៉ាងដូចម្តេច?') {
+                    botReply = "លោកអ្នកអាចចូលទៅកាន់ផ្ទាំង Add funds រួចស្កេន KHQR គ្រប់ធនាគារ ប្រព័ន្ធនឹងបញ្ចូលទឹកប្រាក់ស្វ័យប្រវត្តិ ២៤/៧!";
+                }
+                appendMessage(botReply, 'bot');
+            }, 600);
         }
 
         function sendChatMessage() {
-            const txt = document.getElementById('chat-input-text').value.trim();
+            const input = document.getElementById('chat-input-text');
+            const txt = input.value.trim();
             if (!txt) return;
 
-            const box = document.getElementById('chat-messages-box');
-            // User msg
-            const userMsg = document.createElement('div');
-            userMsg.className = "flex justify-end";
-            userMsg.innerHTML = `<div class="bg-blue-600 text-white p-2.5 rounded-2xl rounded-tr-none shadow-sm max-w-[80%]">${txt}</div>`;
-            box.appendChild(userMsg);
-            document.getElementById('chat-input-text').value = '';
+            appendMessage(txt, 'user');
+            input.value = '';
 
-            // Auto Bot Reply
             setTimeout(() => {
-                const botMsg = document.createElement('div');
-                botMsg.className = "flex gap-2 items-start";
-                botMsg.innerHTML = `
-                    <div class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-[10px] shrink-0 font-bold">SL</div>
-                    <div class="bg-white p-2.5 rounded-2xl rounded-tl-none border border-slate-200 text-slate-700 shadow-sm max-w-[80%]">
-                        អរគុណសម្រាប់ការទាក់ទង! Admin នឹងឆ្លើយតបសាររបស់អ្នកក្នុងពេលបន្តិចទៀតនេះ។
+                appendMessage("អរគុណសម្រាប់ការទាក់ទងមក Smey Lov! ក្រុមការងារ Support នឹងឆ្លើយតបក្នុងរយៈពេល ១-៣០ នាទី។", 'bot');
+            }, 800);
+        }
+
+        function appendMessage(text, sender) {
+            const box = document.getElementById('chat-messages-box');
+            const timeNow = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+            if (sender === 'user') {
+                const userDiv = document.createElement('div');
+                userDiv.className = "flex justify-end";
+                userDiv.innerHTML = `
+                    <div>
+                        <div class="bg-[#0066b3] text-white p-3 rounded-2xl rounded-tr-none text-xs shadow-sm max-w-[240px] leading-relaxed">
+                            ${text}
+                        </div>
+                        <span class="text-[10px] text-slate-400 mt-1 mr-1 text-right block">${timeNow}</span>
                     </div>
                 `;
-                box.appendChild(botMsg);
-                box.scrollTop = box.scrollHeight;
-            }, 800);
+                box.appendChild(userDiv);
+            } else {
+                const botDiv = document.createElement('div');
+                botDiv.className = "flex gap-2 items-start";
+                botDiv.innerHTML = `
+                    <div class="w-7 h-7 rounded-full bg-[#0066b3] text-white flex items-center justify-center text-xs shrink-0 shadow-sm">
+                        <i class="fa-solid fa-crown text-[10px]"></i>
+                    </div>
+                    <div>
+                        <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 text-slate-800 text-xs shadow-sm leading-relaxed max-w-[240px]">
+                            ${text}
+                        </div>
+                        <span class="text-[10px] text-slate-400 mt-1 ml-1 block">${timeNow}</span>
+                    </div>
+                `;
+                box.appendChild(botDiv);
+            }
+            box.scrollTop = box.scrollHeight;
         }
 
         function toggleChatLanguage() {
@@ -573,7 +650,6 @@
             btn.textContent = btn.textContent === 'EN' ? 'KM' : 'EN';
         }
 
-        // Toggle Show more
         function toggleShowMore() {
             showMoreOpen = !showMoreOpen;
             const sublist = document.getElementById('show-more-sublist');
@@ -587,7 +663,6 @@
             }
         }
 
-        // Tab Switching
         function switchTab(tabId) {
             allViewIds.forEach(id => {
                 const el = document.getElementById('view-' + id);
@@ -613,7 +688,6 @@
             if (tabId === 'tickets') renderTicketsHistory();
         }
 
-        // Orders Table
         function renderOrdersTable() {
             const tbody = document.getElementById('orders-tbody');
             tbody.innerHTML = '';
@@ -636,7 +710,6 @@
             });
         }
 
-        // Services
         function renderServicesListFull() {
             const tbody = document.getElementById('services-full-tbody');
             tbody.innerHTML = '';
@@ -657,7 +730,6 @@
             });
         }
 
-        // Add funds
         function setAmount(amt) {
             document.getElementById('deposit-amount-input').value = amt;
             document.getElementById('right-amount-input').value = amt;
@@ -687,7 +759,6 @@
             switchTab('neworder');
         }
 
-        // Tickets
         function renderTicketsHistory() {
             const container = document.getElementById('tickets-history-container');
             container.innerHTML = '';
@@ -718,7 +789,6 @@
             switchTab('orders');
         }
 
-        // New order form logic
         function renderCategories(categories) {
             const catSelect = document.getElementById('category-select');
             catSelect.innerHTML = '';
@@ -770,6 +840,7 @@
             renderCategories(smmData);
             onCategoryChange();
             updateBalanceUI();
+            document.getElementById('welcome-chat-time').textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         };
     </script>
 </body>
