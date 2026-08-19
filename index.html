@@ -27,7 +27,7 @@
 <body class="text-slate-700 min-h-screen flex flex-col relative overflow-x-hidden pb-20 md:pb-0">
 
     <!-- ========================================================================= -->
-    <!-- SECTION 1: PUBLIC LANDING PAGE (SIGN IN, SIGN UP & GOOGLE ONE-TAP)        -->
+    <!-- SECTION 1: PUBLIC LANDING PAGE (SIGN IN, SIGN UP & GOOGLE LOGIN)          -->
     <!-- ========================================================================= -->
     <div id="landing-auth-view" class="min-h-screen flex flex-col justify-between hero-gradient z-30">
         
@@ -39,7 +39,7 @@
                 </div>
                 <div>
                     <span class="font-extrabold text-xl tracking-tight text-blue-900 block leading-none">SMEY LOV</span>
-                    <span class="text-[9px] font-bold text-blue-600 tracking-widest uppercase">100,000+ SMM Hub</span>
+                    <span class="text-[9px] font-bold text-blue-600 tracking-widest uppercase">SMM Marketing Hub</span>
                 </div>
             </div>
 
@@ -63,13 +63,13 @@
             <div class="lg:col-span-7 space-y-5">
                 <div>
                     <span class="text-xs font-bold text-blue-600 tracking-wide uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
-                        Smey Lov - #1 SMM Panel in Cambodia
+                        Smey Lov - Top-Rated SMM Panel
                     </span>
                     <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight mt-3 leading-tight">
                         #1 Cheapest SMM<br><span class="text-[#0070e0]">Panel in Cambodia</span>
                     </h1>
                     <p class="text-xs sm:text-sm text-slate-500 mt-2 max-w-lg">
-                        សេវាកម្ម SMM រាប់រយមុខតម្លៃទាបបំផុតនៅកម្ពុជា (TikTok, Facebook, Telegram, YouTube)។
+                        សេវាកម្ម SMM រាប់រយមុខចម្រុះគ្នា តម្លៃទាបបំផុតនៅកម្ពុជា (TikTok, Facebook, Telegram, YouTube)។
                     </p>
                 </div>
 
@@ -114,25 +114,23 @@
 
             <div class="lg:col-span-5 flex justify-center items-center">
                 <div class="w-full max-w-sm bg-white rounded-3xl p-6 shadow-2xl border border-blue-100 text-center space-y-3">
-                    <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl mx-auto flex items-center justify-center text-4xl shadow-inner">⚡</div>
-                    <h3 class="text-base font-black text-slate-800">100,000 Services Engine</h3>
-                    <p class="text-xs text-slate-500 leading-relaxed">ប្រព័ន្ធស្វ័យប្រវត្តិលំដាប់កំពូល ផ្ទុកសេវាកម្មរាប់ម៉ឺនមុខ គាំទ្រការទូទាត់ប្រាក់ KHQR និង Google Sign-In ពេញលេញ។</p>
+                    <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl mx-auto flex items-center justify-center text-4xl shadow-inner">🚀</div>
+                    <h3 class="text-base font-black text-slate-800">សេវាកម្មចម្រុះគ្រប់ប្រភេទ</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">មានសេវាកម្មប្លែកៗគ្នាជាងរាប់រយមុខសម្រាប់ Facebook, TikTok, Telegram, YouTube និង Instagram។</p>
                 </div>
             </div>
         </main>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- SECTION 2: AUTHENTICATED WORKSPACE (FULL COMPLETE APPLICATION)             -->
+    <!-- SECTION 2: AUTHENTICATED WORKSPACE (FULL 100K SMM PANEL & ADMIN)           -->
     <!-- ========================================================================= -->
     <div id="main-app-container" class="min-h-screen flex flex-col hidden">
         
         <!-- App Top Navbar -->
         <header class="bg-[#0070e0] text-white px-3 sm:px-4 py-3 flex items-center justify-between shadow-md sticky top-0 z-40">
             <div class="flex items-center gap-3">
-                <button onclick="toggleMobileSidebar()" class="w-10 h-10 rounded-xl bg-white/15 active:bg-white/30 flex items-center justify-center text-base md:hidden transition">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
+                <button onclick="toggleMobileSidebar()" class="w-10 h-10 rounded-xl bg-white/15 active:bg-white/30 flex items-center justify-center text-base md:hidden transition"><i class="fa-solid fa-bars"></i></button>
                 <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl border border-white/20">
                     <i class="fa-solid fa-crown text-amber-300 text-base"></i>
                     <span class="font-extrabold tracking-wider text-base sm:text-lg">SMEY LOV</span>
@@ -140,13 +138,8 @@
             </div>
 
             <div class="flex items-center gap-2 sm:gap-3">
-                <button onclick="switchTab('addfunds')" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-400 active:bg-amber-500 text-slate-900 font-bold text-xs shadow-sm transition">
-                    <i class="fa-solid fa-wallet"></i>
-                    <span class="user-balance-display">$0.0008</span>
-                </button>
-                <button onclick="handleUserLogout()" class="w-9 h-9 rounded-full bg-red-500 hover:bg-red-600 text-white flex items-center justify-center text-xs shadow transition" title="Logout">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                </button>
+                <button onclick="switchTab('addfunds')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-400 text-slate-900 font-bold text-xs shadow-sm"><i class="fa-solid fa-wallet"></i><span class="user-balance-display">$0.0008</span></button>
+                <button onclick="handleUserLogout()" class="w-8 h-8 rounded-full bg-red-500 hover:bg-red-600 text-white flex items-center justify-center text-xs shadow transition"><i class="fa-solid fa-right-from-bracket"></i></button>
             </div>
         </header>
 
@@ -173,7 +166,7 @@
                     <button onclick="switchTab('neworder'); closeMobileSidebar();" id="menu-neworder" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white text-blue-700 shadow-md font-bold text-left transition"><i class="fa-solid fa-cart-shopping w-4 text-center"></i><span>New order</span></button>
                     <button onclick="switchTab('orders'); closeMobileSidebar();" id="menu-orders" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-clock-rotate-left w-4 text-center"></i><span>My Orders</span></button>
                     <button onclick="switchTab('addfunds'); closeMobileSidebar();" id="menu-addfunds" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-wallet w-4 text-center"></i><span>Add funds</span></button>
-                    <button onclick="switchTab('services'); closeMobileSidebar();" id="menu-services" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-list-check w-4 text-center"></i><span>Services (100k)</span></button>
+                    <button onclick="switchTab('services'); closeMobileSidebar();" id="menu-services" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-list-check w-4 text-center"></i><span>Services</span></button>
                     <button onclick="switchTab('tickets'); closeMobileSidebar();" id="menu-tickets" class="menu-btn w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
                         <div class="flex items-center gap-3"><i class="fa-solid fa-ticket w-4 text-center"></i><span>Tickets</span></div>
                         <span class="bg-amber-400 text-slate-900 text-[10px] font-bold px-1.5 py-0.2 rounded-full">1</span>
@@ -215,7 +208,7 @@
                 <!-- Status Bar -->
                 <div class="bg-white border border-slate-200 rounded-2xl p-3 sm:px-5 sm:py-3.5 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-600 shadow-sm">
                     <div>Page: <span class="text-blue-600 font-bold uppercase" id="current-page-text">New order</span></div>
-                    <div>Services Active: <span class="text-blue-600 font-extrabold text-sm">100,000+ Live</span></div>
+                    <div>Services: <span class="text-blue-600 font-bold" id="total-services-count">All Services Live</span></div>
                     <div>Role: <span class="text-amber-600 font-bold" id="current-role-text">Member</span></div>
                     <div>Balance: <span class="text-green-600 font-bold user-balance-display">$0.000788</span></div>
                 </div>
@@ -233,11 +226,11 @@
 
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">Category (ប្រភេទសេវាកម្ម)</label>
-                                <select id="category-select" onchange="onCategoryChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none"></select>
+                                <select id="category-select" onchange="onCategoryChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none focus:border-blue-500"></select>
                             </div>
                             <div>
                                 <label class="block text-xs font-bold text-slate-700 mb-1">Service (ជ្រើសរើសសេវាកម្ម)</label>
-                                <select id="service-select" onchange="onServiceChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none"></select>
+                                <select id="service-select" onchange="onServiceChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none focus:border-blue-500"></select>
                             </div>
                             <div><label class="block text-xs font-bold text-slate-700 mb-1">Link (តំណភ្ជាប់)</label><input type="url" id="order-link" placeholder="https://..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none"></div>
                             <div><label class="block text-xs font-bold text-slate-700 mb-1">Quantity (ចំនួន)</label><input type="number" id="order-qty" oninput="calculateCharge()" placeholder="1000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none"><p class="text-[11px] text-slate-400 mt-1" id="min-max-text">Min: 10 - Max: 100 000</p></div>
@@ -247,12 +240,12 @@
                         <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
                             <div class="py-2.5 px-4 bg-blue-50 rounded-xl border border-blue-100 flex items-center gap-2 text-xs font-bold text-blue-600"><i class="fa-solid fa-circle-info"></i> Service details</div>
                             <div class="grid grid-cols-2 gap-2 text-xs">
-                                <div class="p-3 bg-slate-50 rounded-xl"><b>Speed:</b> <span id="detail-speed">1M/day</span></div>
-                                <div class="p-3 bg-slate-50 rounded-xl"><b>Start Time:</b> <span id="detail-start">Instant (0-5m)</span></div>
-                                <div class="p-3 bg-slate-50 rounded-xl"><b>Average Time:</b> <span id="detail-avg">2 mins</span></div>
-                                <div class="p-3 bg-slate-50 rounded-xl"><b>Guarantee:</b> <span id="detail-guarantee" class="text-green-600">Auto Refill ♻️</span></div>
+                                <div class="p-3 bg-slate-50 rounded-xl"><b>Speed:</b> <span id="detail-speed">50k/day</span></div>
+                                <div class="p-3 bg-slate-50 rounded-xl"><b>Start Time:</b> <span id="detail-start">Instant</span></div>
+                                <div class="p-3 bg-slate-50 rounded-xl"><b>Average Time:</b> <span id="detail-avg">7 mins</span></div>
+                                <div class="p-3 bg-slate-50 rounded-xl"><b>Guarantee:</b> <span id="detail-guarantee" class="text-green-600">No Refill</span></div>
                             </div>
-                            <div class="border-t border-slate-100 pt-2 text-xs text-slate-500 leading-relaxed" id="detail-desc">សេវាកម្ម Server លំដាប់ Ultra VIP ដំណើរការស្វ័យប្រវត្តិ ២៤/៧។</div>
+                            <div class="border-t border-slate-100 pt-2 text-xs text-slate-500 leading-relaxed" id="detail-desc"></div>
                         </div>
                     </div>
                 </div>
@@ -306,15 +299,12 @@
                     </div>
                 </div>
 
-                <!-- ================= 4. SERVICES VIEW (100,000 SERVICES VIEWER) ================= -->
+                <!-- ================= 4. SERVICES VIEW ================= -->
                 <div id="view-services" class="space-y-4 hidden">
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
                         <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                            <div>
-                                <h3 class="text-sm font-bold text-slate-800">📋 តារាងតម្លៃសេវាកម្ម (<span class="text-blue-600 font-extrabold">100,000+ Services Live</span>)</h3>
-                                <p class="text-[11px] text-slate-400">ស្វែងរកសេវាកម្មតាម ID (10001 - 110000) ឬឈ្មោះសេវាកម្ម</p>
-                            </div>
-                            <input type="text" id="service-search-input" oninput="resetAndSearchServices()" placeholder="ស្វែងរកតាម ID ឬឈ្មោះ..." class="px-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none w-full sm:w-64">
+                            <h3 class="text-sm font-bold text-slate-800">📋 តារាងតម្លៃសេវាកម្មទាំងអស់</h3>
+                            <input type="text" id="service-search-input" oninput="renderServicesListFull()" placeholder="ស្វែងរកសេវាកម្ម..." class="px-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none w-full sm:w-64">
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full text-left text-xs">
@@ -324,20 +314,12 @@
                                         <th class="p-3">Service Name</th>
                                         <th class="p-3 whitespace-nowrap">Rate / 1k</th>
                                         <th class="p-3 whitespace-nowrap">Min / Max</th>
-                                        <th class="p-3 whitespace-nowrap">Speed</th>
+                                        <th class="p-3 whitespace-nowrap">Average time</th>
                                         <th class="p-3 text-center">Order</th>
                                     </tr>
                                 </thead>
                                 <tbody id="services-full-tbody" class="divide-y divide-slate-100"></tbody>
                             </table>
-                        </div>
-
-                        <!-- Lazy Loading Pagination Controls -->
-                        <div class="p-3 bg-slate-50 rounded-xl flex items-center justify-between text-xs">
-                            <span id="showing-services-text" class="text-slate-500 font-semibold">បង្ហាញ 0 នៃ 100,000 សេវាកម្ម</span>
-                            <button onclick="loadMoreServices()" id="btn-load-more" class="px-5 py-2.5 bg-[#0070e0] active:bg-blue-700 text-white font-bold rounded-xl shadow transition">
-                                ផ្ទុក 50 សេវាកម្មទៀត (Load More)
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -364,13 +346,13 @@
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
                         <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
                             <label class="block text-xs font-bold text-slate-700">One order per line (service_id | link | quantity)</label>
-                            <textarea id="massorder-text" rows="8" placeholder="10001 | https://facebook.com/post/1 | 1000" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-mono"></textarea>
+                            <textarea id="massorder-text" rows="8" placeholder="17095 | https://facebook.com/post/1 | 1000" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-mono"></textarea>
                             <button onclick="submitMassOrder()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit Order</button>
                         </div>
                         <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-2 text-xs">
                             <h4 class="font-bold text-slate-800 border-b border-slate-100 pb-2">How Does Mass Order Work?</h4>
                             <p class="font-mono text-pink-600 bg-pink-50 p-2 rounded-lg">service_id | link | quantity</p>
-                            <p class="text-slate-500">ឧទាហរណ៍៖<br>10001|https://fb.com/post1|1000<br>10005|https://tiktok.com/@u/video/1|500</p>
+                            <p class="text-slate-500">ឧទាហរណ៍៖<br>17095|https://fb.com/post1|1000<br>18494|https://tiktok.com/@u/video/1|500</p>
                         </div>
                     </div>
                 </div>
@@ -445,7 +427,7 @@
                 <div id="view-updates" class="space-y-4 hidden">
                     <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-xs">
                         <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Updates Log</h3>
-                        <p class="text-slate-500">2026-08-19: បន្ថែម 100,000 សេវាកម្ម TikTok, Facebook, YouTube តម្លៃដើមទាបបំផុត។</p>
+                        <p class="text-slate-500">2026-08-19: បន្ថែមសេវាកម្មចម្រុះ TikTok, Facebook, YouTube តម្លៃដើមទាបបំផុត។</p>
                     </div>
                 </div>
 
@@ -462,7 +444,7 @@
                     <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-5 text-white shadow-xl flex items-center justify-between border border-slate-700">
                         <div>
                             <h3 class="text-base font-black text-amber-300">ADMIN CONTROL CENTER</h3>
-                            <p class="text-xs text-slate-300">គ្រប់គ្រងសមតុល្យភ្ញៀវតាម Email និង 100,000 សេវាកម្ម</p>
+                            <p class="text-xs text-slate-300">គ្រប់គ្រងសមតុល្យភ្ញៀវតាម Email និងសេវាកម្ម</p>
                         </div>
                     </div>
 
@@ -471,14 +453,14 @@
                             <h4 class="text-xs font-black text-slate-800 uppercase flex items-center gap-2 border-b pb-2"><i class="fa-solid fa-money-bill-transfer text-green-600"></i> បញ្ចូលសមតុល្យឱ្យភ្ញៀវតាម Email</h4>
                             <input type="email" id="admin-target-email" placeholder="ooo060565719@gmail.com" class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-xs">
                             <input type="number" step="0.01" id="admin-add-amount" placeholder="10.00" class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-xs font-bold text-green-600">
-                            <button onclick="adminDepositToUser()" class="w-full py-3 bg-green-600 active:bg-green-700 text-white font-bold rounded-xl text-xs shadow">បញ្ចូលលុយភ្លាមៗ</button>
+                            <button onclick="adminDepositToUser()" class="w-full py-3 bg-green-600 text-white font-bold rounded-xl text-xs shadow">បញ្ចូលលុយភ្លាមៗ</button>
                         </div>
 
                         <div id="admin-sec-discount" class="lg:col-span-6 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
-                            <h4 class="text-xs font-black text-slate-800 uppercase flex items-center gap-2 border-b pb-2"><i class="fa-solid fa-percent text-rose-600"></i> បញ្ចុះតម្លៃ 100,000 សេវាកម្ម</h4>
+                            <h4 class="text-xs font-black text-slate-800 uppercase flex items-center gap-2 border-b pb-2"><i class="fa-solid fa-percent text-rose-600"></i> បញ្ចុះតម្លៃសេវាកម្ម</h4>
                             <div class="flex gap-2">
                                 <input type="number" id="admin-discount-input" value="0" min="0" max="90" class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-xs font-bold text-rose-600">
-                                <button onclick="applyGlobalDiscount()" class="px-5 py-2.5 bg-rose-600 active:bg-rose-700 text-white font-bold rounded-xl text-xs">Apply</button>
+                                <button onclick="applyGlobalDiscount()" class="px-5 py-2.5 bg-rose-600 text-white font-bold rounded-xl text-xs">Apply</button>
                             </div>
                         </div>
 
@@ -532,25 +514,21 @@
         </div>
     </div>
 
+    <!-- Floating Chat Trigger Button -->
     <div class="fixed bottom-16 md:bottom-5 right-4 md:right-5 z-30">
         <button onclick="toggleLiveChatWidget()" class="w-12 h-12 rounded-full bg-[#0066b3] hover:bg-blue-700 active:bg-blue-800 text-white shadow-xl flex items-center justify-center text-lg transition">
             <i class="fa-solid fa-comment-dots"></i>
         </button>
     </div>
 
-    <!-- ================= JAVASCRIPT SYSTEM ENGINE ================= -->
+    <!-- ================= AUTHENTICATED SERVICES DATABASE (DISTINCT NAMES) ================= -->
     <script>
         let currentBalance = 0.000788;
         let currentSelectedAmount = 10.00;
         let currentUser = "សំណា";
         let currentUserEmail = "ooo060565719@gmail.com";
         let currentRole = "user";
-        let globalDiscountPercent = 0;
         let showMoreOpen = true;
-
-        const TOTAL_SERVICES_TARGET = 100000;
-        let serviceListPage = 1;
-        const PAGE_SIZE = 50;
 
         const allViewIds = ['neworder', 'orders', 'addfunds', 'services', 'tickets', 'massorder', 'api', 'dashboard', 'affiliates', 'childpanel', 'faq', 'updates', 'terms', 'admin'];
         
@@ -568,138 +546,148 @@
             { id: "261", user: "សំណា", date: "2026-08-19 01:49:38", subject: "AI Support", status: "Closed" }
         ];
 
-        // Base Categories for 100,000 Services Engine
-        const baseCategories = [
-            { id: "tiktok", name: "📱 TikTok - Views, Likes, Followers & Shares", baseRate: 0.015, min: 100, max: 10000000, speed: "1M/day" },
-            { id: "facebook_react", name: "🔥 Facebook - Post Reactions (Like/Love/Care/Haha)", baseRate: 0.131, min: 10, max: 100000, speed: "50k/day" },
-            { id: "facebook_follow", name: "👤 Facebook - Page / Profile Followers", baseRate: 0.247, min: 10, max: 1000000, speed: "100k/day" },
-            { id: "facebook_live", name: "🎥 Facebook - Live Stream Viewers (30m - 240m)", baseRate: 1.800, min: 20, max: 5000, speed: "Instant" },
-            { id: "telegram", name: "✈️ Telegram - Members & Post Views", baseRate: 0.098, min: 50, max: 1000000, speed: "100k/day" },
-            { id: "youtube_views", name: "▶️ YouTube - Video Views & Shorts", baseRate: 1.800, min: 100, max: 1000000, speed: "50k/day" },
-            { id: "youtube_subs", name: "🔔 YouTube - Subscribers & Watch Time", baseRate: 6.500, min: 50, max: 50000, speed: "1k/day" },
-            { id: "instagram", name: "📸 Instagram - Followers, Likes & Reels", baseRate: 0.300, min: 20, max: 100000, speed: "50k/day" },
-            { id: "website", name: "🌐 Website Traffic - Google Organic & Direct", baseRate: 0.500, min: 500, max: 500000, speed: "10k/day" },
-            { id: "threads_twitter", name: "🕊️ Threads & Twitter / X - Followers & Retweets", baseRate: 0.750, min: 50, max: 100000, speed: "20k/day" }
+        // REAL DISTINCT SMM SERVICES DATABASE (ឈ្មោះប្លែកៗពីគ្នា ១០០%)
+        const smmData = [
+            // 1. TIKTOK SERVICES
+            {
+                catId: "tiktok_views",
+                categoryName: "📱 TikTok - Video Views [Ultra Fast & Non-Drop]",
+                type: "tiktok",
+                services: [
+                    { id: "18495", name: "TikTok Video Views [Super Fast Speed] - Max 10M - Instant Start", ratePer1k: 0.0150, min: 100, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 mins", guarantee: "No Refill", desc: "Fastest video views worldwide." },
+                    { id: "18496", name: "TikTok Video Views [HQ Non-Drop] [Lifetime Guarantee 🌟]", ratePer1k: 0.0250, min: 500, max: 50000000, speed: "5M/day", start: "Instant", avgTime: "1 min", guarantee: "Lifetime Refill", desc: "100% Non-Drop Views." },
+                    { id: "18497", name: "TikTok Video Views [Cambodia / Asia Targeted]", ratePer1k: 0.0350, min: 500, max: 5000000, speed: "500k/day", start: "Instant", avgTime: "5 mins", guarantee: "No Refill", desc: "Targeted views." }
+                ]
+            },
+            {
+                catId: "tiktok_likes",
+                categoryName: "❤️ TikTok - Video Likes & Favorites",
+                type: "tiktok",
+                services: [
+                    { id: "18501", name: "TikTok Video Likes [Real Active Users] [30 Days Refill ♻️]", ratePer1k: 0.4500, min: 50, max: 100000, speed: "50k/day", start: "Instant", avgTime: "10 mins", guarantee: "30 Days Refill", desc: "High quality real likes." },
+                    { id: "18502", name: "TikTok Video Likes [Cheap Fast Server] - Max 50k", ratePer1k: 0.3200, min: 50, max: 50000, speed: "20k/day", start: "Instant", avgTime: "5 mins", guarantee: "No Refill", desc: "Instant likes." },
+                    { id: "18503", name: "TikTok Video Saves / Favorites [Algorithm Booster]", ratePer1k: 0.2800, min: 50, max: 500000, speed: "50k/day", start: "Instant", avgTime: "5 mins", guarantee: "No Refill", desc: "Helps video go viral on FYP." }
+                ]
+            },
+            {
+                catId: "tiktok_followers",
+                categoryName: "👥 TikTok - Followers [Real Profiles]",
+                type: "tiktok",
+                services: [
+                    { id: "18510", name: "TikTok Followers [Real Active - 30 Days Refill ♻️] - Max 500k", ratePer1k: 1.2500, min: 50, max: 500000, speed: "20k/day", start: "Instant", avgTime: "30 mins", guarantee: "30 Days Refill", desc: "Non-drop followers with auto refill." },
+                    { id: "18511", name: "TikTok Followers [Standard HQ] [No Refill] - Max 100k", ratePer1k: 0.9800, min: 50, max: 100000, speed: "10k/day", start: "Instant", avgTime: "20 mins", guarantee: "No Refill", desc: "Standard quality followers." },
+                    { id: "18512", name: "TikTok Reposts | Max 10K | HQ Accounts | Instant Start", ratePer1k: 1.0400, min: 10, max: 10000, speed: "10k/day", start: "Instant", avgTime: "15 mins", guarantee: "No Refill", desc: "Real TikTok reposts." }
+                ]
+            },
+            // 2. FACEBOOK POST REACTIONS
+            {
+                catId: "fb_reactions",
+                categoryName: "🔥 Facebook - Post Reactions (Like / Love / Care / Haha / Wow / Sad / Angry)",
+                type: "facebook",
+                services: [
+                    { id: "17095", name: "Facebook Post Likes 🔥 - Max 100k - 50k/day - Instant - NO REFILL", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "7 mins", guarantee: "No Refill", desc: "Instant post likes." },
+                    { id: "17096", name: "Facebook Post Reaction - Love ❤️ - Max 100k - Instant - NO REFILL", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "10 mins", guarantee: "No Refill", desc: "Love reactions." },
+                    { id: "17097", name: "Facebook Post Reaction - Care 🥰 - Max 100k - Instant - NO REFILL", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 mins", guarantee: "No Refill", desc: "Care reactions." },
+                    { id: "17098", name: "Facebook Post Reaction - Haha 😂 - Max 100k - Instant - NO REFILL", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 mins", guarantee: "No Refill", desc: "Haha reactions." },
+                    { id: "17099", name: "Facebook Post Reaction - Wow 😮 - Max 100k - Instant - NO REFILL", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 mins", guarantee: "No Refill", desc: "Wow reactions." },
+                    { id: "17100", name: "Facebook Post Reaction - Sad 😢 - Max 100k - Instant - NO REFILL", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "15 mins", guarantee: "No Refill", desc: "Sad reactions." },
+                    { id: "17101", name: "Facebook Post Reaction - Angry 😡 - Max 100k - Instant - NO REFILL", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "20 mins", guarantee: "No Refill", desc: "Angry reactions." }
+                ]
+            },
+            // 3. FACEBOOK FOLLOWERS & PAGE LIKES
+            {
+                catId: "fb_followers",
+                categoryName: "👤 Facebook - Page & Profile Followers",
+                type: "facebook",
+                services: [
+                    { id: "17083", name: "Facebook - All Type Profile/Page Followers - Worldwide - Max 1M", ratePer1k: 0.2478, min: 10, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "15 mins", guarantee: "No Refill", desc: "High speed followers." },
+                    { id: "17084", name: "Facebook - Profile/Page Followers - 30 Days Refill ♻️ - Max 1M", ratePer1k: 0.2791, min: 10, max: 1000000, speed: "50k/day", start: "Instant", avgTime: "1 hour", guarantee: "30 Days Refill", desc: "Auto refill followers." },
+                    { id: "17085", name: "Facebook - Profile/Page Followers - Lifetime Guarantee 🌟", ratePer1k: 0.3762, min: 10, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "2 hours", guarantee: "Lifetime Refill", desc: "100% Non-Drop Lifetime Guarantee." },
+                    { id: "17086", name: "Facebook Group Members [Public / Private Groups] - Max 500k", ratePer1k: 0.6500, min: 50, max: 500000, speed: "20k/day", start: "Instant", avgTime: "30 mins", guarantee: "30 Days Refill", desc: "Real group members." }
+                ]
+            },
+            // 4. FACEBOOK LIVE STREAM & VIDEO REELS
+            {
+                catId: "fb_video_live",
+                categoryName: "🎥 Facebook - Live Stream Viewers & Video / Reels Views",
+                type: "facebook_live",
+                services: [
+                    { id: "18021", name: "Facebook Live Stream Viewers [30 Minutes] - Instant Start - Stable", ratePer1k: 1.8000, min: 20, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "Instant", guarantee: "30 Mins Watch", desc: "Stable live viewers for 30 minutes." },
+                    { id: "18022", name: "Facebook Live Stream Viewers [60 Minutes] - Instant Start", ratePer1k: 3.5000, min: 20, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "Instant", guarantee: "60 Mins Watch", desc: "Stable live viewers for 60 minutes." },
+                    { id: "18025", name: "Facebook Reels / Video Views - Max 10M - Super Fast", ratePer1k: 0.0450, min: 500, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "5 mins", guarantee: "No Refill", desc: "Fast video views." },
+                    { id: "18026", name: "Facebook Watch Time 60,000 Minutes [Monetization Package]", ratePer1k: 12.5000, min: 1, max: 10, speed: "1 day", start: "1-12 Hours", avgTime: "24 hours", guarantee: "30 Days Refill", desc: "Watch time for Page Monetization." }
+                ]
+            },
+            // 5. TELEGRAM SERVICES
+            {
+                catId: "tg_services",
+                categoryName: "✈️ Telegram - Channel / Group Members & Post Views",
+                type: "telegram",
+                services: [
+                    { id: "13717", name: "Telegram Members | Max 1M | LQ Bot Accounts | SuperInstant", ratePer1k: 0.0980, min: 100, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "5 mins", guarantee: "No Refill", desc: "Instant members." },
+                    { id: "13718", name: "Telegram Channel Members [Real Active Profiles - 30D Refill]", ratePer1k: 0.8500, min: 50, max: 50000, speed: "10k/day", start: "0-1 Hour", avgTime: "20 mins", guarantee: "30 Days Refill", desc: "Active members." },
+                    { id: "13719", name: "Telegram Post Views [1-5 Recent Posts] - Instant", ratePer1k: 0.0150, min: 100, max: 500000, speed: "100k/day", start: "Instant", avgTime: "2 mins", guarantee: "No Refill", desc: "Instant post views." },
+                    { id: "13720", name: "Telegram Positive Reactions (👍 ❤️ 🔥 🎉) - Instant", ratePer1k: 0.0500, min: 50, max: 50000, speed: "50k/day", start: "Instant", avgTime: "5 mins", guarantee: "No Refill", desc: "Post reactions." }
+                ]
+            },
+            // 6. YOUTUBE SERVICES
+            {
+                catId: "yt_services",
+                categoryName: "▶️ YouTube - Video Views, Subscribers & Watch Time",
+                type: "youtube",
+                services: [
+                    { id: "20011", name: "YouTube Video Views [Non-Drop] [Lifetime Refill] - Fast Speed", ratePer1k: 1.8000, min: 100, max: 1000000, speed: "50k/day", start: "0-1 Hour", avgTime: "1 hour", guarantee: "Lifetime Refill", desc: "Organic search & suggested views." },
+                    { id: "20012", name: "YouTube Shorts Views - Super Fast - Max 10M", ratePer1k: 0.5000, min: 500, max: 10000000, speed: "500k/day", start: "Instant", avgTime: "10 mins", guarantee: "No Refill", desc: "Instant Shorts views." },
+                    { id: "20015", name: "YouTube Subscribers [Real HQ - 30 Days Refill] - Max 50k", ratePer1k: 6.5000, min: 50, max: 50000, speed: "1k/day", start: "0-6 Hours", avgTime: "3 hours", guarantee: "30 Days Refill", desc: "High quality subscribers." },
+                    { id: "20018", name: "YouTube Watch Time [4000 Hours Package] - 15+ Min Video", ratePer1k: 14.0000, min: 500, max: 4000, speed: "500h/day", start: "1-12 Hours", avgTime: "24 hours", guarantee: "30 Days Refill", desc: "Watch hours for YouTube Monetization." }
+                ]
+            },
+            // 7. INSTAGRAM SERVICES
+            {
+                catId: "ig_services",
+                categoryName: "📸 Instagram - Followers, Likes & Reels Views",
+                type: "instagram",
+                services: [
+                    { id: "21040", name: "Instagram Likes [HQ - Instant Start] - Max 100k", ratePer1k: 0.3000, min: 20, max: 100000, speed: "50k/day", start: "Instant", avgTime: "5 mins", guarantee: "No Refill", desc: "High quality likes." },
+                    { id: "21041", name: "Instagram Followers [High Quality - 30 Days Refill]", ratePer1k: 0.9500, min: 50, max: 100000, speed: "20k/day", start: "Instant", avgTime: "15 mins", guarantee: "30 Days Refill", desc: "Non-drop followers." },
+                    { id: "21042", name: "Instagram Reels Views - Instant - Max 10M", ratePer1k: 0.0350, min: 500, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 mins", guarantee: "No Refill", desc: "Super fast Reels views." }
+                ]
+            }
         ];
 
-        function getServiceByIndex(index) {
-            const cat = baseCategories[index % baseCategories.length];
-            const serverNum = Math.floor(index / baseCategories.length) + 1;
-            const id = 10001 + index;
-            
-            let rate = cat.baseRate * (1 + ((index % 50) * 0.02));
-            if (globalDiscountPercent > 0) rate = rate * (1 - (globalDiscountPercent / 100));
+        let selectedService = smmData[0].services[0];
 
-            return {
-                id: String(id),
-                catId: cat.id,
-                catName: cat.name,
-                name: `[${id}] ${cat.name.split('-')[0]} - Server ${serverNum} [Ultra VIP Fast]`,
-                ratePer1k: parseFloat(rate.toFixed(4)),
-                min: cat.min,
-                max: cat.max,
-                speed: cat.speed,
-                start: "Instant",
-                avgTime: "2-5 mins",
-                guarantee: (index % 2 === 0) ? "Auto Refill ♻️" : "No Refill"
-            };
-        }
-
-        let selectedService = getServiceByIndex(0);
-
-        function renderServicesListFull(append = false) {
-            const tbody = document.getElementById('services-full-tbody');
-            if (!append) tbody.innerHTML = '';
-
-            const search = document.getElementById('service-search-input').value.toLowerCase().trim();
-            const startIdx = (serviceListPage - 1) * PAGE_SIZE;
-            const endIdx = serviceListPage * PAGE_SIZE;
-
-            if (search) {
-                tbody.innerHTML = '';
-                let count = 0;
-                for (let i = 0; i < TOTAL_SERVICES_TARGET && count < 60; i++) {
-                    const s = getServiceByIndex(i);
-                    if (s.id.includes(search) || s.name.toLowerCase().includes(search) || s.catName.toLowerCase().includes(search)) {
-                        appendServiceRow(tbody, s);
-                        count++;
-                    }
-                }
-                document.getElementById('showing-services-text').textContent = `ស្វែងរកឃើញ ${count} សេវាកម្ម`;
-                return;
-            }
-
-            for (let i = startIdx; i < endIdx && i < TOTAL_SERVICES_TARGET; i++) {
-                const s = getServiceByIndex(i);
-                appendServiceRow(tbody, s);
-            }
-
-            document.getElementById('showing-services-text').textContent = `បង្ហាញ ${Math.min(endIdx, TOTAL_SERVICES_TARGET).toLocaleString()} នៃ ${TOTAL_SERVICES_TARGET.toLocaleString()} សេវាកម្ម`;
-        }
-
-        function appendServiceRow(tbody, s) {
-            const tr = document.createElement('tr');
-            tr.className = "hover:bg-slate-50 border-b border-slate-100 transition";
-            tr.innerHTML = `
-                <td class="p-3 font-bold text-blue-600">${s.id}</td>
-                <td class="p-3 font-semibold text-slate-700">${s.name}</td>
-                <td class="p-3 font-bold text-slate-900 whitespace-nowrap">$${s.ratePer1k}</td>
-                <td class="p-3 text-slate-500 whitespace-nowrap">${s.min} / ${s.max.toLocaleString()}</td>
-                <td class="p-3 text-slate-500 whitespace-nowrap">${s.speed}</td>
-                <td class="p-3 text-center whitespace-nowrap">
-                    <button onclick="quickOrder100k('${s.id}')" class="px-3 py-1 bg-[#0070e0] hover:bg-blue-600 text-white rounded-lg text-xs font-bold shadow-sm">Order</button>
-                </td>
-            `;
-            tbody.appendChild(tr);
-        }
-
-        function loadMoreServices() { serviceListPage++; renderServicesListFull(true); }
-        function resetAndSearchServices() { serviceListPage = 1; renderServicesListFull(false); }
-
-        function quickOrder100k(serviceId) {
-            const idNum = parseInt(serviceId) - 10001;
-            if (idNum >= 0 && idNum < TOTAL_SERVICES_TARGET) {
-                selectedService = getServiceByIndex(idNum);
-                switchTab('neworder');
-                document.getElementById('category-select').value = selectedService.catId;
-                onCategoryChange();
-                document.getElementById('service-select').value = selectedService.id;
-                onServiceChange();
-            }
-        }
-
-        function renderCategories() {
+        function renderCategories(categories) {
             const catSelect = document.getElementById('category-select');
             catSelect.innerHTML = '';
-            baseCategories.forEach(c => {
+            categories.forEach(c => {
                 const opt = document.createElement('option');
-                opt.value = c.id;
-                opt.textContent = `${c.name} (10,000 Servers)`;
+                opt.value = c.catId;
+                opt.textContent = `${c.categoryName} (${c.services.length})`;
                 catSelect.appendChild(opt);
             });
         }
 
         function onCategoryChange() {
             const catId = document.getElementById('category-select').value;
+            const currentCat = smmData.find(c => c.catId === catId) || smmData[0];
             const servSelect = document.getElementById('service-select');
             servSelect.innerHTML = '';
 
-            const catIdx = baseCategories.findIndex(c => c.id === catId);
-            for (let v = 0; v < 100; v++) {
-                const s = getServiceByIndex(catIdx + (v * baseCategories.length));
+            currentCat.services.forEach(s => {
                 const opt = document.createElement('option');
                 opt.value = s.id;
                 opt.textContent = `${s.name} - $${s.ratePer1k}/1k`;
                 servSelect.appendChild(opt);
-            }
+            });
             onServiceChange();
         }
 
         function onServiceChange() {
             const servId = document.getElementById('service-select').value;
-            const idNum = parseInt(servId) - 10001;
-            if (idNum >= 0 && idNum < TOTAL_SERVICES_TARGET) {
-                selectedService = getServiceByIndex(idNum);
+            for (const cat of smmData) {
+                const s = cat.services.find(item => item.id === servId);
+                if (s) { selectedService = s; break; }
             }
             updateDetailsUI();
             calculateCharge();
@@ -712,6 +700,7 @@
             document.getElementById('detail-start').textContent = selectedService.start;
             document.getElementById('detail-avg').textContent = selectedService.avgTime;
             document.getElementById('detail-guarantee').textContent = selectedService.guarantee;
+            document.getElementById('detail-desc').textContent = selectedService.desc;
         }
 
         function calculateCharge() {
@@ -723,10 +712,71 @@
             const link = document.getElementById('order-link').value;
             const qty = parseInt(document.getElementById('order-qty').value);
             if (!link || !qty) return alert("សូមបំពេញ Link និង Quantity!");
-            alert("🎉 បញ្ជាទិញបានជោគជ័យលើប្រព័ន្ធ 100,000 សេវាកម្ម!");
+            alert("🎉 បញ្ជាទិញបានជោគជ័យ!");
             switchTab('orders');
         }
 
+        function renderServicesListFull() {
+            const tbody = document.getElementById('services-full-tbody');
+            tbody.innerHTML = '';
+            const search = (document.getElementById('service-search-input') ? document.getElementById('service-search-input').value.toLowerCase() : '');
+
+            smmData.forEach(cat => {
+                const matched = cat.services.filter(s => s.name.toLowerCase().includes(search) || s.id.includes(search) || cat.categoryName.toLowerCase().includes(search));
+                if (matched.length > 0) {
+                    const header = document.createElement('tr');
+                    header.className = "bg-[#0070e0] text-white font-bold";
+                    header.innerHTML = `<td colspan="6" class="py-2.5 px-4 text-xs tracking-wide">${cat.categoryName}</td>`;
+                    tbody.appendChild(header);
+
+                    matched.forEach(s => {
+                        const tr = document.createElement('tr');
+                        tr.className = "hover:bg-slate-50 border-b border-slate-100 transition";
+                        tr.innerHTML = `
+                            <td class="p-3 font-bold text-blue-600">${s.id}</td>
+                            <td class="p-3 font-semibold text-slate-700">${s.name}</td>
+                            <td class="p-3 font-bold text-slate-900 whitespace-nowrap">$${s.ratePer1k.toFixed(4)}</td>
+                            <td class="p-3 text-slate-500 whitespace-nowrap">${s.min} / ${s.max.toLocaleString()}</td>
+                            <td class="p-3 text-slate-500 whitespace-nowrap">${s.avgTime}</td>
+                            <td class="p-3 text-center whitespace-nowrap">
+                                <button onclick="quickOrderDirectly('${cat.catId}', '${s.id}')" class="px-3 py-1.5 bg-[#0070e0] hover:bg-blue-600 text-white rounded-lg text-xs font-bold shadow-sm">Order</button>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                }
+            });
+        }
+
+        function quickOrderDirectly(catId, serviceId) {
+            switchTab('neworder');
+            renderCategories(smmData);
+            document.getElementById('category-select').value = catId;
+            onCategoryChange();
+            document.getElementById('service-select').value = serviceId;
+            onServiceChange();
+        }
+
+        function renderCategoryChips() {
+            const bar = document.getElementById('category-chips-bar');
+            bar.innerHTML = `
+                <button onclick="filterCategory('all')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-solid fa-table-cells-large text-blue-500"></i> All</button>
+                <button onclick="filterCategory('tiktok')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-tiktok text-black"></i> TikTok</button>
+                <button onclick="filterCategory('facebook')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-facebook text-blue-600"></i> FB Reactions</button>
+                <button onclick="filterCategory('facebook_live')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-solid fa-video text-blue-600"></i> FB Live</button>
+                <button onclick="filterCategory('telegram')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-telegram text-sky-500"></i> Telegram</button>
+                <button onclick="filterCategory('youtube')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-youtube text-red-600"></i> YouTube</button>
+                <button onclick="filterCategory('instagram')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-instagram text-pink-600"></i> Instagram</button>
+            `;
+        }
+
+        function filterCategory(type) {
+            const list = (type === 'all') ? smmData : smmData.filter(c => c.type === type);
+            renderCategories(list.length > 0 ? list : smmData);
+            onCategoryChange();
+        }
+
+        // Roles & Auth Handler
         function loginWithRole(name, email, role) {
             currentUser = name;
             currentUserEmail = email;
@@ -809,10 +859,16 @@
         }
 
         function applyGlobalDiscount() {
-            globalDiscountPercent = parseFloat(document.getElementById('admin-discount-input').value) || 0;
-            resetAndSearchServices();
-            onCategoryChange();
-            alert(`🎉 បានដាក់បញ្ចុះតម្លៃ ${globalDiscountPercent}% លើ 100,000 សេវាកម្ម!`);
+            const disc = parseFloat(document.getElementById('admin-discount-input').value) || 0;
+            smmData.forEach(cat => {
+                cat.services.forEach(s => {
+                    if (!s.originalRate) s.originalRate = s.ratePer1k;
+                    s.ratePer1k = s.originalRate * (1 - (disc / 100));
+                });
+            });
+            calculateCharge();
+            renderServicesListFull();
+            alert(`🎉 បានដាក់បញ្ចុះតម្លៃ ${disc}% OFF!`);
         }
 
         function renderAdminUsersTable() {
@@ -824,7 +880,7 @@
                 tr.className = "border-b border-slate-100";
                 tr.innerHTML = `
                     <td class="p-3 font-bold">${u.username}</td>
-                    <td class="p-3 text-blue-600 font-mono">${u.email}</td>
+                    <td class="p-3 text-blue-600">${u.email}</td>
                     <td class="p-3 font-bold text-green-600">$${(u.balance || 0).toFixed(4)}</td>
                     <td class="p-3 text-center"><button onclick="document.getElementById('admin-target-email').value='${u.email}'; document.getElementById('admin-add-amount').focus();" class="px-2.5 py-1 bg-green-600 text-white rounded-lg text-xs font-bold">+ ដាក់លុយ</button></td>
                 `;
@@ -832,6 +888,7 @@
             });
         }
 
+        // KHQR Functions
         function calculateCRC16(str) {
             let crc = 0xFFFF;
             for (let i = 0; i < str.length; i++) {
@@ -878,7 +935,7 @@
 
             document.getElementById('current-page-text').textContent = tabId.toUpperCase();
             if (tabId === 'addfunds') renderKHQRDisplay(currentSelectedAmount);
-            if (tabId === 'services') renderServicesListFull(false);
+            if (tabId === 'services') renderServicesListFull();
             if (tabId === 'admin') renderAdminUsersTable();
             if (tabId === 'orders') renderOrdersTable();
             if (tabId === 'tickets') renderTicketsHistory();
@@ -911,24 +968,6 @@
             const ch = document.getElementById('show-more-chevron');
             if (showMoreOpen) { sub.classList.remove('hidden'); ch.style.transform='rotate(0deg)'; }
             else { sub.classList.add('hidden'); ch.style.transform='rotate(-90deg)'; }
-        }
-
-        function renderCategoryChips() {
-            const bar = document.getElementById('category-chips-bar');
-            bar.innerHTML = `
-                <button onclick="filterCategory('tiktok')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-tiktok text-black"></i> TikTok</button>
-                <button onclick="filterCategory('facebook_react')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-facebook text-blue-600"></i> FB Reactions</button>
-                <button onclick="filterCategory('facebook_follow')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-solid fa-users text-blue-600"></i> FB Followers</button>
-                <button onclick="filterCategory('telegram')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-telegram text-sky-500"></i> Telegram</button>
-                <button onclick="filterCategory('youtube_views')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-youtube text-red-600"></i> YouTube</button>
-                <button onclick="filterCategory('instagram')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-instagram text-pink-600"></i> Instagram</button>
-                <button onclick="filterCategory('website')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-solid fa-globe text-amber-600"></i> Traffic</button>
-            `;
-        }
-
-        function filterCategory(type) {
-            document.getElementById('category-select').value = type;
-            onCategoryChange();
         }
 
         function renderOrdersTable() {
@@ -964,6 +1003,7 @@
         function submitTicket() { alert("បានផ្ញើ Ticket ជោគជ័យ!"); }
         function submitMassOrder() { alert("បានបង្កើត Mass Order ជោគជ័យ!"); switchTab('orders'); }
 
+        // Live Chat Functions
         function toggleLiveChatWidget() { document.getElementById('live-chat-modal').classList.toggle('hidden'); }
         function sendQuickChat(msg) {
             appendChat(msg, 'user');
@@ -981,17 +1021,17 @@
             const box = document.getElementById('chat-messages-box');
             const div = document.createElement('div');
             div.className = sender === 'user' ? "flex justify-end" : "flex justify-start";
-            div.innerHTML = `<div class="${sender === 'user' ? 'bg-[#0066b3] text-white' : 'bg-white text-slate-800 border border-slate-200'} p-2.5 rounded-2xl text-xs shadow-sm max-w-[240px]">${txt}</div>`;
+            div.innerHTML = `<div class="${sender === 'user' ? 'bg-[#0070e0] text-white' : 'bg-white text-slate-800 border border-slate-200'} p-2.5 rounded-2xl text-xs shadow-sm max-w-[240px]">${txt}</div>`;
             box.appendChild(div);
             box.scrollTop = box.scrollHeight;
         }
 
         window.onload = () => {
             renderCategoryChips();
-            renderCategories();
+            renderCategories(smmData);
             onCategoryChange();
             renderKHQRDisplay(10.00);
-            renderServicesListFull(false);
+            renderServicesListFull();
         };
     </script>
 </body>
