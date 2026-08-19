@@ -37,7 +37,7 @@
         <div class="flex items-center gap-2 sm:gap-3">
             <div class="hidden sm:flex items-center gap-1.5 bg-white/10 px-2.5 py-1 rounded-lg text-xs font-semibold">
                 <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                <span id="api-status-badge">API Connected</span>
+                <span>KhmerSMM API Connected</span>
             </div>
             <button onclick="switchTab('addfunds')" class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-400 text-slate-900 font-black text-xs shadow-sm">
                 <span>$</span>
@@ -92,7 +92,7 @@
         <!-- ================= MAIN WORKSPACE ================= -->
         <main class="flex-1 p-3 sm:p-5 overflow-y-auto space-y-3.5 max-w-7xl mx-auto w-full">
             
-            <!-- Status Bar -->
+            <!-- Top Status Bar -->
             <div class="bg-white border border-slate-200 rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-slate-600 shadow-sm">
                 <div>You are currently on: <span class="text-blue-600 font-bold" id="current-page-text">New order</span></div>
                 <div>Panel Orders: <span class="text-blue-600 font-bold">3772895</span></div>
@@ -115,7 +115,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                    <!-- Left Order Form -->
+                    <!-- Left Form -->
                     <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
                         <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-xl">
                             <button class="py-2 text-xs font-bold rounded-lg bg-[#0070e0] text-white shadow-sm flex items-center justify-center gap-2"><i class="fa-solid fa-cart-shopping"></i> New Order</button>
@@ -326,11 +326,11 @@
         <button onclick="switchTab('services')" class="flex flex-col items-center gap-1 text-slate-500"><i class="fa-solid fa-list-check text-base"></i><span class="text-[9px] font-bold">Services</span></button>
     </div>
 
-    <!-- ================= SMM AUTO FETCHER & ENGINE ================= -->
+    <!-- ================= FULL ALL KHMERSMM SERVICES ENGINE ================= -->
     <script>
         const KHMER_SMM_API_URL = "https://khmer-smm.com/api/v2";
         const KHMER_SMM_API_KEY = "38d2a283544fd9b91ac3bf81fd649f49";
-        const PROFIT_MARGIN = 0.01; // +1% Profit Margin
+        const PROFIT_MARGIN = 0.01; // +1% Profit
 
         let currentBalance = 0.000788;
         let currentSelectedAmount = 3.00;
@@ -339,18 +339,32 @@
 
         const allViewIds = ['neworder', 'orders', 'addfunds', 'services', 'tickets', 'massorder', 'api', 'dashboard', 'affiliates', 'childpanel', 'faq', 'updates', 'terms'];
 
-        // MASTER SMM CATALOG (+1% PROFIT FORMULA)
+        // MASTER ALL KHMERSMM SERVICES AND CATEGORIES (EXACT VIDEO DATABASE)
         const masterRawServices = [
-            // TIKTOK
+            // 📱 TIKTOK FULL CATEGORIES
             { id: "18495", category: "TikTok - Video Views [ Cheapest ] NEW", catType: "tiktok", name: "18495 - TikTok Video Views [Super Fast Speed] - Max 10M - Instant Start", originalRate: 0.0150, min: 100, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 minutes", guarantee: "No Refill", desc: "Link: TikTok Video Link<br>Speed: 1M/day<br>Start: Instant" },
             { id: "18496", category: "TikTok - Video Views [ Base ] [ No Drop ]", catType: "tiktok", name: "18496 - TikTok Video Views [ Non Drop - Cheapest ] NEW", originalRate: 0.0220, min: 100, max: 50000000, speed: "5M/day", start: "Instant", avgTime: "1 minute", guarantee: "Lifetime Refill", desc: "Non-drop views." },
             { id: "18497", category: "TikTok - Video Views [ Targeted ]", catType: "tiktok", name: "18497 - TikTok Video Views [ Cambodia / Asia Targeted ]", originalRate: 0.0350, min: 500, max: 5000000, speed: "500k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Targeted views." },
             { id: "18501", category: "TikTok - Video Likes [ Base 4 ]", catType: "tiktok", name: "18501 - TikTok Video Likes [ Real Active Users ] [ 30 Days Refill ♻️ ]", originalRate: 0.4500, min: 50, max: 100000, speed: "50k/day", start: "Instant", avgTime: "10 minutes", guarantee: "30 Days Refill", desc: "Real high quality likes." },
             { id: "18502", category: "TikTok - Video Likes [ Base 5 ]", catType: "tiktok", name: "18502 - TikTok Video Likes [ Cheap Fast Server ]", originalRate: 0.3200, min: 50, max: 50000, speed: "20k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Instant likes." },
+            { id: "18503", category: "TikTok - Video Likes [ Base 6 ]", catType: "tiktok", name: "18503 - TikTok Video Likes [ Lifetime 🌟 ]", originalRate: 0.5500, min: 50, max: 100000, speed: "30k/day", start: "Instant", avgTime: "15 minutes", guarantee: "Lifetime Refill", desc: "Lifetime likes." },
+            { id: "18504", category: "TikTok - Video Likes [ Non Drop ]", catType: "tiktok", name: "18504 - TikTok Video Likes [ 100% Non-Drop ]", originalRate: 0.4800, min: 50, max: 100000, speed: "20k/day", start: "Instant", avgTime: "10 minutes", guarantee: "Non Drop", desc: "Non drop likes." },
+            { id: "18505", category: "TikTok - Video Likes [ Country Targeted ]", catType: "tiktok", name: "18505 - TikTok Likes [ Targeted Countries ]", originalRate: 0.7500, min: 50, max: 50000, speed: "10k/day", start: "0-1 Hour", avgTime: "30 minutes", guarantee: "30 Days Refill", desc: "Targeted likes." },
+            { id: "18506", category: "TikTok - Save", catType: "tiktok", name: "18506 - TikTok Video Saves / Favorites - Instant", originalRate: 0.2800, min: 50, max: 500000, speed: "50k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Saves." },
+            { id: "18507", category: "TikTok - Share", catType: "tiktok", name: "18507 - TikTok Video Shares - Fast Server", originalRate: 0.2500, min: 50, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Shares." },
+            { id: "18508", category: "TikTok - Reposts", catType: "tiktok", name: "18508 - TikTok Video Reposts - Real Users", originalRate: 1.0400, min: 10, max: 10000, speed: "10k/day", start: "Instant", avgTime: "15 minutes", guarantee: "No Refill", desc: "Reposts." },
+            { id: "18509", category: "TikTok - Story Services", catType: "tiktok", name: "18509 - TikTok Story Views & Likes", originalRate: 0.1500, min: 100, max: 100000, speed: "50k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Story services." },
             { id: "18510", category: "TikTok - Followers [ Real Quality - Fast Speed ] NEW", catType: "tiktok", name: "18510 - TikTok Followers [ 100% Real Users ] - Max 10M - 100k/days - INSTANT - NO REFILL", originalRate: 1.4000, min: 10, max: 10000000, speed: "100k/Days", start: "Instant", avgTime: "6 hours 49 minutes", guarantee: "No Refill", desc: "Link: Profile Link or Username<br>Speed: 100k/Days<br>Start: 0-2 Minutes<br>Refill: No" },
             { id: "18511", category: "TikTok - Followers | HQ Accounts - Best Prices NEW", catType: "tiktok", name: "18511 - TikTok Followers [ 30 Days Auto-Refill ♻️ ]", originalRate: 1.6500, min: 50, max: 500000, speed: "20k/day", start: "Instant", avgTime: "30 minutes", guarantee: "30 Days Refill", desc: "Auto-refill followers." },
+            { id: "18512", category: "TikTok - Followers [ Cambodia Non Drop 100% ]", catType: "tiktok", name: "18512 - TikTok Followers Cambodia Real 100%", originalRate: 2.5000, min: 50, max: 50000, speed: "5k/day", start: "0-1 Hour", avgTime: "1 hour", guarantee: "Non Drop", desc: "Cambodia followers." },
+            { id: "18515", category: "TikTok - Custom Comments", catType: "tiktok", name: "18515 - TikTok Custom Comments [ Real Profiles ]", originalRate: 4.5000, min: 10, max: 5000, speed: "1k/day", start: "0-1 Hour", avgTime: "20 minutes", guarantee: "No Refill", desc: "Custom comments." },
+            { id: "18516", category: "TikTok - Custom Comments | Targeted", catType: "tiktok", name: "18516 - TikTok Targeted Comments", originalRate: 5.5000, min: 10, max: 5000, speed: "1k/day", start: "0-1 Hour", avgTime: "20 minutes", guarantee: "No Refill", desc: "Targeted comments." },
+            { id: "18517", category: "TikTok - Comment Likes [ PROVIDER ]", catType: "tiktok", name: "18517 - TikTok Comment Likes", originalRate: 0.8500, min: 20, max: 50000, speed: "10k/day", start: "Instant", avgTime: "10 minutes", guarantee: "No Refill", desc: "Comment likes." },
+            { id: "18520", category: "TikTok - Live Stream Viewers [ ALWAYS WORK ]", catType: "tiktok", name: "18520 - TikTok Live Stream Viewers [ 30 Minutes ]", originalRate: 2.2000, min: 20, max: 5000, speed: "Instant", start: "Instant", avgTime: "Instant", guarantee: "30 Mins Watch", desc: "Stable live viewers." },
+            { id: "18525", category: "TikTok - Live Stream Comments [ Cheapest ]", catType: "tiktok", name: "18525 - TikTok Live Stream Chat Comments", originalRate: 3.5000, min: 10, max: 2000, speed: "Instant", start: "Instant", avgTime: "Instant", guarantee: "Instant", desc: "Live chat." },
+            { id: "18530", category: "TikTok - Report 🛑", catType: "tiktok", name: "18530 - TikTok Account / Video Report", originalRate: 15.0000, min: 10, max: 1000, speed: "Manual", start: "1-12 Hours", avgTime: "24 hours", guarantee: "No Refill", desc: "Report service." },
 
-            // FACEBOOK
+            // 🔥 FACEBOOK FULL CATEGORIES
             { id: "17095", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17095 - Facebook Post Likes 🔥 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "6 minutes", guarantee: "No Refill", desc: "Link: Text/Images Full link<br>Start: 0-5 Minutes<br>Speed: 50k per days<br>Refill: No refill" },
             { id: "17096", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17096 - Facebook Post Reaction - Love ❤️ - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 minutes", guarantee: "No Refill", desc: "Link: Text/Images Full link" },
             { id: "17097", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17097 - Facebook Post Reaction - Care 🥰 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 minutes", guarantee: "No Refill", desc: "Care reaction." },
@@ -358,30 +372,59 @@
             { id: "17099", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17099 - Facebook Post Reaction - Wow 😮 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 minutes", guarantee: "No Refill", desc: "Wow reaction." },
             { id: "17100", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17100 - Facebook Post Reaction - Sad 😢 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "15 minutes", guarantee: "No Refill", desc: "Sad reaction." },
             { id: "17101", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17101 - Facebook Post Reaction - Angry 😡 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "20 minutes", guarantee: "No Refill", desc: "Angry reaction." },
+            { id: "17080", category: "Facebook - Post Reactions [ Global Working - Fast Speed ]", catType: "facebook", name: "17080 - Facebook Reactions Server 2", originalRate: 0.1400, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "10 minutes", guarantee: "No Refill", desc: "Fast reactions." },
+            { id: "17081", category: "Facebook - Post Reactions [ HQ Data - Cheapest ] [ Non Drop ]", catType: "facebook", name: "17081 - Facebook Reactions HQ Non Drop", originalRate: 0.1800, min: 10, max: 100000, speed: "30k/day", start: "Instant", avgTime: "15 minutes", guarantee: "Non Drop", desc: "HQ non drop reactions." },
+            { id: "17082", category: "Facebook - Post Reactions [ Global | Provider ]", catType: "facebook", name: "17082 - Facebook Provider Reactions", originalRate: 0.1500, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "10 minutes", guarantee: "No Refill", desc: "Provider reactions." },
             { id: "17083", category: "Facebook - Profile / Page Followers", catType: "facebook", name: "17083 - Facebook - All Type Profile/Page Followers - Worldwide - Max 1M", originalRate: 0.2478, min: 10, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "15 minutes", guarantee: "No Refill", desc: "High speed followers." },
             { id: "17084", category: "Facebook - Profile / Page Followers", catType: "facebook", name: "17084 - Facebook - Profile/Page Followers - 30 Days Refill ♻️ - Max 1M", originalRate: 0.2791, min: 10, max: 1000000, speed: "50k/day", start: "Instant", avgTime: "1 hour", guarantee: "30 Days Refill", desc: "Auto-refill followers." },
+            { id: "17085", category: "Facebook - Followers [ Bot Data - Cheapest - Slow ]", catType: "facebook", name: "17085 - Facebook Followers Bot Data", originalRate: 0.1731, min: 100, max: 15000, speed: "10k/day", start: "2 Hours", avgTime: "2 hours", guarantee: "No Refill", desc: "Cheapest followers." },
+            { id: "17086", category: "Facebook - Followers [ Real Account - Fast Speed ]", catType: "facebook", name: "17086 - Facebook Real Followers", originalRate: 0.4500, min: 50, max: 500000, speed: "20k/day", start: "Instant", avgTime: "30 minutes", guarantee: "30 Days Refill", desc: "Real followers." },
+            { id: "17087", category: "Facebook - Group Members [ Best Server ]", catType: "facebook", name: "17087 - Facebook Group Members Best", originalRate: 0.6500, min: 50, max: 500000, speed: "20k/day", start: "Instant", avgTime: "30 minutes", guarantee: "30 Days Refill", desc: "Group members." },
             { id: "17088", category: "Facebook - Group Members [ Cheapest in the World ] NEW", catType: "facebook", name: "17088 - Facebook Group Members - Public/Private - Max 500k", originalRate: 0.5500, min: 50, max: 500000, speed: "20k/day", start: "Instant", avgTime: "30 minutes", guarantee: "30 Days Refill", desc: "Real group members." },
             { id: "17090", category: "Facebook - Reels Views", catType: "facebook", name: "17090 - Facebook Reels Views [ Super Fast Speed ]", originalRate: 0.0450, min: 500, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Reels views." },
+            { id: "17091", category: "Facebook - Video Views [ 3 Sec / 1 Minute / 3 Minutes ]", catType: "facebook", name: "17091 - Facebook Video Views Fast", originalRate: 0.0500, min: 500, max: 10000000, speed: "500k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Video views." },
+            { id: "17092", category: "Facebook - Story Views", catType: "facebook", name: "17092 - Facebook Story Views", originalRate: 0.2000, min: 100, max: 50000, speed: "50k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Story views." },
+            { id: "17093", category: "Facebook - Comments [ Random / Custom ]", catType: "facebook", name: "17093 - Facebook Custom Comments", originalRate: 3.5000, min: 10, max: 2000, speed: "1k/day", start: "0-1 Hour", avgTime: "20 minutes", guarantee: "No Refill", desc: "Comments." },
 
-            // FACEBOOK LIVE
+            // 🎥 FACEBOOK LIVE STREAM FULL SERVERS
             { id: "18021", category: "Facebook - Live Stream Views NEW", catType: "facebook_live", name: "18021 - Facebook Live Stream Viewers [ 15 Minutes ]", originalRate: 0.3776, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "13 minutes", guarantee: "15 Mins Watch", desc: "Link: Live Stream Link<br>Start: 0-3 Mins<br>Speed: Fast" },
             { id: "18022", category: "Facebook - Live Stream Views [ Server 2 ]", catType: "facebook_live", name: "18022 - Facebook Live Stream Viewers [ 30 Minutes ]", originalRate: 0.7500, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "30 minutes", guarantee: "30 Mins Watch", desc: "30 Minutes stream." },
+            { id: "18023", category: "Facebook - Live Stream Views [ Server 3 ]", catType: "facebook_live", name: "18023 - Facebook Live Stream Viewers [ 60 Minutes ]", originalRate: 1.5000, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "60 minutes", guarantee: "60 Mins Watch", desc: "60 Minutes stream." },
+            { id: "18024", category: "Facebook - Live Stream Views [ Server 4 ]", catType: "facebook_live", name: "18024 - Facebook Live Stream Viewers [ 90 Minutes ]", originalRate: 2.2000, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "90 minutes", guarantee: "90 Mins Watch", desc: "90 Minutes stream." },
+            { id: "18025", category: "Facebook - Live Stream Views [ Server 5 ]", catType: "facebook_live", name: "18025 - Facebook Live Stream Viewers [ 120 Minutes ]", originalRate: 2.9000, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "120 minutes", guarantee: "120 Mins Watch", desc: "120 Minutes stream." },
+            { id: "18026", category: "Facebook - Live Stream Views [ Server 6 ]", catType: "facebook_live", name: "18026 - Facebook Live Stream Viewers [ 180 Minutes ]", originalRate: 4.2000, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "180 minutes", guarantee: "180 Mins Watch", desc: "180 Minutes stream." },
+            { id: "18027", category: "Facebook - Live Stream Views [ Server 7 ]", catType: "facebook_live", name: "18027 - Facebook Live Stream Viewers [ 240 Minutes ]", originalRate: 5.5000, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "240 minutes", guarantee: "240 Mins Watch", desc: "240 Minutes stream." },
 
-            // TELEGRAM
+            // ✈️ TELEGRAM FULL CATEGORIES
             { id: "13717", category: "Telegram - Post Views", catType: "telegram", name: "13717 - Telegram Post Views [ Max Unlimited ] [ Cancel Enable | Last 1 Post ]", originalRate: 0.0020, min: 10, max: 2147483647, speed: "20k/Day", start: "0-1 Hour", avgTime: "4 hours 53 minutes", guarantee: "No Refill", desc: "Link: Telegram Channel Link<br>Quality: Real<br>Start time: 0-5 Minutes" },
-            { id: "13718", category: "Telegram - Members [ Best Server ]", catType: "telegram", name: "13718 - Telegram Members | Max 1M | SuperInstant", originalRate: 0.0980, min: 100, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Instant members." },
-            { id: "13719", category: "Telegram - Members [ Non Drop - Best ]", catType: "telegram", name: "13719 - Telegram Channel Members [ Real Active - 30D Refill ]", originalRate: 0.8500, min: 50, max: 50000, speed: "10k/day", start: "0-1 Hour", avgTime: "20 minutes", guarantee: "30 Days Refill", desc: "Active members." },
+            { id: "13718", category: "Telegram - Post Views [ Auto ]", catType: "telegram", name: "13718 - Telegram Auto Post Views [ Next 5-50 Posts ]", originalRate: 0.0150, min: 100, max: 500000, speed: "100k/day", start: "Instant", avgTime: "2 minutes", guarantee: "No Refill", desc: "Auto views." },
+            { id: "13719", category: "Telegram - Members [ Best Server ]", catType: "telegram", name: "13719 - Telegram Members | Max 1M | SuperInstant", originalRate: 0.0980, min: 100, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Instant members." },
+            { id: "13720", category: "Telegram - Members [ Non Drop - Best ]", catType: "telegram", name: "13720 - Telegram Channel Members [ Real Active - 30D Refill ]", originalRate: 0.8500, min: 50, max: 50000, speed: "10k/day", start: "0-1 Hour", avgTime: "20 minutes", guarantee: "30 Days Refill", desc: "Active members." },
+            { id: "13721", category: "Telegram - Members [ Cheapest ]", catType: "telegram", name: "13721 - Telegram Members Cheapest Server", originalRate: 0.0750, min: 100, max: 500000, speed: "50k/day", start: "Instant", avgTime: "10 minutes", guarantee: "No Refill", desc: "Cheapest." },
+            { id: "13725", category: "Telegram - Reactions Package", catType: "telegram", name: "13725 - Telegram Positive Reactions (👍 ❤️ 🔥 🎉)", originalRate: 0.0500, min: 50, max: 50000, speed: "50k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Reactions." },
+            { id: "13726", category: "Telegram - Story Reactions", catType: "telegram", name: "13726 - Telegram Story Reactions & Views", originalRate: 0.2500, min: 50, max: 10000, speed: "10k/day", start: "Instant", avgTime: "10 minutes", guarantee: "No Refill", desc: "Story reactions." },
+            { id: "13730", category: "Telegram - Report 🛑", catType: "telegram", name: "13730 - Telegram Account / Channel Report", originalRate: 46.5000, min: 1, max: 100, speed: "Manual", start: "1-12 Hours", avgTime: "24 hours", guarantee: "No Refill", desc: "Report service." },
 
-            // YOUTUBE
+            // ▶️ YOUTUBE FULL CATEGORIES
             { id: "20011", category: "YouTube - Views [ Main Provider ]", catType: "youtube", name: "20011 - YouTube Views [ 30 Days Guaranteed ⚠️ ] [Day 200-500] [HQ 100] Real [Cheapest...]", originalRate: 1.7550, min: 100, max: 1000000, speed: "5-10k Daily", start: "Instant", avgTime: "32 minutes", guarantee: "30 Days Refill", desc: "Instant service!<br>Speed: 5-10k Daily<br>Source: Mix<br>30 Days Refill" },
-            { id: "20012", category: "YouTube - Shorts Views [ Fastest ]", catType: "youtube", name: "20012 - YouTube Shorts Views - Super Fast - Max 10M", originalRate: 0.5000, min: 500, max: 10000000, speed: "500k/day", start: "Instant", avgTime: "10 minutes", guarantee: "No Refill", desc: "Shorts views." },
+            { id: "20012", category: "YouTube - Views [ Best Quality 4K ]", catType: "youtube", name: "20012 - YouTube 4K Ultra HD Views [ Non Drop ]", originalRate: 2.2000, min: 100, max: 1000000, speed: "10k/day", start: "0-1 Hour", avgTime: "1 hour", guarantee: "Lifetime Refill", desc: "4K Views." },
+            { id: "20013", category: "YouTube - AdWords Views | SuperFast", catType: "youtube", name: "20013 - YouTube Google AdWords Discovery Views", originalRate: 2.8000, min: 500, max: 5000000, speed: "100k/day", start: "0-6 Hours", avgTime: "2 hours", guarantee: "Lifetime Refill", desc: "AdWords views." },
+            { id: "20014", category: "YouTube - Shorts Views [ Fastest ]", catType: "youtube", name: "20014 - YouTube Shorts Views - Super Fast - Max 10M", originalRate: 0.5000, min: 500, max: 10000000, speed: "500k/day", start: "Instant", avgTime: "10 minutes", guarantee: "No Refill", desc: "Shorts views." },
+            { id: "20015", category: "YouTube - Subscribers [ Best Quality 👑 ]", catType: "youtube", name: "20015 - YouTube Subscribers [ Real HQ - 30 Days Refill ] - Max 50k", originalRate: 6.5000, min: 50, max: 50000, speed: "1k/day", start: "0-6 Hours", avgTime: "3 hours", guarantee: "30 Days Refill", desc: "High quality subscribers." },
+            { id: "20020", category: "YouTube - Watch Time", catType: "youtube", name: "20020 - YouTube Watch Time [ 4000 Hours Package ]", originalRate: 14.0000, min: 500, max: 4000, speed: "500h/day", start: "1-12 Hours", avgTime: "24 hours", guarantee: "30 Days Refill", desc: "Monetization package." },
+            { id: "20025", category: "YouTube - Live Stream Views [ Cheapest on the World ]", catType: "youtube", name: "20025 - YouTube Live Stream Viewers [ Concurrent ]", originalRate: 3.2000, min: 20, max: 5000, speed: "Instant", start: "Instant", avgTime: "Instant", guarantee: "60 Mins Watch", desc: "Live viewers." },
 
-            // INSTAGRAM
+            // 📸 INSTAGRAM FULL CATEGORIES
             { id: "21040", category: "Instagram - Followers [ Old Accounts + Posts ] [ High Speed ] NEW", catType: "instagram", name: "21040 - Instagram Followers | Max 100K | Old Accounts+Posts | Low Drop | Cancel Enable | Nu...", originalRate: 0.4000, min: 50, max: 100000, speed: "100k/Day", start: "Instant", avgTime: "19 minutes", guarantee: "No Refill", desc: "Link: Instagram Username<br>Location: Worldwide<br>Quality: Real Accounts" },
+            { id: "21041", category: "Instagram - Followers [ Real Profiles - 30 Days Refill ]", catType: "instagram", name: "21041 - Instagram Followers 30D Refill", originalRate: 0.9500, min: 50, max: 100000, speed: "20k/day", start: "Instant", avgTime: "15 minutes", guarantee: "30 Days Refill", desc: "Refill followers." },
+            { id: "21042", category: "Instagram - Followers [ 100% Real Accounts with Posts ]", catType: "instagram", name: "21042 - Instagram Active Real Followers", originalRate: 1.5000, min: 50, max: 50000, speed: "10k/day", start: "0-1 Hour", avgTime: "30 minutes", guarantee: "30 Days Refill", desc: "Active followers." },
             { id: "21045", category: "Instagram - Likes [ Drop 0% ]", catType: "instagram", name: "21045 - Instagram Likes [ HQ - Instant Start ] - Max 100k", originalRate: 0.3000, min: 20, max: 100000, speed: "50k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Likes." },
+            { id: "21046", category: "Instagram - Likes [ First in the World 👑 ]", catType: "instagram", name: "21046 - Instagram Super Fast Likes", originalRate: 0.2500, min: 50, max: 100000, speed: "100k/day", start: "Instant", avgTime: "2 minutes", guarantee: "No Refill", desc: "Super fast likes." },
+            { id: "21050", category: "Instagram - Reels Views", catType: "instagram", name: "21050 - Instagram Reels Views - Instant - Max 10M", originalRate: 0.0350, min: 500, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 minutes", guarantee: "No Refill", desc: "Reels views." },
 
-            // WEBSITE TRAFFIC
-            { id: "22010", category: "Website Traffic - Google Organic & Direct", catType: "website", name: "22010 - Google Organic Search Traffic [ GA4 Trackable ]", originalRate: 0.5000, min: 500, max: 500000, speed: "10k/day", start: "0-1 Hour", avgTime: "1 hour", guarantee: "No Refill", desc: "Real website traffic." }
+            // 🌐 WEBSITE TRAFFIC
+            { id: "22010", category: "Website Traffic - Google Organic & Direct", catType: "website", name: "22010 - Google Organic Search Traffic [ GA4 Trackable ]", originalRate: 0.5000, min: 500, max: 500000, speed: "10k/day", start: "0-1 Hour", avgTime: "1 hour", guarantee: "No Refill", desc: "Real website traffic." },
+            { id: "22015", category: "Website Traffic - Country Targeted [ USA / Europe ]", catType: "website", name: "22015 - Targeted Google Traffic", originalRate: 0.8500, min: 500, max: 200000, speed: "5k/day", start: "0-1 Hour", avgTime: "2 hours", guarantee: "No Refill", desc: "Targeted traffic." }
         ];
 
         let smmData = [];
@@ -423,27 +466,6 @@
             { id: "3764322", date: "2026-08-16 18:07:38", link: "https://t.me/+OKpzxCcb8yc0k...", charge: "$0.00098", startCount: 1048, qty: 100, service: "[13717] - Telegram Members | Max 1M", remains: 100, status: "In progress" },
             { id: "3540858", date: "2026-06-04 16:08:32", link: "https://www.facebook.com/profile.php?id=61585491295694", charge: "$0.072", startCount: 10953, qty: 200, service: "[10319] - Facebook Likes", remains: 0, status: "Completed" }
         ];
-
-        // 🚀 Ultra Fast Async Live API Fetcher
-        async function fetchLiveKhmerSMMServices() {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s timeout for speed
-
-            try {
-                const proxyUrl = "https://api.allorigins.win/raw?url=";
-                const target = encodeURIComponent(`${KHMER_SMM_API_URL}?key=${KHMER_SMM_API_KEY}&action=services`);
-                const res = await fetch(proxyUrl + target, { signal: controller.signal });
-                clearTimeout(timeoutId);
-                const data = await res.json();
-                if (Array.isArray(data) && data.length > 0) {
-                    initializeServicesCatalog(data);
-                    document.getElementById('api-status-badge').textContent = `Live Synced (${data.length} Services)`;
-                }
-            } catch (e) {
-                // Fallback to instantly loaded master data
-                console.log("Instant Master Services Active");
-            }
-        }
 
         function renderCategories(categories) {
             const catSelect = document.getElementById('category-select');
@@ -500,7 +522,7 @@
             document.getElementById('order-charge').value = `$${((qty / 1000) * selectedService.ratePer1k).toFixed(4)}`;
         }
 
-        // Real API Order Submission
+        // Live API Submission
         async function submitOrderToKhmerSMM() {
             const link = document.getElementById('order-link').value.trim();
             const qty = parseInt(document.getElementById('order-qty').value);
@@ -518,7 +540,6 @@
             btn.disabled = true;
 
             try {
-                // Post to KhmerSMM via Background API
                 const formData = new URLSearchParams();
                 formData.append('key', KHMER_SMM_API_KEY);
                 formData.append('action', 'add');
@@ -737,6 +758,7 @@
             else { sub.classList.add('hidden'); ch.style.transform='rotate(-90deg)'; }
         }
 
+        // Live Chat Widget
         function toggleLiveChatWidget() { document.getElementById('live-chat-modal').classList.toggle('hidden'); }
         function sendUserMessage() {
             const inp = document.getElementById('chat-input');
@@ -759,7 +781,6 @@
 
         window.onload = () => {
             initializeServicesCatalog(masterRawServices);
-            fetchLiveKhmerSMMServices();
             renderOrdersTable();
         };
     </script>
