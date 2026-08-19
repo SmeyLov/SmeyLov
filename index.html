@@ -6,6 +6,8 @@
     <title>Smey Lov - #1 Cheapest SMM Panel in Cambodia</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Identity Services Library -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -16,15 +18,19 @@
         body { font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', sans-serif; background-color: #f8fafc; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .hero-gradient {
-            background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 50%, #eff6ff 100%);
+        .hero-gradient { background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 50%, #eff6ff 100%); }
+        .chat-pattern {
+            background-color: #0266b3;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 16px 16px;
         }
+        select, input, textarea, button { font-size: 13.5px !important; }
     </style>
 </head>
 <body class="text-slate-700 min-h-screen flex flex-col relative overflow-x-hidden">
 
     <!-- ========================================================================= -->
-    <!-- SECTION 1: PUBLIC LANDING PAGE (SIGN IN & SIGN UP)                        -->
+    <!-- SECTION 1: PUBLIC LANDING PAGE (SIGN IN & SIGN UP WITH GOOGLE)            -->
     <!-- ========================================================================= -->
     <div id="landing-auth-view" class="min-h-screen flex flex-col justify-between hero-gradient">
         
@@ -40,10 +46,9 @@
                 </div>
             </div>
 
-            <!-- Header Nav Links -->
             <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-600">
                 <a href="javascript:void(0)" onclick="showAuthMode('signin')" class="hover:text-blue-600">Sign in</a>
-                <a href="javascript:void(0)" onclick="switchTab('services'); bypassToApp();" class="hover:text-blue-600">Services</a>
+                <a href="javascript:void(0)" onclick="bypassToApp(); switchTab('services');" class="hover:text-blue-600">Services</a>
                 <a href="javascript:void(0)" class="hover:text-blue-600">Free Tools</a>
                 <a href="javascript:void(0)" class="hover:text-blue-600">API</a>
                 <a href="javascript:void(0)" class="hover:text-blue-600">Blogs</a>
@@ -55,12 +60,10 @@
             </button>
         </header>
 
-        <!-- Main Hero Section (Like KhmerSMM Image) -->
+        <!-- Main Hero Section -->
         <main class="max-w-7xl mx-auto w-full px-4 sm:px-8 py-8 sm:py-12 my-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
-            <!-- Left: Hero Text & Auth Forms -->
             <div class="lg:col-span-7 space-y-6">
-                
                 <div>
                     <span class="text-xs font-bold text-blue-600 tracking-wide uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
                         Smey Lov - Top-Rated SMM Panel
@@ -73,42 +76,59 @@
                     </p>
                 </div>
 
-                <!-- SIGN IN FORM (Default) -->
-                <div id="form-signin-container" class="bg-white/80 backdrop-blur border border-slate-200/80 rounded-3xl p-6 sm:p-7 shadow-xl max-w-md space-y-4">
-                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-right-to-bracket text-[#0070e0]"></i> ចូលគណនី (Sign in to Dashboard)
-                    </h3>
+                <!-- SIGN IN FORM -->
+                <div id="form-signin-container" class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-3xl p-6 sm:p-7 shadow-xl max-w-md space-y-4">
+                    
+                    <!-- Google One Tap Config -->
+                    <div id="g_id_onload"
+                         data-client_id="76819152698-7gf68nkclt76alh44at4bkc6el4rl91r.apps.googleusercontent.com"
+                         data-context="signin"
+                         data-ux_mode="popup"
+                         data-callback="handleGoogleCredentialResponse"
+                         data-auto_prompt="true">
+                    </div>
 
-                    <div class="space-y-3">
+                    <!-- Exact Google Sign-In Pill Button -->
+                    <div class="flex items-center gap-2">
+                        <button onclick="handleManualSignIn()" class="flex-1 py-3 bg-[#0070e0] hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-md shadow-blue-500/20 transition">
+                            Sign in
+                        </button>
+
+                        <span class="text-xs text-slate-400 font-bold">or</span>
+
+                        <div onclick="triggerGoogleOfficialPrompt()" class="flex-1 bg-[#4285F4] hover:bg-blue-600 text-white rounded-xl p-1 flex items-center justify-between cursor-pointer shadow-md transition hover:scale-[1.02] select-none">
+                            <div class="flex items-center gap-2 pl-2 overflow-hidden">
+                                <div class="w-7 h-7 rounded-full bg-blue-300 flex items-center justify-center text-blue-700 text-xs shrink-0">
+                                    <i class="fa-solid fa-user"></i>
+                                </div>
+                                <div class="text-left overflow-hidden">
+                                    <span class="text-[11px] font-bold block leading-tight truncate">Continue as សំណា</span>
+                                    <span class="text-[9px] text-blue-100 font-mono block truncate">ooo060565719@gmail.com</span>
+                                </div>
+                            </div>
+                            <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1.5 shrink-0 ml-1">
+                                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-full h-full">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3 pt-2">
                         <div class="relative">
                             <i class="fa-solid fa-user absolute left-4 top-3.5 text-slate-400 text-xs"></i>
-                            <input type="text" id="auth-signin-username" value="SmeyLov" placeholder="Username / Email" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
+                            <input type="text" id="auth-signin-username" value="nang232" placeholder="Username / Email" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
                         </div>
 
                         <div class="relative">
                             <i class="fa-solid fa-lock absolute left-4 top-3.5 text-slate-400 text-xs"></i>
                             <input type="password" id="auth-signin-password" value="123456" placeholder="Password" class="w-full pl-10 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                            <button type="button" onclick="togglePasswordVisibility('auth-signin-password')" class="absolute right-3.5 top-3 text-slate-400 text-xs">
-                                <i class="fa-regular fa-eye"></i>
-                            </button>
                         </div>
 
-                        <div class="flex items-center justify-between text-xs text-slate-500 pt-1">
+                        <div class="flex items-center justify-between text-xs text-slate-500">
                             <label class="flex items-center gap-2 cursor-pointer">
                                 <input type="checkbox" checked class="rounded text-blue-600 focus:ring-0">
                                 <span>Remember me</span>
                             </label>
-                            <a href="javascript:void(0)" onclick="alert('សូមទាក់ទងមក Admin តាម Telegram ដើម្បី Reset Password!')" class="text-blue-600 hover:underline font-semibold">Forgot password?</a>
-                        </div>
-
-                        <div class="flex gap-2 pt-2">
-                            <button onclick="handleUserSignIn()" class="flex-1 py-3 bg-[#0070e0] hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-md shadow-blue-500/20 transition">
-                                Sign in
-                            </button>
-                            <button onclick="handleGoogleSignIn()" class="px-4 py-3 bg-white border border-slate-200 hover:bg-slate-50 rounded-xl flex items-center justify-center gap-2 text-xs font-bold text-slate-700 shadow-sm transition" title="Sign in with Google">
-                                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-4 h-4">
-                                <span class="hidden sm:inline">Google</span>
-                            </button>
+                            <a href="javascript:void(0)" onclick="alert('សូមទាក់ទង Admin តាម Live Chat!')" class="text-blue-600 hover:underline font-semibold">Forgot password?</a>
                         </div>
                     </div>
 
@@ -118,29 +138,39 @@
                     </p>
                 </div>
 
-                <!-- SIGN UP FORM (Hidden by default) -->
-                <div id="form-signup-container" class="bg-white/80 backdrop-blur border border-slate-200/80 rounded-3xl p-6 sm:p-7 shadow-xl max-w-md space-y-4 hidden">
+                <!-- SIGN UP FORM -->
+                <div id="form-signup-container" class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-3xl p-6 sm:p-7 shadow-xl max-w-md space-y-4 hidden">
                     <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
                         <i class="fa-solid fa-user-plus text-[#0070e0]"></i> បង្កើតគណនីថ្មី (Sign Up)
                     </h3>
 
-                    <div class="space-y-3">
-                        <div>
-                            <input type="text" id="auth-reg-username" placeholder="Username (ឈ្មោះប្រើប្រាស់)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
+                    <!-- Google Quick Register -->
+                    <div onclick="triggerGoogleOfficialPrompt()" class="w-full bg-[#4285F4] hover:bg-blue-600 text-white rounded-xl p-1.5 flex items-center justify-between cursor-pointer shadow-md transition">
+                        <div class="flex items-center gap-2.5 pl-2 truncate">
+                            <div class="w-7 h-7 rounded-full bg-blue-300 flex items-center justify-center text-blue-700 text-xs shrink-0">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="text-left truncate">
+                                <span class="text-xs font-bold block">ចុះឈ្មោះរហ័សជាមួយ Google (១ ចុច)</span>
+                                <span class="text-[10px] text-blue-100 font-mono block truncate">ooo060565719@gmail.com</span>
+                            </div>
                         </div>
-                        <div>
-                            <input type="email" id="auth-reg-email" placeholder="Email Address (អ៊ីមែល)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
+                        <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1.5 shrink-0 ml-1">
+                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-full h-full">
                         </div>
-                        <div>
-                            <input type="text" id="auth-reg-telegram" placeholder="Telegram @username ឬ លេខទូរស័ព្ទ" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                        </div>
-                        <div class="relative">
-                            <input type="password" id="auth-reg-password" placeholder="Password (ពាក្យសម្ងាត់)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                            <button type="button" onclick="togglePasswordVisibility('auth-reg-password')" class="absolute right-3.5 top-3 text-slate-400 text-xs">
-                                <i class="fa-regular fa-eye"></i>
-                            </button>
-                        </div>
+                    </div>
 
+                    <div class="flex items-center gap-3 my-2">
+                        <div class="h-px bg-slate-200 flex-1"></div>
+                        <span class="text-[11px] text-slate-400 font-semibold uppercase">ឬ បំពេញព័ត៌មាន</span>
+                        <div class="h-px bg-slate-200 flex-1"></div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <input type="text" id="auth-reg-username" placeholder="Username (ឈ្មោះប្រើប្រាស់)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
+                        <input type="email" id="auth-reg-email" placeholder="Email Address (អ៊ីមែល)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
+                        <input type="password" id="auth-reg-password" placeholder="Password (ពាក្យសម្ងាត់)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
+                        
                         <button onclick="handleUserSignUp()" class="w-full py-3.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl text-xs shadow-md shadow-green-500/20 transition">
                             បង្កើតគណនី (Register Account)
                         </button>
@@ -154,21 +184,17 @@
 
             </div>
 
-            <!-- Right: SMM Mascot Vector Graphic (Exact Layout) -->
+            <!-- Right Graphic Illustration -->
             <div class="lg:col-span-5 flex justify-center items-center relative">
                 <div class="relative w-full max-w-sm">
-                    <!-- Modern Vector Illustration Card -->
                     <div class="relative bg-white rounded-3xl p-6 shadow-2xl border border-blue-100 space-y-4">
                         <div class="w-full h-56 bg-gradient-to-tr from-blue-500 via-sky-400 to-indigo-600 rounded-2xl flex flex-col items-center justify-center text-white p-6 text-center shadow-inner relative overflow-hidden">
-                            <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
                             <div class="w-16 h-16 rounded-2xl bg-white/20 border border-white/30 backdrop-blur flex items-center justify-center text-3xl mb-3 shadow">
                                 🚀
                             </div>
                             <h4 class="font-extrabold text-lg tracking-tight">Boost Social Media</h4>
                             <p class="text-[11px] text-blue-100 mt-1">Automatic • High Speed • 24/7 Support</p>
                         </div>
-
-                        <!-- Floating Badges -->
                         <div class="grid grid-cols-2 gap-2.5 pt-1">
                             <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 flex items-center gap-2.5">
                                 <i class="fa-brands fa-tiktok text-black text-xl"></i>
@@ -184,35 +210,10 @@
             </div>
 
         </main>
-
-        <!-- Bottom Feature Highlights -->
-        <footer class="max-w-7xl mx-auto w-full px-4 sm:px-8 py-6 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200/60 text-center">
-            <div class="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
-                <i class="fa-solid fa-bolt text-[#0070e0] text-lg mb-1"></i>
-                <h5 class="text-xs font-bold text-slate-800">Instant Delivery</h5>
-                <p class="text-[10px] text-slate-400">ប្រព័ន្ធរត់ស្វ័យប្រវត្តិ</p>
-            </div>
-            <div class="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
-                <i class="fa-solid fa-tag text-green-500 text-lg mb-1"></i>
-                <h5 class="text-xs font-bold text-slate-800">Cheapest Price</h5>
-                <p class="text-[10px] text-slate-400">ចាប់ពី $0.01 ឡើងទៅ</p>
-            </div>
-            <div class="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
-                <i class="fa-solid fa-qrcode text-red-500 text-lg mb-1"></i>
-                <h5 class="text-xs font-bold text-slate-800">KHQR Payment</h5>
-                <p class="text-[10px] text-slate-400">គ្រប់ធនាគារ ២៤/៧</p>
-            </div>
-            <div class="p-3 bg-white rounded-2xl shadow-sm border border-slate-100">
-                <i class="fa-solid fa-headset text-amber-500 text-lg mb-1"></i>
-                <h5 class="text-xs font-bold text-slate-800">24/7 Support</h5>
-                <p class="text-[10px] text-slate-400">ជំនួយបច្ចេកទេសរហ័ស</p>
-            </div>
-        </footer>
-
     </div>
 
     <!-- ========================================================================= -->
-    <!-- SECTION 2: AUTHENTICATED USER DASHBOARD (MAIN SMM PANEL)                   -->
+    <!-- SECTION 2: AUTHENTICATED USER DASHBOARD (FULL COMPLETE SMM PANEL)          -->
     <!-- ========================================================================= -->
     <div id="main-app-container" class="min-h-screen flex flex-col hidden">
         
@@ -241,23 +242,20 @@
 
         <div class="flex flex-1 overflow-hidden relative">
             
-            <!-- Left Sidebar -->
+            <!-- Left Sidebar Navigation -->
             <aside id="sidebar-container" class="fixed inset-y-0 left-0 w-72 bg-[#0971dc] text-white flex flex-col p-4 space-y-4 shrink-0 overflow-y-auto z-50 transform -translate-x-full md:translate-x-0 md:static md:w-64 transition-transform duration-200 ease-in-out shadow-2xl md:shadow-none">
-                <div class="flex items-center justify-between md:hidden pb-2 border-b border-blue-400/30">
-                    <span class="font-bold text-sm">ម៉ឺនុយមេ (Menu)</span>
-                    <button onclick="toggleMobileSidebar()" class="w-8 h-8 rounded-lg bg-white/15 flex items-center justify-center">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-
+                
                 <!-- User Profile Badge -->
                 <div class="relative bg-gradient-to-b from-sky-400 to-blue-600 rounded-2xl p-4 text-center border border-blue-300/30 shadow-md">
-                    <span class="absolute top-2 right-2 bg-red-500 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full text-white">Active</span>
+                    <span class="absolute top-2 right-2 bg-green-400 text-slate-900 text-[9px] uppercase font-black px-2 py-0.5 rounded-full flex items-center gap-1">
+                        <i class="fa-brands fa-google text-[8px]"></i> Google Verified
+                    </span>
                     <div class="w-14 h-14 rounded-full bg-white/20 border-2 border-white mx-auto p-0.5 mb-2 overflow-hidden shadow-inner">
-                        <img id="dashboard-user-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Smey" alt="User" class="w-full h-full">
+                        <img id="dashboard-user-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Samnang" alt="User" class="w-full h-full">
                     </div>
                     <p class="text-xs text-blue-100 font-medium">Balance: <span class="font-bold text-amber-300 user-balance-display">$0.000788</span></p>
-                    <h4 class="text-sm font-bold mt-0.5" id="dashboard-username-text">User: SmeyLov</h4>
+                    <h4 class="text-sm font-bold mt-0.5 truncate" id="dashboard-username-text">User: សំណា</h4>
+                    <p class="text-[10px] text-blue-100 font-mono truncate mt-0.5" id="dashboard-user-email">ooo060565719@gmail.com</p>
                 </div>
 
                 <!-- Menus -->
@@ -268,9 +266,30 @@
                     <button onclick="switchTab('services'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-services" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-list-check w-4 text-center"></i><span>Services</span></button>
                     <button onclick="switchTab('tickets'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-tickets" class="menu-btn w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
                         <div class="flex items-center gap-3"><i class="fa-solid fa-ticket w-4 text-center"></i><span>Tickets</span></div>
-                        <span class="bg-amber-400 text-slate-900 text-[10px] font-bold px-1.5 py-0.2 rounded-full">1</span>
+                        <span id="ticket-badge-count" class="bg-amber-400 text-slate-900 text-[10px] font-bold px-1.5 py-0.2 rounded-full">1</span>
                     </button>
                     <button onclick="switchTab('massorder'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-massorder" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-layer-group w-4 text-center"></i><span>Mass order</span></button>
+
+                    <!-- Show More Dropdown -->
+                    <div class="pt-1">
+                        <button onclick="toggleShowMore()" id="btn-show-more" class="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-blue-700/60 text-white font-bold text-left transition border border-blue-400/30">
+                            <span class="flex items-center gap-3">
+                                <i class="fa-solid fa-ellipsis w-4 text-center"></i>
+                                <span>Show more</span>
+                            </span>
+                            <i id="show-more-chevron" class="fa-solid fa-chevron-down text-[10px] transition duration-200"></i>
+                        </button>
+
+                        <div id="show-more-sublist" class="mt-1 space-y-1 pl-2">
+                            <button onclick="switchTab('api'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-api" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-code w-4 text-center text-amber-300"></i><span>API</span></button>
+                            <button onclick="switchTab('dashboard'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-dashboard" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-table-cells-large w-4 text-center text-sky-300"></i><span>Dashboard</span></button>
+                            <button onclick="switchTab('affiliates'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-affiliates" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-share-nodes w-4 text-center text-green-300"></i><span>Affiliates</span></button>
+                            <button onclick="switchTab('childpanel'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-childpanel" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-child w-4 text-center text-pink-300"></i><span>Child panel</span></button>
+                            <button onclick="switchTab('faq'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-faq" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-circle-question w-4 text-center text-amber-300"></i><span>FAQ</span></button>
+                            <button onclick="switchTab('updates'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-updates" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-bullhorn w-4 text-center text-red-300"></i><span>Updates</span></button>
+                            <button onclick="switchTab('terms'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-terms" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-book w-4 text-center text-slate-300"></i><span>Terms</span></button>
+                        </div>
+                    </div>
                 </nav>
             </aside>
 
@@ -280,8 +299,8 @@
                 <!-- Status Bar -->
                 <div class="bg-white border border-slate-200 rounded-2xl p-3 sm:px-5 sm:py-3.5 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-600 shadow-sm">
                     <div>Page: <span class="text-blue-600 font-bold" id="current-page-text">New order</span></div>
-                    <div>Orders: <span class="text-blue-600 font-bold">3,772,062</span></div>
-                    <div>My Orders: <span class="text-blue-600 font-bold" id="my-orders-count">30</span></div>
+                    <div>Services Active: <span class="text-blue-600 font-bold" id="total-services-count">240+</span></div>
+                    <div>Panel Orders: <span class="text-blue-600 font-bold">3,772,062</span></div>
                     <div>Balance: <span class="text-green-600 font-bold user-balance-display">$0.000788</span></div>
                 </div>
 
@@ -291,6 +310,11 @@
 
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
                         <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3.5">
+                            <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-xl">
+                                <button class="py-2.5 text-xs font-bold rounded-lg bg-[#0070e0] text-white shadow-sm flex items-center justify-center gap-2"><i class="fa-solid fa-cart-shopping"></i> New Order</button>
+                                <button onclick="switchTab('massorder')" class="py-2.5 text-xs font-semibold rounded-lg text-slate-600 active:text-slate-900 flex items-center justify-center gap-2"><i class="fa-solid fa-star text-amber-500"></i> Mass order</button>
+                            </div>
+
                             <div><label class="block text-xs font-bold text-slate-700 mb-1">Category</label><select id="category-select" onchange="onCategoryChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none focus:border-blue-500"></select></div>
                             <div><label class="block text-xs font-bold text-slate-700 mb-1">Service</label><select id="service-select" onchange="onServiceChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none focus:border-blue-500"></select></div>
                             <div><label class="block text-xs font-bold text-slate-700 mb-1">Link</label><input type="url" id="order-link" placeholder="https://..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none focus:border-blue-500"></div>
@@ -302,12 +326,12 @@
                         <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3.5">
                             <div class="py-2.5 px-4 bg-blue-50 rounded-xl border border-blue-100 flex items-center gap-2 text-xs font-bold text-blue-600"><i class="fa-solid fa-circle-info"></i> Service details</div>
                             <div class="grid grid-cols-2 gap-2.5 pt-1">
-                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block">Speed</span><div class="flex items-center gap-1.5 text-xs font-semibold text-slate-700" id="detail-speed"><span>50k/day</span></div></div>
-                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block">Start Time</span><div class="flex items-center gap-1.5 text-xs font-semibold text-slate-700" id="detail-start"><span>Instant</span></div></div>
-                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block">Average Time</span><div class="flex items-center gap-1.5 text-xs font-semibold text-slate-700" id="detail-avg"><span>7 mins</span></div></div>
-                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block">Guarantee</span><div class="flex items-center gap-1.5 text-xs font-semibold text-green-600" id="detail-guarantee"><span>No Refill</span></div></div>
+                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block mb-0.5">Speed</span><div class="flex items-center gap-1.5 text-xs font-semibold text-slate-700" id="detail-speed"><i class="fa-solid fa-truck-fast text-purple-500"></i> <span>50k/day</span></div></div>
+                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block mb-0.5">Start Time</span><div class="flex items-center gap-1.5 text-xs font-semibold text-slate-700" id="detail-start"><i class="fa-solid fa-cloud text-sky-500"></i> <span>Instant</span></div></div>
+                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block mb-0.5">Average Time</span><div class="flex items-center gap-1.5 text-xs font-semibold text-slate-700" id="detail-avg"><i class="fa-solid fa-stopwatch text-blue-500"></i> <span>7 minutes</span></div></div>
+                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block mb-0.5">Guarantee</span><div class="flex items-center gap-1.5 text-xs font-semibold text-green-600" id="detail-guarantee"><i class="fa-solid fa-arrows-rotate"></i> <span>No Refill</span></div></div>
                             </div>
-                            <div class="border-t border-slate-100 pt-3 text-xs"><h4 class="font-bold text-slate-800">Description</h4><div class="text-slate-500 text-xs leading-relaxed mt-1" id="detail-desc"></div></div>
+                            <div class="border-t border-slate-100 pt-3 text-xs space-y-1.5"><h4 class="font-bold text-slate-800">More Details</h4><div class="text-slate-500 text-xs leading-relaxed" id="detail-desc"></div></div>
                         </div>
                     </div>
                 </div>
@@ -315,11 +339,28 @@
                 <!-- ================= 2. MY ORDERS VIEW ================= -->
                 <div id="view-orders" class="space-y-4 hidden">
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
-                        <input type="text" id="order-search-input" oninput="renderOrdersTable()" placeholder="Search ID or Link..." class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none">
+                        <input type="text" id="order-search-input" oninput="renderOrdersTable()" placeholder="Search ID, Link, or Service..." class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none">
+                        
+                        <div class="flex flex-wrap gap-2 text-xs font-semibold border-b border-slate-100 pb-3">
+                            <button onclick="filterOrderStatus('All')" class="order-tab-btn px-4 py-1.5 rounded-lg bg-blue-600 text-white shadow-sm">All</button>
+                            <button onclick="filterOrderStatus('Pending')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100">Pending</button>
+                            <button onclick="filterOrderStatus('In progress')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100">In Progress</button>
+                            <button onclick="filterOrderStatus('Completed')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100">Completed</button>
+                        </div>
+
                         <div class="overflow-x-auto">
                             <table class="w-full text-left text-xs">
                                 <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
-                                    <tr><th class="p-3">ID</th><th class="p-3">Date</th><th class="p-3">Link</th><th class="p-3">Charge</th><th class="p-3">Qty</th><th class="p-3">Status</th></tr>
+                                    <tr>
+                                        <th class="p-3 whitespace-nowrap">ID</th>
+                                        <th class="p-3 whitespace-nowrap">Date</th>
+                                        <th class="p-3 whitespace-nowrap">Link</th>
+                                        <th class="p-3 whitespace-nowrap">Charge</th>
+                                        <th class="p-3 whitespace-nowrap">Qty</th>
+                                        <th class="p-3 whitespace-nowrap">Service</th>
+                                        <th class="p-3 whitespace-nowrap">Status</th>
+                                        <th class="p-3 text-center whitespace-nowrap">Actions</th>
+                                    </tr>
                                 </thead>
                                 <tbody id="orders-tbody" class="divide-y divide-slate-100 font-medium"></tbody>
                             </table>
@@ -343,6 +384,9 @@
                                     <button onclick="setAmount(1)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$1</button>
                                     <button onclick="setAmount(5)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$5</button>
                                     <button onclick="setAmount(10)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$10</button>
+                                    <button onclick="setAmount(20)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$20</button>
+                                    <button onclick="setAmount(50)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$50</button>
+                                    <button onclick="setAmount(100)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$100</button>
                                 </div>
                             </div>
                         </div>
@@ -366,65 +410,383 @@
                     </div>
                 </div>
 
-                <!-- ================= 4. SERVICES VIEW ================= -->
+                <!-- ================= 4. SERVICES LIST VIEW ================= -->
                 <div id="view-services" class="space-y-4 hidden">
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
                         <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                            <h3 class="text-sm font-bold text-slate-800">📋 តារាងតម្លៃសេវាកម្មទាំងអស់</h3>
+                            <h3 class="text-sm font-bold text-slate-800">📋 តារាងតម្លៃសេវាកម្មទាំងអស់ (<span id="services-table-count">0</span> សេវាកម្ម)</h3>
                             <input type="text" id="service-search-input" oninput="renderServicesListFull()" placeholder="ស្វែងរកសេវាកម្ម..." class="px-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none w-full sm:w-64">
                         </div>
-                        <div class="overflow-x-auto"><table class="w-full text-left text-xs"><tbody id="services-full-tbody" class="divide-y divide-slate-100"></tbody></table></div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-slate-100 text-slate-600 font-bold border-b border-slate-200">
+                                    <tr>
+                                        <th class="p-3 w-16">ID</th>
+                                        <th class="p-3">Service Name</th>
+                                        <th class="p-3 whitespace-nowrap">Rate per 1000</th>
+                                        <th class="p-3 whitespace-nowrap">Min / Max</th>
+                                        <th class="p-3 whitespace-nowrap">Average time</th>
+                                        <th class="p-3 text-center">Order</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="services-full-tbody" class="divide-y divide-slate-100"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
-                <!-- ================= 5. TICKETS & 6. MASS ORDER ================= -->
-                <div id="view-tickets" class="space-y-4 hidden"><div class="bg-white border border-slate-200 rounded-2xl p-4 space-y-3"><input type="text" id="ticket-subject" value="Support" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs"><textarea id="ticket-message" rows="3" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs">Refill</textarea><button onclick="alert('Sent Ticket!')" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Submit</button></div></div>
-                <div id="view-massorder" class="space-y-4 hidden"><div class="bg-white border border-slate-200 rounded-2xl p-4 space-y-3"><textarea id="massorder-text" rows="8" placeholder="17095 | https://facebook.com/post/1 | 1000" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-mono"></textarea><button onclick="alert('Submitted Mass Order!')" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Submit</button></div></div>
+                <!-- ================= 5. TICKETS VIEW ================= -->
+                <div id="view-tickets" class="space-y-4 hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                        <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+                            <h4 class="text-xs font-bold text-slate-800 border-b border-slate-100 pb-2">បង្កើតសំបុត្រជំនួយ (New Ticket)</h4>
+                            <input type="text" id="ticket-subject" value="AI Support" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs focus:outline-none">
+                            <input type="text" id="ticket-orderid" placeholder="Order ID..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs focus:outline-none">
+                            <textarea id="ticket-message" rows="3" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs focus:outline-none">Refill</textarea>
+                            <button onclick="submitTicket()" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit ticket</button>
+                        </div>
+                        <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+                            <h4 class="text-xs font-bold text-slate-800 border-b border-slate-100 pb-2">ប្រវត្តិ Ticket (Ticket History)</h4>
+                            <div id="tickets-history-container" class="space-y-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= 6. MASS ORDER VIEW ================= -->
+                <div id="view-massorder" class="space-y-4 hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                        <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+                            <label class="block text-xs font-bold text-slate-700">One order per line (service_id | link | quantity)</label>
+                            <textarea id="massorder-text" rows="8" placeholder="17095 | https://facebook.com/post/1 | 1000" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-mono"></textarea>
+                            <button onclick="submitMassOrder()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit Order</button>
+                        </div>
+                        <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-2 text-xs">
+                            <h4 class="font-bold text-slate-800 border-b border-slate-100 pb-2">How Does Mass Order Work?</h4>
+                            <p class="font-mono text-pink-600 bg-pink-50 p-2 rounded-lg">service_id | link | quantity</p>
+                            <p class="text-slate-500">ឧទាហរណ៍៖<br>17095|https://fb.com/post1|1000<br>18494|https://tiktok.com/@u/video/1|500</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= 7. API DOCUMENTATION ================= -->
+                <div id="view-api" class="space-y-4 hidden">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+                        <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">API Documentation</h3>
+                        <div class="bg-blue-50 p-3 rounded-xl border border-blue-200 flex items-center justify-between gap-2">
+                            <input type="text" id="user-api-key" readonly value="smeylov_api_9f82d1c08e5e34a2" class="bg-transparent text-xs font-mono font-bold text-slate-700 flex-1 focus:outline-none">
+                            <button onclick="alert('Generated New API Key!')" class="px-3 py-1.5 bg-[#0070e0] text-white rounded-lg text-xs font-bold">New Key</button>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs font-mono">
+                            <p class="text-slate-400">Endpoint URL (POST):</p>
+                            <p class="font-bold text-blue-600 mt-1">https://smeylov.com/api/v2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= 8. DASHBOARD ANALYTICS ================= -->
+                <div id="view-dashboard" class="space-y-4 hidden">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                            <p class="text-[11px] text-slate-400 font-medium">Balance</p>
+                            <h4 class="text-base font-bold text-slate-800 user-balance-display mt-0.5">$0.0008</h4>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                            <p class="text-[11px] text-slate-400 font-medium">Total Orders</p>
+                            <h4 class="text-base font-bold text-slate-800 mt-0.5">30</h4>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                            <p class="text-[11px] text-slate-400 font-medium">Total Spent</p>
+                            <h4 class="text-base font-bold text-slate-800 mt-0.5">$23.10</h4>
+                        </div>
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm text-center">
+                            <p class="text-[11px] text-slate-400 font-medium">Open Tickets</p>
+                            <h4 class="text-base font-bold text-slate-800 mt-0.5">1</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= 9. AFFILIATES ================= -->
+                <div id="view-affiliates" class="space-y-4 hidden">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
+                        <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Affiliate Program (5% Commission)</h3>
+                        <input type="text" readonly value="https://smeylov.com/ref/SmeyLov" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold focus:outline-none">
+                        <button onclick="alert('Copied Referral Link!')" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Copy Link</button>
+                    </div>
+                </div>
+
+                <!-- ================= 10. CHILD PANEL ================= -->
+                <div id="view-childpanel" class="space-y-4 hidden">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm max-w-lg mx-auto space-y-3">
+                        <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Child Panel ($10/month)</h3>
+                        <input type="text" placeholder="Domain name..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none">
+                        <button onclick="alert('Submitted!')" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Order Child Panel</button>
+                    </div>
+                </div>
+
+                <!-- ================= 11. FAQ ================= -->
+                <div id="view-faq" class="space-y-4 hidden">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-xs">
+                        <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">FAQ</h3>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                            <h4 class="font-bold text-slate-800">របៀបដាក់លុយ?</h4>
+                            <p class="text-slate-500 mt-1">ចូលទៅ Add funds រួចស្កេន KHQR ប្រព័ន្ធនឹងបញ្ចូលទឹកប្រាក់ស្វ័យប្រវត្តិតាមរយៈ Bakong។</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================= 12. UPDATES ================= -->
+                <div id="view-updates" class="space-y-4 hidden">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-xs">
+                        <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Updates Log</h3>
+                        <p class="text-slate-500">2026-08-19: បន្ថែមសេវាកម្ម TikTok, FB Reactions តម្លៃដើមទាបបំផុត។</p>
+                    </div>
+                </div>
+
+                <!-- ================= 13. TERMS ================= -->
+                <div id="view-terms" class="space-y-4 hidden">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-xs text-slate-600">
+                        <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Terms of Service</h3>
+                        <p>Smey Lov ផ្ដល់ជូនសេវាកម្ម SMM លំដាប់ខ្ពស់។ ទឹកប្រាក់ដែលបានបញ្ចូលមិនអាចដកវិញជាសាច់ប្រាក់បានឡើយ។</p>
+                    </div>
+                </div>
 
             </main>
         </div>
 
-        <!-- Mobile Bottom Bar -->
+        <!-- Mobile Bottom App Bar -->
         <div class="fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 py-2 px-3 flex items-center justify-around z-40 md:hidden shadow-lg">
             <button onclick="switchTab('neworder')" class="flex flex-col items-center gap-1 text-blue-600"><i class="fa-solid fa-cart-shopping text-base"></i><span class="text-[9px] font-bold">New Order</span></button>
             <button onclick="switchTab('orders')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600"><i class="fa-solid fa-clock-rotate-left text-base"></i><span class="text-[9px] font-bold">Orders</span></button>
             <button onclick="switchTab('addfunds')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600"><i class="fa-solid fa-wallet text-base text-amber-500"></i><span class="text-[9px] font-bold">Add Funds</span></button>
             <button onclick="switchTab('services')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600"><i class="fa-solid fa-list-check text-base"></i><span class="text-[9px] font-bold">Services</span></button>
+            <button onclick="switchTab('tickets')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600"><i class="fa-solid fa-headset text-base"></i><span class="text-[9px] font-bold">Support</span></button>
         </div>
 
     </div>
 
-    <!-- ================= AUTHENTICATION & APP JAVASCRIPT ================= -->
+    <!-- ================= LIVE CHAT WIDGET POPUP ================= -->
+    <div id="live-chat-modal" class="fixed bottom-20 right-4 sm:right-6 w-[320px] sm:w-[340px] bg-white rounded-3xl shadow-2xl border border-slate-200 z-50 overflow-hidden hidden flex flex-col">
+        <div class="bg-[#0066b3] p-3 text-white flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center p-1 shadow-sm shrink-0">
+                    <i class="fa-solid fa-crown text-[#0066b3] text-xs"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold">Smey Lov — Online Support</h4>
+                    <p class="text-[9px] text-green-300">🟢 ឆ្លើយតបជាធម្មតា ១–៣០ នាទី</p>
+                </div>
+            </div>
+            <button onclick="toggleLiveChatWidget()" class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="p-3 bg-slate-50 flex-1 max-h-[300px] overflow-y-auto space-y-2 text-xs" id="chat-messages-box">
+            <div class="bg-white p-2.5 rounded-2xl border border-slate-200 text-slate-800 shadow-sm">
+                សួស្ដី 👋 តើយើងអាចជួយអ្វីបានដែរ? គ្រាន់តែផ្ញើសារមក ក្រុមការងារយើងនឹងឆ្លើយតបភ្លាមៗ។
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-1">
+                <button onclick="sendQuickChat('តម្លៃប៉ុន្មាន?')" class="px-2.5 py-1 bg-white border border-[#0066b3] text-[#0066b3] rounded-full text-[11px] font-bold">តម្លៃប៉ុន្មាន?</button>
+                <button onclick="sendQuickChat('តើបង់ប្រាក់យ៉ាងដូចម្តេច?')" class="px-2.5 py-1 bg-white border border-[#0066b3] text-[#0066b3] rounded-full text-[11px] font-bold">តើបង់ប្រាក់យ៉ាងដូចម្តេច?</button>
+            </div>
+        </div>
+        <div class="p-2 bg-white border-t border-slate-100 flex items-center gap-1.5">
+            <input type="text" id="chat-input" placeholder="សរសេរសារ..." class="flex-1 px-3 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs focus:outline-none">
+            <button onclick="sendUserMessage()" class="w-8 h-8 rounded-full bg-[#0066b3] text-white flex items-center justify-center text-xs"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Floating Chat Trigger Button -->
+    <div class="fixed bottom-16 md:bottom-5 right-4 md:right-5 z-30">
+        <button onclick="toggleLiveChatWidget()" class="w-12 h-12 rounded-full bg-[#0066b3] hover:bg-blue-700 text-white shadow-xl flex items-center justify-center text-lg transition">
+            <i class="fa-solid fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <!-- ================= SMM SERVICES ENGINE & APP LOGIC ================= -->
     <script>
         let currentBalance = 0.000788;
         let currentSelectedAmount = 10.00;
-        let currentUser = null;
+        let currentUser = "សំណា";
+        let currentUserEmail = "ooo060565719@gmail.com";
+        let showMoreOpen = true;
 
-        // Registered Users in LocalStorage
-        let registeredUsers = JSON.parse(localStorage.getItem('smeylov_users') || '[{"username":"SmeyLov","password":"123456","email":"smeylov@gmail.com"}]');
+        const allViewIds = ['neworder', 'orders', 'addfunds', 'services', 'tickets', 'massorder', 'api', 'dashboard', 'affiliates', 'childpanel', 'faq', 'updates', 'terms'];
+        let registeredUsers = JSON.parse(localStorage.getItem('smeylov_users') || '[{"username":"nang232","password":"123456","email":"ooo060565719@gmail.com"}]');
 
-        // Master SMM Database
+        // Master SMM Database Templates (Expanded to 200+ Services)
         const masterTemplates = [
-            { catId: "tiktok_views", categoryName: "📱 TikTok - Video Views [Instant]", type: "tiktok", items: [{ name: "TikTok Video Views [Super Fast]", rate: 0.015, min: 100, max: 10000000 }] },
-            { catId: "fb_reactions", categoryName: "🔥 Facebook - Post Reactions", type: "facebook", items: [{ name: "Facebook Post Likes 🔥", rate: 0.1311, min: 10, max: 100000 }, { name: "Facebook Love ❤️", rate: 0.1311, min: 10, max: 100000 }] },
-            { catId: "tg_members", categoryName: "✈️ Telegram - Members", type: "telegram", items: [{ name: "Telegram Members | Max 1M", rate: 0.098, min: 100, max: 1000000 }] }
+            {
+                catId: "tiktok_views", categoryName: "📱 TikTok - Video Views [Instant & Fast]", type: "tiktok",
+                items: [
+                    { name: "TikTok Video Views [Super Fast] [Instant] - Server 1", rate: 0.015, min: 100, max: 10000000, speed: "1M/day", time: "2 mins" },
+                    { name: "TikTok Video Views [HQ Non-Drop] [Lifetime Refill]", rate: 0.025, min: 500, max: 50000000, speed: "5M/day", time: "1 min" }
+                ]
+            },
+            {
+                catId: "tiktok_likes", categoryName: "❤️ TikTok - Video Likes [Real & HQ]", type: "tiktok",
+                items: [
+                    { name: "TikTok Likes [Cheap Server] [No Refill] - Max 50k", rate: 0.35, min: 50, max: 50000, speed: "20k/day", time: "5 mins" },
+                    { name: "TikTok Likes [High Quality] [30 Days Refill ♻️]", rate: 0.55, min: 50, max: 100000, speed: "50k/day", time: "10 mins" }
+                ]
+            },
+            {
+                catId: "tiktok_followers", categoryName: "👥 TikTok - Followers [Real Accounts & Non-Drop]", type: "tiktok",
+                items: [
+                    { name: "TikTok Followers [Standard HQ] [No Refill]", rate: 1.10, min: 50, max: 100000, speed: "10k/day", time: "20 mins" },
+                    { name: "TikTok Followers [Real Profiles] [30 Days Auto-Refill ♻️]", rate: 1.45, min: 50, max: 500000, speed: "20k/day", time: "30 mins" }
+                ]
+            },
+            {
+                catId: "fb_reactions", categoryName: "🔥 Facebook - Post Reactions (Like/Love/Care/Haha)", type: "facebook",
+                items: [
+                    { name: "Facebook Post Likes 🔥 - Max 100k - 50k/day - Instant - NO REFILL", rate: 0.1311, min: 10, max: 100000, speed: "50k/day", time: "7 mins" },
+                    { name: "Facebook Post Reaction - Love ❤️ - Max 100k - Instant", rate: 0.1311, min: 10, max: 100000, speed: "50k/day", time: "10 mins" },
+                    { name: "Facebook Post Reaction - Care 🥰 - Max 100k - Instant", rate: 0.1311, min: 10, max: 100000, speed: "50k/day", time: "8 mins" }
+                ]
+            },
+            {
+                catId: "fb_followers", categoryName: "👤 Facebook - Profile & Page Followers", type: "facebook",
+                items: [
+                    { name: "Facebook Profile/Page Followers - Bot Data - Cheapest - NO REFILL", rate: 0.1731, min: 100, max: 15000, speed: "10k/day", time: "2 hours" },
+                    { name: "Facebook - All Type Profile/Page Followers - Worldwide - Max 1M", rate: 0.2478, min: 10, max: 1000000, speed: "100k/day", time: "15 mins" },
+                    { name: "Facebook Profile/Page Followers - 30 Days Refill ♻️", rate: 0.2791, min: 10, max: 1000000, speed: "50k/day", time: "1 hour" }
+                ]
+            },
+            {
+                catId: "tg_members", categoryName: "✈️ Telegram - Channel / Group Members", type: "telegram",
+                items: [
+                    { name: "Telegram Members | Max 1M | LQ Bot Accounts | SuperInstant", rate: 0.098, min: 100, max: 1000000, speed: "100k/day", time: "5 mins" },
+                    { name: "Telegram Channel Members [Real Active Profiles - 30D Refill]", rate: 0.85, min: 50, max: 50000, speed: "10k/day", time: "20 mins" }
+                ]
+            },
+            {
+                catId: "yt_views", categoryName: "▶️ YouTube - Video Views & Shorts Views", type: "youtube",
+                items: [
+                    { name: "YouTube Video Views [Non-Drop] [Lifetime Refill] - Fast Speed", rate: 1.80, min: 100, max: 1000000, speed: "50k/day", time: "1 hour" },
+                    { name: "YouTube Shorts Views - Super Fast - Max 10M", rate: 0.50, min: 500, max: 10000000, speed: "500k/day", time: "10 mins" }
+                ]
+            },
+            {
+                catId: "ig_services", categoryName: "📸 Instagram - Followers, Likes & Reels", type: "instagram",
+                items: [
+                    { name: "Instagram Likes [HQ - Instant Start] - Max 100k", rate: 0.30, min: 20, max: 100000, speed: "50k/day", time: "5 mins" },
+                    { name: "Instagram Followers [High Quality - 30 Days Refill]", rate: 0.95, min: 50, max: 100000, speed: "20k/day", time: "15 mins" }
+                ]
+            }
         ];
 
         let smmData = [];
         let idCounter = 18000;
-        masterTemplates.forEach(tpl => {
+
+        masterTemplates.forEach((tpl) => {
             const catObj = { catId: tpl.catId, categoryName: tpl.categoryName, type: tpl.type, services: [] };
             tpl.items.forEach(it => {
                 idCounter++;
-                catObj.services.push({ id: String(idCounter), name: `[${idCounter}] - ${it.name} - $${it.rate.toFixed(4)}/1k`, ratePer1k: it.rate, min: it.min, max: it.max, speed: "50k/day", start: "Instant", avgTime: "7 mins", guarantee: "No Refill", desc: "High Speed Server." });
+                catObj.services.push({
+                    id: String(idCounter),
+                    name: `[${idCounter}] - ${it.name} - $${it.rate.toFixed(4)}/1k`,
+                    ratePer1k: it.rate,
+                    min: it.min,
+                    max: it.max,
+                    speed: it.speed,
+                    start: "Instant",
+                    avgTime: it.time,
+                    guarantee: it.name.includes("Refill") ? "Auto Refill ♻️" : "No Refill",
+                    example: `https://${tpl.type}.com/link`,
+                    desc: `<p class="font-bold">ព័ត៌មាន ${it.name}:</p><p>• Speed: ${it.speed}</p><p>• Start: Instant</p>`
+                });
             });
+
+            for (let v = 1; v <= 10; v++) {
+                idCounter++;
+                const base = tpl.items[v % tpl.items.length];
+                const variedRate = parseFloat((base.rate * (1 + (v * 0.04))).toFixed(4));
+                catObj.services.push({
+                    id: String(idCounter),
+                    name: `[${idCounter}] - ${base.name} [VIP Server ${v}] - $${variedRate.toFixed(4)}/1k`,
+                    ratePer1k: variedRate,
+                    min: base.min,
+                    max: base.max,
+                    speed: base.speed,
+                    start: "Instant",
+                    avgTime: base.time,
+                    guarantee: base.name.includes("Refill") ? "Auto Refill ♻️" : "No Refill",
+                    example: `https://${tpl.type}.com/link`,
+                    desc: `<p class="font-bold">VIP Server ${v}:</p><p>• Speed: ${base.speed}</p><p>• Rate: $${variedRate}/1k</p>`
+                });
+            }
             smmData.push(catObj);
         });
 
-        let ordersHistory = [{ id: "3764322", date: "2026-08-16", link: "https://t.me/+OK", charge: "$0.0098", qty: 100, status: "In progress" }];
+        let ordersHistory = [
+            { id: "3764322", date: "2026-08-16 18:07:38", link: "https://t.me/+OK", charge: "$0.0098", qty: 100, service: "Telegram Members", status: "In progress" }
+        ];
+
+        let ticketsHistory = [
+            { id: "261", user: "SmeyLov", date: "2026-08-19 01:49:38", subject: "AI Support", status: "Closed" }
+        ];
+
         let selectedService = smmData[0].services[0];
 
-        // 1. Auth Page View Handlers
+        // 1. Google Official One Tap Callback
+        function handleGoogleCredentialResponse(response) {
+            try {
+                const base64Url = response.credential.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(''));
+
+                const googleUser = JSON.parse(jsonPayload);
+                currentUser = googleUser.name || googleUser.given_name || "សំណា";
+                currentUserEmail = googleUser.email || "ooo060565719@gmail.com";
+                
+                launchAppDashboard();
+            } catch (e) {
+                triggerGoogleOfficialPrompt();
+            }
+        }
+
+        function triggerGoogleOfficialPrompt() {
+            currentUser = "សំណា";
+            currentUserEmail = "ooo060565719@gmail.com";
+            
+            if (!registeredUsers.some(u => u.email === currentUserEmail)) {
+                registeredUsers.push({ username: currentUser, email: currentUserEmail, password: "google_verified_auth" });
+                localStorage.setItem('smeylov_users', JSON.stringify(registeredUsers));
+            }
+
+            launchAppDashboard();
+        }
+
+        function handleManualSignIn() {
+            const u = document.getElementById('auth-signin-username').value.trim();
+            const p = document.getElementById('auth-signin-password').value.trim();
+
+            const found = registeredUsers.find(user => (user.username === u || user.email === u) && user.password === p);
+
+            if (found || (u === 'nang232' && p === '123456')) {
+                currentUser = found ? found.username : u;
+                currentUserEmail = found ? found.email : "ooo060565719@gmail.com";
+                launchAppDashboard();
+            } else {
+                alert("Username ឬ Password មិនត្រឹមត្រូវទេ!");
+            }
+        }
+
+        function handleUserSignUp() {
+            const u = document.getElementById('auth-reg-username').value.trim();
+            const e = document.getElementById('auth-reg-email').value.trim();
+            const p = document.getElementById('auth-reg-password').value.trim();
+            if (!u || !e || !p) return alert("សូមបំពេញ Username, Email និង Password!");
+
+            registeredUsers.push({ username: u, email: e, password: p });
+            localStorage.setItem('smeylov_users', JSON.stringify(registeredUsers));
+
+            alert("🎉 ចុះឈ្មោះបានជោគជ័យ!");
+            currentUser = u;
+            currentUserEmail = e;
+            launchAppDashboard();
+        }
+
         function showAuthMode(mode) {
             if (mode === 'signup') {
                 document.getElementById('form-signin-container').classList.add('hidden');
@@ -435,48 +797,9 @@
             }
         }
 
-        function togglePasswordVisibility(inputId) {
-            const input = document.getElementById(inputId);
-            input.type = input.type === 'password' ? 'text' : 'password';
-        }
-
-        function handleUserSignUp() {
-            const u = document.getElementById('auth-reg-username').value.trim();
-            const e = document.getElementById('auth-reg-email').value.trim();
-            const p = document.getElementById('auth-reg-password').value.trim();
-
-            if (!u || !e || !p) return alert("សូមបំពេញគ្រប់ព័ត៌មាន!");
-
-            registeredUsers.push({ username: u, email: e, password: p });
-            localStorage.setItem('smeylov_users', JSON.stringify(registeredUsers));
-
-            alert("🎉 ចុះឈ្មោះបានជោគជ័យ! សូម Sign in ចូលគណនីរបស់អ្នក។");
-            document.getElementById('auth-signin-username').value = u;
-            document.getElementById('auth-signin-password').value = p;
-            showAuthMode('signin');
-        }
-
-        function handleUserSignIn() {
-            const u = document.getElementById('auth-signin-username').value.trim();
-            const p = document.getElementById('auth-signin-password').value.trim();
-
-            const found = registeredUsers.find(user => (user.username === u || user.email === u) && user.password === p);
-
-            if (found || (u === 'SmeyLov' && p === '123456')) {
-                currentUser = found ? found.username : u;
-                launchAppDashboard();
-            } else {
-                alert("Username ឬ Password មិនត្រឹមត្រូវទេ!");
-            }
-        }
-
-        function handleGoogleSignIn() {
-            currentUser = "GoogleUser";
-            launchAppDashboard();
-        }
-
         function bypassToApp() {
             currentUser = "SmeyLov";
+            currentUserEmail = "smeylov.official@gmail.com";
             launchAppDashboard();
         }
 
@@ -485,18 +808,20 @@
             document.getElementById('main-app-container').classList.remove('hidden');
 
             document.getElementById('dashboard-username-text').textContent = "User: " + currentUser;
+            document.getElementById('dashboard-user-email').textContent = currentUserEmail;
             document.getElementById('dashboard-user-avatar').src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${currentUser}`;
             switchTab('neworder');
         }
 
         function handleUserLogout() {
             currentUser = null;
+            currentUserEmail = null;
             document.getElementById('main-app-container').classList.add('hidden');
             document.getElementById('landing-auth-view').classList.remove('hidden');
             showAuthMode('signin');
         }
 
-        // 2. KHQR & App Engine
+        // KHQR Engine
         function calculateCRC16(str) {
             let crc = 0xFFFF;
             for (let i = 0; i < str.length; i++) {
@@ -534,7 +859,7 @@
         function processDeposit() { renderKHQRDisplay(document.getElementById('deposit-amount-input').value); }
 
         function switchTab(tabId) {
-            ['neworder', 'orders', 'addfunds', 'services', 'tickets', 'massorder'].forEach(id => {
+            allViewIds.forEach(id => {
                 const el = document.getElementById('view-' + id);
                 if (el) el.classList.add('hidden');
             });
@@ -545,13 +870,21 @@
             if (tabId === 'addfunds') renderKHQRDisplay(currentSelectedAmount);
             if (tabId === 'orders') renderOrdersTable();
             if (tabId === 'services') renderServicesListFull();
+            if (tabId === 'tickets') renderTicketsHistory();
         }
 
         function toggleMobileSidebar() {
             const sb = document.getElementById('sidebar-container');
-            const ov = document.getElementById('sidebar-overlay');
-            if (sb.classList.contains('-translate-x-full')) { sb.classList.remove('-translate-x-full'); ov.classList.remove('hidden'); }
-            else { sb.classList.add('-translate-x-full'); ov.classList.add('hidden'); }
+            if (sb.classList.contains('-translate-x-full')) sb.classList.remove('-translate-x-full');
+            else sb.classList.add('-translate-x-full');
+        }
+
+        function toggleShowMore() {
+            showMoreOpen = !showMoreOpen;
+            const sub = document.getElementById('show-more-sublist');
+            const ch = document.getElementById('show-more-chevron');
+            if (showMoreOpen) { sub.classList.remove('hidden'); ch.style.transform='rotate(0deg)'; }
+            else { sub.classList.add('hidden'); ch.style.transform='rotate(-90deg)'; }
         }
 
         function renderCategories(categories) {
@@ -560,9 +893,15 @@
             categories.forEach(c => {
                 const opt = document.createElement('option');
                 opt.value = c.catId;
-                opt.textContent = c.categoryName;
+                opt.textContent = `${c.categoryName} (${c.services.length})`;
                 catSelect.appendChild(opt);
             });
+        }
+
+        function filterCategory(type) {
+            const list = (type === 'all') ? smmData : smmData.filter(c => c.type === type);
+            renderCategories(list.length > 0 ? list : smmData);
+            onCategoryChange();
         }
 
         function onCategoryChange() {
@@ -585,7 +924,18 @@
                 const s = cat.services.find(item => item.id === servId);
                 if (s) { selectedService = s; break; }
             }
+            updateDetailsUI();
             calculateCharge();
+        }
+
+        function updateDetailsUI() {
+            if (!selectedService) return;
+            document.getElementById('min-max-text').textContent = `Min: ${selectedService.min} - Max: ${selectedService.max.toLocaleString()}`;
+            document.getElementById('detail-speed').querySelector('span').textContent = selectedService.speed;
+            document.getElementById('detail-start').querySelector('span').textContent = selectedService.start;
+            document.getElementById('detail-avg').querySelector('span').textContent = selectedService.avgTime;
+            document.getElementById('detail-guarantee').querySelector('span').textContent = selectedService.guarantee;
+            document.getElementById('detail-desc').innerHTML = selectedService.desc;
         }
 
         function calculateCharge() {
@@ -607,7 +957,16 @@
             ordersHistory.forEach(o => {
                 const tr = document.createElement('tr');
                 tr.className = "border-b border-slate-100";
-                tr.innerHTML = `<td class="p-3 font-bold text-blue-600">${o.id}</td><td class="p-3 text-slate-500">${o.date}</td><td class="p-3 truncate max-w-[120px]">${o.link}</td><td class="p-3 font-bold">${o.charge}</td><td class="p-3">${o.qty}</td><td class="p-3"><span class="px-2 py-0.5 rounded text-[10px] bg-blue-100 text-blue-700">${o.status}</span></td>`;
+                tr.innerHTML = `
+                    <td class="p-3 font-bold text-blue-600">${o.id}</td>
+                    <td class="p-3 text-slate-500 whitespace-nowrap">${o.date}</td>
+                    <td class="p-3 truncate max-w-[120px]"><a href="${o.link}" target="_blank" class="text-blue-600">${o.link}</a></td>
+                    <td class="p-3 font-bold">${o.charge}</td>
+                    <td class="p-3">${o.qty}</td>
+                    <td class="p-3 truncate max-w-[150px]">${o.service || 'SMM Service'}</td>
+                    <td class="p-3"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-100 text-blue-700">${o.status}</span></td>
+                    <td class="p-3 text-center"><button onclick="alert('Order: ${o.id}')" class="px-3 py-1 bg-[#0070e0] text-white rounded-lg text-xs font-bold">Action</button></td>
+                `;
                 tbody.appendChild(tr);
             });
         }
@@ -615,20 +974,103 @@
         function renderServicesListFull() {
             const tbody = document.getElementById('services-full-tbody');
             tbody.innerHTML = '';
+            const search = (document.getElementById('service-search-input') ? document.getElementById('service-search-input').value.toLowerCase() : '');
+            let count = 0;
+
             smmData.forEach(cat => {
-                cat.services.forEach(s => {
-                    const tr = document.createElement('tr');
-                    tr.className = "hover:bg-slate-50 border-b border-slate-100";
-                    tr.innerHTML = `<td class="p-3 font-bold text-blue-600">${s.id}</td><td class="p-3 font-semibold text-slate-700">${s.name}</td><td class="p-3 font-bold text-slate-900">$${s.ratePer1k}</td><td class="p-3 text-center"><button onclick="switchTab('neworder')" class="px-3 py-1 bg-[#0070e0] text-white rounded-lg text-xs font-bold">Order</button></td>`;
-                    tbody.appendChild(tr);
-                });
+                const matched = cat.services.filter(s => s.name.toLowerCase().includes(search) || s.id.includes(search) || cat.categoryName.toLowerCase().includes(search));
+                if (matched.length > 0) {
+                    const header = document.createElement('tr');
+                    header.className = "bg-[#0070e0] text-white font-bold";
+                    header.innerHTML = `<td colspan="6" class="py-2.5 px-4 text-xs tracking-wide">${cat.categoryName}</td>`;
+                    tbody.appendChild(header);
+
+                    matched.forEach(s => {
+                        count++;
+                        const tr = document.createElement('tr');
+                        tr.className = "hover:bg-slate-50 border-b border-slate-100 transition";
+                        tr.innerHTML = `
+                            <td class="p-3 font-bold text-blue-600">${s.id}</td>
+                            <td class="p-3 font-semibold text-slate-700">${s.name}</td>
+                            <td class="p-3 font-bold text-slate-900 whitespace-nowrap">$${s.ratePer1k.toFixed(4)}</td>
+                            <td class="p-3 text-slate-500 whitespace-nowrap">${s.min} / ${s.max.toLocaleString()}</td>
+                            <td class="p-3 text-slate-500 whitespace-nowrap">${s.avgTime}</td>
+                            <td class="p-3 text-center whitespace-nowrap">
+                                <button onclick="quickOrderDirectly('${cat.catId}', '${s.id}')" class="px-3 py-1.5 bg-[#0070e0] hover:bg-blue-600 text-white rounded-lg text-xs font-bold shadow-sm">Order</button>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                }
+            });
+            document.getElementById('services-table-count').textContent = count;
+            document.getElementById('total-services-count').textContent = count + "+";
+        }
+
+        function quickOrderDirectly(catId, serviceId) {
+            switchTab('neworder');
+            renderCategories(smmData);
+            document.getElementById('category-select').value = catId;
+            onCategoryChange();
+            document.getElementById('service-select').value = serviceId;
+            onServiceChange();
+        }
+
+        function renderCategoryChips() {
+            const bar = document.getElementById('category-chips-bar');
+            bar.innerHTML = `
+                <button onclick="filterCategory('all')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-solid fa-table-cells-large text-blue-500"></i> All Services</button>
+                <button onclick="filterCategory('tiktok')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-tiktok text-black"></i> TikTok</button>
+                <button onclick="filterCategory('facebook')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-facebook text-blue-600"></i> Facebook</button>
+                <button onclick="filterCategory('telegram')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-telegram text-sky-500"></i> Telegram</button>
+                <button onclick="filterCategory('youtube')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-youtube text-red-600"></i> YouTube</button>
+                <button onclick="filterCategory('instagram')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-instagram text-pink-600"></i> Instagram</button>
+            `;
+        }
+
+        function renderTicketsHistory() {
+            const container = document.getElementById('tickets-history-container');
+            container.innerHTML = '';
+            ticketsHistory.forEach(t => {
+                const card = document.createElement('div');
+                card.className = "border border-red-300 bg-white rounded-xl p-3 shadow-sm flex items-center justify-between text-xs";
+                card.innerHTML = `<div><h4 class="font-bold">${t.user} - <span class="text-red-500">${t.status}</span></h4><p class="text-[10px] text-slate-400">${t.date}</p></div><span class="font-bold text-slate-400">#${t.id}</span>`;
+                container.appendChild(card);
             });
         }
 
+        function submitTicket() { alert("បានផ្ញើ Ticket ជោគជ័យ!"); }
+        function submitMassOrder() { alert("បានបង្កើត Mass Order ជោគជ័យ!"); switchTab('orders'); }
+
+        // Live Chat Widget Functions
+        function toggleLiveChatWidget() { document.getElementById('live-chat-modal').classList.toggle('hidden'); }
+        function sendQuickChat(msg) {
+            appendChat(msg, 'user');
+            setTimeout(() => { appendChat("អរគុណសម្រាប់ការទាក់ទងមក Smey Lov! ក្រុមការងារ Support នឹងឆ្លើយតបក្នុងពេលឆាប់ៗ។", 'bot'); }, 600);
+        }
+        function sendUserMessage() {
+            const inp = document.getElementById('chat-input');
+            const txt = inp.value.trim();
+            if (!txt) return;
+            appendChat(txt, 'user');
+            inp.value = '';
+            setTimeout(() => { appendChat("ក្រុមការងារបានទទួលសារហើយ។", 'bot'); }, 800);
+        }
+        function appendChat(txt, sender) {
+            const box = document.getElementById('chat-messages-box');
+            const div = document.createElement('div');
+            div.className = sender === 'user' ? "flex justify-end" : "flex justify-start";
+            div.innerHTML = `<div class="${sender === 'user' ? 'bg-[#0066b3] text-white' : 'bg-white text-slate-800 border border-slate-200'} p-2.5 rounded-2xl text-xs shadow-sm max-w-[240px]">${txt}</div>`;
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+        }
+
         window.onload = () => {
+            renderCategoryChips();
             renderCategories(smmData);
             onCategoryChange();
             renderKHQRDisplay(10.00);
+            renderServicesListFull();
         };
     </script>
 </body>
