@@ -12,32 +12,24 @@
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        * {
-            -webkit-tap-highlight-color: transparent;
+        * { -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', sans-serif; background-color: #f1f5f9; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .chat-pattern {
+            background-color: #0266b3;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 16px 16px;
         }
-        body {
-            font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', sans-serif;
-            background-color: #f1f5f9;
-        }
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        /* Mobile Input & Select Fix */
-        select, input, textarea, button {
-            font-size: 14px !important;
-        }
+        select, input, textarea, button { font-size: 13.5px !important; }
     </style>
 </head>
-<body class="text-slate-700 min-h-screen flex flex-col pb-20 md:pb-0">
+<body class="text-slate-700 min-h-screen flex flex-col pb-20 md:pb-0 relative overflow-x-hidden">
 
     <!-- Top Navbar -->
     <header class="bg-[#0070e0] text-white px-3 sm:px-4 py-3 flex items-center justify-between shadow-md sticky top-0 z-40">
         <div class="flex items-center gap-3">
-            <button onclick="toggleMobileSidebar()" class="w-10 h-10 rounded-xl bg-white/15 active:bg-white/30 flex items-center justify-center text-base transition">
+            <button onclick="toggleMobileSidebar()" class="w-10 h-10 rounded-xl bg-white/15 active:bg-white/30 flex items-center justify-center text-base md:hidden transition">
                 <i class="fa-solid fa-bars"></i>
             </button>
             <div class="flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-xl border border-white/20">
@@ -46,7 +38,11 @@
             </div>
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="hidden lg:block text-xs font-semibold tracking-wide text-blue-100 animate-pulse">
+            🌸 សូមស្វាគមន៍មកកាន់ Smey Lov SMM Panel 🌸
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
             <button onclick="switchTab('addfunds')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-400 active:bg-amber-500 text-slate-900 font-bold text-xs shadow-sm transition">
                 <i class="fa-solid fa-wallet"></i>
                 <span class="user-balance-display">$0.0008</span>
@@ -57,7 +53,7 @@
         </div>
     </header>
 
-    <!-- Mobile Sidebar Drawer (Overlay) -->
+    <!-- Mobile Sidebar Drawer Overlay -->
     <div id="sidebar-overlay" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/50 z-50 hidden transition-opacity"></div>
     
     <div class="flex flex-1 overflow-hidden relative">
@@ -72,7 +68,7 @@
                 </button>
             </div>
 
-            <!-- User Box -->
+            <!-- User Info Box -->
             <div class="relative bg-gradient-to-b from-sky-400 to-blue-600 rounded-2xl p-4 text-center border border-blue-300/30 shadow-md">
                 <span class="absolute top-2 right-2 bg-red-500 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full text-white">New</span>
                 <div class="w-14 h-14 rounded-full bg-white/20 border-2 border-white mx-auto p-0.5 mb-2 overflow-hidden shadow-inner">
@@ -82,35 +78,56 @@
                 <h4 class="text-sm font-bold mt-0.5">User: SmeyLov</h4>
             </div>
 
-            <!-- Menus -->
-            <nav class="flex-1 space-y-1.5 text-xs font-semibold">
-                <button onclick="switchTab('neworder'); toggleMobileSidebar();" id="menu-neworder" class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl bg-white text-blue-700 shadow-md font-bold text-left transition">
-                    <i class="fa-solid fa-cart-shopping w-4 text-center text-sm"></i>
+            <!-- Menus List -->
+            <nav class="flex-1 space-y-1 text-xs font-semibold">
+                <button onclick="switchTab('neworder'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-neworder" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white text-blue-700 shadow-md font-bold text-left transition">
+                    <i class="fa-solid fa-cart-shopping w-4 text-center"></i>
                     <span>New order</span>
                 </button>
-                <button onclick="switchTab('orders'); toggleMobileSidebar();" id="menu-orders" class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
-                    <i class="fa-solid fa-clock-rotate-left w-4 text-center text-sm"></i>
+                <button onclick="switchTab('orders'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-orders" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
+                    <i class="fa-solid fa-clock-rotate-left w-4 text-center"></i>
                     <span>My Orders</span>
                 </button>
-                <button onclick="switchTab('addfunds'); toggleMobileSidebar();" id="menu-addfunds" class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
-                    <i class="fa-solid fa-wallet w-4 text-center text-sm"></i>
+                <button onclick="switchTab('addfunds'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-addfunds" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
+                    <i class="fa-solid fa-wallet w-4 text-center"></i>
                     <span>Add funds</span>
                 </button>
-                <button onclick="switchTab('services'); toggleMobileSidebar();" id="menu-services" class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
-                    <i class="fa-solid fa-list-check w-4 text-center text-sm"></i>
+                <button onclick="switchTab('services'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-services" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
+                    <i class="fa-solid fa-list-check w-4 text-center"></i>
                     <span>Services</span>
                 </button>
-                <button onclick="switchTab('tickets'); toggleMobileSidebar();" id="menu-tickets" class="menu-btn w-full flex items-center justify-between px-4 py-3 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
+                <button onclick="switchTab('tickets'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-tickets" class="menu-btn w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
                     <div class="flex items-center gap-3">
-                        <i class="fa-solid fa-ticket w-4 text-center text-sm"></i>
+                        <i class="fa-solid fa-ticket w-4 text-center"></i>
                         <span>Tickets</span>
                     </div>
                     <span id="ticket-badge-count" class="bg-amber-400 text-slate-900 text-[10px] font-bold px-1.5 py-0.2 rounded-full">1</span>
                 </button>
-                <button onclick="switchTab('massorder'); toggleMobileSidebar();" id="menu-massorder" class="menu-btn w-full flex items-center gap-3 px-4 py-3 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
-                    <i class="fa-solid fa-layer-group w-4 text-center text-sm"></i>
+                <button onclick="switchTab('massorder'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-massorder" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
+                    <i class="fa-solid fa-layer-group w-4 text-center"></i>
                     <span>Mass order</span>
                 </button>
+
+                <!-- Show More Dropdown -->
+                <div class="pt-1">
+                    <button onclick="toggleShowMore()" id="btn-show-more" class="w-full flex items-center justify-between px-4 py-2.5 rounded-xl bg-blue-700/60 text-white font-bold text-left transition border border-blue-400/30">
+                        <span class="flex items-center gap-3">
+                            <i class="fa-solid fa-ellipsis w-4 text-center"></i>
+                            <span>Show more</span>
+                        </span>
+                        <i id="show-more-chevron" class="fa-solid fa-chevron-down text-[10px] transition duration-200"></i>
+                    </button>
+
+                    <div id="show-more-sublist" class="mt-1 space-y-1 pl-2">
+                        <button onclick="switchTab('api'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-api" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-code w-4 text-center text-amber-300"></i><span>API</span></button>
+                        <button onclick="switchTab('dashboard'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-dashboard" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-table-cells-large w-4 text-center text-sky-300"></i><span>Dashboard</span></button>
+                        <button onclick="switchTab('affiliates'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-affiliates" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-share-nodes w-4 text-center text-green-300"></i><span>Affiliates</span></button>
+                        <button onclick="switchTab('childpanel'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-childpanel" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-child w-4 text-center text-pink-300"></i><span>Child panel</span></button>
+                        <button onclick="switchTab('faq'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-faq" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-circle-question w-4 text-center text-amber-300"></i><span>FAQ</span></button>
+                        <button onclick="switchTab('updates'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-updates" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-bullhorn w-4 text-center text-red-300"></i><span>Updates</span></button>
+                        <button onclick="switchTab('terms'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-terms" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-book w-4 text-center text-slate-300"></i><span>Terms</span></button>
+                    </div>
+                </div>
             </nav>
         </aside>
 
@@ -121,14 +138,14 @@
             <div class="bg-white border border-slate-200 rounded-2xl p-3 sm:px-5 sm:py-3.5 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-600 shadow-sm">
                 <div>Page: <span class="text-blue-600 font-bold" id="current-page-text">New order</span></div>
                 <div>Orders: <span class="text-blue-600 font-bold">3,772,062</span></div>
-                <div>My: <span class="text-blue-600 font-bold" id="my-orders-count">30</span></div>
-                <div>Balance: <span class="text-green-600 font-bold user-balance-display">$0.0008</span></div>
+                <div>My Orders: <span class="text-blue-600 font-bold" id="my-orders-count">30</span></div>
+                <div>Balance: <span class="text-green-600 font-bold user-balance-display">$0.000788</span></div>
             </div>
 
             <!-- ================= 1. NEW ORDER ================= -->
             <div id="view-neworder" class="space-y-4">
                 
-                <!-- Quick Category Horizontal Scroll for Mobile -->
+                <!-- Quick Category Scrollable -->
                 <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 pt-0.5">
                     <button onclick="filterCategory('all')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-solid fa-table-cells-large text-blue-500"></i> All</button>
                     <button onclick="filterCategory('tiktok')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-tiktok text-black"></i> TikTok</button>
@@ -142,41 +159,39 @@
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
                     
-                    <!-- Left: Order Form (Mobile Sized Inputs) -->
+                    <!-- Left: Order Form -->
                     <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3.5">
-                        
                         <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-xl">
                             <button class="py-2.5 text-xs font-bold rounded-lg bg-[#0070e0] text-white shadow-sm flex items-center justify-center gap-2"><i class="fa-solid fa-cart-shopping"></i> New Order</button>
                             <button onclick="switchTab('massorder')" class="py-2.5 text-xs font-semibold rounded-lg text-slate-600 active:text-slate-900 flex items-center justify-center gap-2"><i class="fa-solid fa-star text-amber-500"></i> Mass order</button>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Category (ប្រភេទសេវាកម្ម)</label>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Category</label>
                             <select id="category-select" onchange="onCategoryChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none focus:border-blue-500"></select>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Service (សេវាកម្ម)</label>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Service</label>
                             <select id="service-select" onchange="onServiceChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none focus:border-blue-500"></select>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Link (តំណភ្ជាប់)</label>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Link</label>
                             <input type="url" id="order-link" placeholder="https://..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none focus:border-blue-500">
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Quantity (ចំនួន)</label>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Quantity</label>
                             <input type="number" id="order-qty" oninput="calculateCharge()" placeholder="1000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none focus:border-blue-500">
                             <p class="text-[11px] text-slate-400 mt-1" id="min-max-text">Min: 10 - Max: 100 000</p>
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-slate-700 mb-1">Charge (តម្លៃសរុប)</label>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Charge ($)</label>
                             <input type="text" id="order-charge" readonly value="$0.00" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-3 py-3 text-xs font-bold text-blue-600 focus:outline-none">
                         </div>
 
-                        <!-- Big Mobile Submit Button -->
                         <button onclick="submitOrder()" class="w-full py-3.5 bg-[#0070e0] active:bg-blue-700 text-white font-bold rounded-xl shadow-md text-sm transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-paper-plane"></i> Submit Order
                         </button>
@@ -185,7 +200,7 @@
                     <!-- Right: Service Details -->
                     <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3.5">
                         <div class="py-2.5 px-4 bg-blue-50 rounded-xl border border-blue-100 flex items-center gap-2 text-xs font-bold text-blue-600">
-                            <i class="fa-solid fa-circle-info"></i> Service details (ព័ត៌មានលម្អិតសេវាកម្ម)
+                            <i class="fa-solid fa-circle-info"></i> Service details
                         </div>
                         
                         <div class="grid grid-cols-2 gap-2.5 pt-1">
@@ -217,19 +232,27 @@
 
             <!-- ================= 2. MY ORDERS ================= -->
             <div id="view-orders" class="space-y-4 hidden">
-                <div class="bg-white border border-slate-200 rounded-2xl p-3 sm:p-4 shadow-sm space-y-3">
-                    <input type="text" id="order-search-input" oninput="renderOrdersTable()" placeholder="ស្វែងរកតាម ID ឬ Link..." class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none">
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
+                    <input type="text" id="order-search-input" oninput="renderOrdersTable()" placeholder="Search ID, Link, or Service..." class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none">
                     
-                    <div class="overflow-x-auto -mx-3 sm:mx-0">
+                    <div class="flex flex-wrap gap-2 text-xs font-semibold border-b border-slate-100 pb-3">
+                        <button onclick="filterOrderStatus('All')" class="order-tab-btn px-4 py-1.5 rounded-lg bg-blue-600 text-white shadow-sm">All</button>
+                        <button onclick="filterOrderStatus('Pending')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100">Pending</button>
+                        <button onclick="filterOrderStatus('In progress')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100">In Progress</button>
+                        <button onclick="filterOrderStatus('Completed')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100">Completed</button>
+                    </div>
+
+                    <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs">
                             <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
                                 <tr>
-                                    <th class="p-2.5 whitespace-nowrap">ID</th>
-                                    <th class="p-2.5 whitespace-nowrap">Date</th>
-                                    <th class="p-2.5 whitespace-nowrap">Link</th>
-                                    <th class="p-2.5 whitespace-nowrap">Charge</th>
-                                    <th class="p-2.5 whitespace-nowrap">Qty</th>
-                                    <th class="p-2.5 whitespace-nowrap">Status</th>
+                                    <th class="p-3 whitespace-nowrap">ID</th>
+                                    <th class="p-3 whitespace-nowrap">Date</th>
+                                    <th class="p-3 whitespace-nowrap">Link</th>
+                                    <th class="p-3 whitespace-nowrap">Charge</th>
+                                    <th class="p-3 whitespace-nowrap">Qty</th>
+                                    <th class="p-3 whitespace-nowrap">Service</th>
+                                    <th class="p-3 whitespace-nowrap">Status</th>
                                 </tr>
                             </thead>
                             <tbody id="orders-tbody" class="divide-y divide-slate-100 font-medium"></tbody>
@@ -238,10 +261,11 @@
                 </div>
             </div>
 
-            <!-- ================= 3. ADD FUNDS (EXACT KHQR CARD 100%) ================= -->
+            <!-- ================= 3. ADD FUNDS (EXACT KHQR 100% + MANUAL FORM) ================= -->
             <div id="view-addfunds" class="space-y-4 hidden">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
                     
+                    <!-- Left: Amount & Verification Form -->
                     <div class="lg:col-span-7 space-y-4">
                         <div class="bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 rounded-2xl p-4 sm:p-5 text-white shadow-md">
                             <div class="flex items-center justify-between">
@@ -251,9 +275,8 @@
                             <p class="text-xs text-blue-100 mt-1">ស្កេន KHQR ជាមួយ ABA, ACLEDA, Wing, Canadia គ្រប់ធនាគារ</p>
                         </div>
 
-                        <!-- Amount Form -->
                         <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
-                            <label class="block text-xs font-bold text-slate-700">បញ្ចូលចំនួនទឹកប្រាក់ ($ USD)</label>
+                            <label class="block text-xs font-bold text-slate-700">ជ្រើសរើសចំនួនទឹកប្រាក់ ($ USD)</label>
                             <input type="number" id="deposit-amount-input" value="10" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold focus:outline-none">
                             
                             <button onclick="processDeposit()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">
@@ -264,7 +287,28 @@
                                 <button onclick="setAmount(1)" class="py-3 bg-blue-50 active:bg-blue-100 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$1</button>
                                 <button onclick="setAmount(5)" class="py-3 bg-blue-50 active:bg-blue-100 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$5</button>
                                 <button onclick="setAmount(10)" class="py-3 bg-blue-50 active:bg-blue-100 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$10</button>
+                                <button onclick="setAmount(20)" class="py-3 bg-blue-50 active:bg-blue-100 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$20</button>
+                                <button onclick="setAmount(50)" class="py-3 bg-blue-50 active:bg-blue-100 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$50</button>
+                                <button onclick="setAmount(100)" class="py-3 bg-blue-50 active:bg-blue-100 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$100</button>
                             </div>
+                        </div>
+
+                        <!-- Manual Upload Verification Form -->
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+                            <h4 class="text-xs font-bold text-slate-800 border-b border-slate-100 pb-2 flex items-center gap-1.5">
+                                <i class="fa-solid fa-receipt text-blue-600"></i> បញ្ជាក់ការបង់ប្រាក់ជូន Admin ពិនិត្យ
+                            </h4>
+                            <input type="text" id="manual-trx-id" placeholder="បញ្ចូលលេខកូដប្រតិបត្តិការ (Transaction ID)..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none">
+                            
+                            <div onclick="document.getElementById('receipt-file').click()" class="border-2 border-dashed border-blue-200 bg-blue-50/40 hover:bg-blue-50 rounded-xl p-3 text-center cursor-pointer">
+                                <i class="fa-solid fa-cloud-arrow-up text-blue-500 text-base mb-0.5"></i>
+                                <p class="text-xs font-bold text-blue-600" id="receipt-text">ចុចទីនេះដើម្បី Upload រូបភាពវិក្កយបត្រ</p>
+                            </div>
+                            <input type="file" id="receipt-file" class="hidden" onchange="document.getElementById('receipt-text').textContent='បានភ្ជាប់រូបភាពរួចរាល់'">
+
+                            <button onclick="submitManualPayment()" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl shadow-md text-xs transition">
+                                ផ្ញើឱ្យ Admin បញ្ចូលលុយ (Submit Deposit)
+                            </button>
                         </div>
                     </div>
 
@@ -278,7 +322,7 @@
                                 </div>
                             </div>
                             <div class="px-5 pt-4 pb-3">
-                                <h3 class="text-base font-semibold text-slate-800 tracking-tight" id="khqr-card-merchant-name">Smey Lov</h3>
+                                <h3 class="text-base font-semibold text-slate-800 tracking-tight">Smey Lov</h3>
                                 <div class="mt-0.5 flex items-baseline gap-1.5">
                                     <span class="text-xl font-extrabold text-slate-950 tracking-tight" id="khqr-card-amount">10,00</span>
                                     <span class="text-xs font-bold text-slate-600">USD</span>
@@ -291,10 +335,8 @@
                                     <div class="absolute inset-0 m-auto w-10 h-10 bg-slate-900 text-white rounded-full border-2 border-white flex items-center justify-center text-base font-bold shadow-md">$</div>
                                 </div>
                             </div>
-                            <div class="p-4 bg-slate-50 border-t border-slate-100">
-                                <button onclick="confirmPaymentSuccess()" class="w-full py-3 bg-green-600 active:bg-green-700 text-white font-bold rounded-xl text-xs shadow-md">
-                                    <i class="fa-solid fa-check mr-1"></i> ខ្ញុំបានបង់ប្រាក់រួចរាល់ (Confirm)
-                                </button>
+                            <div class="p-4 bg-slate-50 border-t border-slate-100 text-center">
+                                <span class="text-[11px] font-mono text-slate-400">Bakong: mon_samnang@bkrt</span>
                             </div>
                         </div>
                     </div>
@@ -302,18 +344,23 @@
                 </div>
             </div>
 
-            <!-- ================= 4. SERVICES ================= -->
+            <!-- ================= 4. SERVICES LIST ================= -->
             <div id="view-services" class="space-y-4 hidden">
-                <div class="bg-white border border-slate-200 rounded-2xl p-3 sm:p-4 shadow-sm space-y-3">
-                    <h3 class="text-sm font-bold text-slate-800">📋 តារាងតម្លៃសេវាកម្មទាំងអស់</h3>
-                    <div class="overflow-x-auto -mx-3 sm:mx-0">
+                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
+                        <h3 class="text-sm font-bold text-slate-800">📋 តារាងតម្លៃសេវាកម្មទាំងអស់ (Service List)</h3>
+                        <input type="text" id="service-search-input" oninput="renderServicesListFull()" placeholder="Search service..." class="px-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none w-full sm:w-64">
+                    </div>
+                    <div class="overflow-x-auto">
                         <table class="w-full text-left text-xs">
                             <thead class="bg-slate-100 text-slate-600 font-bold border-b border-slate-200">
                                 <tr>
-                                    <th class="p-2.5">ID</th>
-                                    <th class="p-2.5">Service Name</th>
-                                    <th class="p-2.5 whitespace-nowrap">Rate / 1k</th>
-                                    <th class="p-2.5 text-center">Order</th>
+                                    <th class="p-3 w-16">ID</th>
+                                    <th class="p-3">Service Name</th>
+                                    <th class="p-3 whitespace-nowrap">Rate per 1000</th>
+                                    <th class="p-3 whitespace-nowrap">Min / Max</th>
+                                    <th class="p-3 whitespace-nowrap">Average time</th>
+                                    <th class="p-3 text-center">Order</th>
                                 </tr>
                             </thead>
                             <tbody id="services-full-tbody" class="divide-y divide-slate-100"></tbody>
@@ -324,22 +371,116 @@
 
             <!-- ================= 5. TICKETS ================= -->
             <div id="view-tickets" class="space-y-4 hidden">
-                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
-                    <h3 class="text-sm font-bold text-slate-800">🎫 សំបុត្រជំនួយ (Support Ticket)</h3>
-                    <input type="text" id="ticket-subject" value="AI Support" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none">
-                    <input type="text" id="ticket-orderid" placeholder="Order ID..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none">
-                    <textarea id="ticket-message" rows="3" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs focus:outline-none">Refill</textarea>
-                    <button onclick="submitTicket()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit ticket</button>
-                    <div id="tickets-history-container" class="space-y-2 pt-2"></div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                    <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+                        <h4 class="text-xs font-bold text-slate-800 border-b border-slate-100 pb-2">បង្កើតសំបុត្រជំនួយ (New Ticket)</h4>
+                        <input type="text" id="ticket-subject" value="AI Support" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs focus:outline-none">
+                        <input type="text" id="ticket-orderid" placeholder="Order ID..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs focus:outline-none">
+                        <textarea id="ticket-message" rows="3" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs focus:outline-none">Refill</textarea>
+                        <button onclick="submitTicket()" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit ticket</button>
+                    </div>
+                    <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+                        <h4 class="text-xs font-bold text-slate-800 border-b border-slate-100 pb-2">ប្រវត្តិ Ticket (Ticket History)</h4>
+                        <div id="tickets-history-container" class="space-y-2"></div>
+                    </div>
                 </div>
             </div>
 
             <!-- ================= 6. MASS ORDER ================= -->
             <div id="view-massorder" class="space-y-4 hidden">
-                <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
-                    <label class="block text-xs font-bold text-slate-700">One order per line (service_id | link | qty)</label>
-                    <textarea id="massorder-text" rows="8" placeholder="17095 | https://facebook.com/post/1 | 1000" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-mono"></textarea>
-                    <button onclick="submitMassOrder()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit Order</button>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                    <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+                        <label class="block text-xs font-bold text-slate-700">One order per line (service_id | link | quantity)</label>
+                        <textarea id="massorder-text" rows="8" placeholder="17095 | https://facebook.com/post/1 | 1000" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-mono"></textarea>
+                        <button onclick="submitMassOrder()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit Order</button>
+                    </div>
+                    <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-2 text-xs">
+                        <h4 class="font-bold text-slate-800 border-b border-slate-100 pb-2">How Does Mass Order Work?</h4>
+                        <p class="font-mono text-pink-600 bg-pink-50 p-2 rounded-lg">service_id | link | quantity</p>
+                        <p class="text-slate-500">ឧទាហរណ៍៖<br>17095|https://fb.com/post1|1000<br>18494|https://tiktok.com/@u/video/1|500</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= 7. API ================= -->
+            <div id="view-api" class="space-y-4 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+                    <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">API Documentation</h3>
+                    <div class="bg-blue-50 p-3 rounded-xl border border-blue-200 flex items-center justify-between gap-2">
+                        <input type="text" id="user-api-key" readonly value="smeylov_api_9f82d1c08e5e34a2" class="bg-transparent text-xs font-mono font-bold text-slate-700 flex-1 focus:outline-none">
+                        <button onclick="alert('Generated Key!')" class="px-3 py-1.5 bg-[#0070e0] text-white rounded-lg text-xs font-bold">New Key</button>
+                    </div>
+                    <div class="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs font-mono">
+                        <p class="text-slate-400">Endpoint URL (POST):</p>
+                        <p class="font-bold text-blue-600 mt-1">https://smeylov.com/api/v2</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= 8. DASHBOARD ================= -->
+            <div id="view-dashboard" class="space-y-4 hidden">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                    <div class="bg-white border border-slate-200 rounded-2xl p-3 shadow-sm text-center">
+                        <p class="text-[11px] text-slate-400 font-medium">Balance</p>
+                        <h4 class="text-base font-bold text-slate-800 user-balance-display mt-0.5">$0.0008</h4>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-3 shadow-sm text-center">
+                        <p class="text-[11px] text-slate-400 font-medium">Total Orders</p>
+                        <h4 class="text-base font-bold text-slate-800 mt-0.5">30</h4>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-3 shadow-sm text-center">
+                        <p class="text-[11px] text-slate-400 font-medium">Total Spent</p>
+                        <h4 class="text-base font-bold text-slate-800 mt-0.5">$23.10</h4>
+                    </div>
+                    <div class="bg-white border border-slate-200 rounded-2xl p-3 shadow-sm text-center">
+                        <p class="text-[11px] text-slate-400 font-medium">Open Tickets</p>
+                        <h4 class="text-base font-bold text-slate-800 mt-0.5">1</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= 9. AFFILIATES ================= -->
+            <div id="view-affiliates" class="space-y-4 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
+                    <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Affiliate Program (5% Commission)</h3>
+                    <input type="text" readonly value="https://smeylov.com/ref/SmeyLov" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold focus:outline-none">
+                    <button onclick="alert('Copied Referral Link!')" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Copy Link</button>
+                </div>
+            </div>
+
+            <!-- ================= 10. CHILD PANEL ================= -->
+            <div id="view-childpanel" class="space-y-4 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm max-w-lg mx-auto space-y-3">
+                    <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Child Panel ($10/month)</h3>
+                    <input type="text" placeholder="Domain name..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none">
+                    <button onclick="alert('Submitted!')" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Order Child Panel</button>
+                </div>
+            </div>
+
+            <!-- ================= 11. FAQ ================= -->
+            <div id="view-faq" class="space-y-4 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-xs">
+                    <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">FAQ</h3>
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                        <h4 class="font-bold text-slate-800">របៀបដាក់លុយ?</h4>
+                        <p class="text-slate-500 mt-1">ចូលទៅ Add funds រួចស្កេន KHQR និងផ្ញើលេខ Trx ID ជូន Admin។</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= 12. UPDATES ================= -->
+            <div id="view-updates" class="space-y-4 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-xs">
+                    <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Updates Log</h3>
+                    <p class="text-slate-500">2026-08-19: បន្ថែមសេវាកម្ម TikTok, FB Reactions តម្លៃដើមទាបបំផុត។</p>
+                </div>
+            </div>
+
+            <!-- ================= 13. TERMS ================= -->
+            <div id="view-terms" class="space-y-4 hidden">
+                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-xs text-slate-600">
+                    <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Terms of Service</h3>
+                    <p>Smey Lov ផ្ដល់ជូនសេវាកម្ម SMM លំដាប់ខ្ពស់។ ទឹកប្រាក់ដែលបានបញ្ចូលមិនអាចដកវិញជាសាច់ប្រាក់បានឡើយ។</p>
                 </div>
             </div>
 
@@ -347,43 +488,93 @@
 
     </div>
 
-    <!-- Mobile Bottom App Bar (ងាយស្រួលចុចលើទូរស័ព្ទបំផុត) -->
+    <!-- Mobile Bottom App Bar -->
     <div class="fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 py-2 px-3 flex items-center justify-around z-40 md:hidden shadow-lg">
         <button onclick="switchTab('neworder')" class="flex flex-col items-center gap-1 text-blue-600">
-            <i class="fa-solid fa-cart-shopping text-lg"></i>
-            <span class="text-[10px] font-bold">New Order</span>
+            <i class="fa-solid fa-cart-shopping text-base"></i>
+            <span class="text-[9px] font-bold">New Order</span>
         </button>
         <button onclick="switchTab('orders')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600">
-            <i class="fa-solid fa-clock-rotate-left text-lg"></i>
-            <span class="text-[10px] font-bold">Orders</span>
+            <i class="fa-solid fa-clock-rotate-left text-base"></i>
+            <span class="text-[9px] font-bold">Orders</span>
         </button>
         <button onclick="switchTab('addfunds')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600">
-            <i class="fa-solid fa-wallet text-lg text-amber-500"></i>
-            <span class="text-[10px] font-bold">Add Funds</span>
+            <i class="fa-solid fa-wallet text-base text-amber-500"></i>
+            <span class="text-[9px] font-bold">Add Funds</span>
         </button>
         <button onclick="switchTab('services')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600">
-            <i class="fa-solid fa-list-check text-lg"></i>
-            <span class="text-[10px] font-bold">Services</span>
+            <i class="fa-solid fa-list-check text-base"></i>
+            <span class="text-[9px] font-bold">Services</span>
         </button>
         <button onclick="switchTab('tickets')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600">
-            <i class="fa-solid fa-headset text-lg"></i>
-            <span class="text-[10px] font-bold">Support</span>
+            <i class="fa-solid fa-headset text-base"></i>
+            <span class="text-[9px] font-bold">Support</span>
         </button>
     </div>
 
-    <!-- JavaScript System Engine -->
+    <!-- Live Support Chat Widget Modal -->
+    <div id="live-chat-modal" class="fixed bottom-20 right-4 sm:right-6 w-[320px] sm:w-[340px] bg-white rounded-3xl shadow-2xl border border-slate-200 z-50 overflow-hidden hidden flex flex-col">
+        <div class="bg-[#0066b3] p-3 text-white flex items-center justify-between shadow-sm">
+            <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center p-1 shadow-sm shrink-0">
+                    <i class="fa-solid fa-crown text-[#0066b3] text-xs"></i>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold">Smey Lov — Support</h4>
+                    <p class="text-[9px] text-green-300">🟢 ឆ្លើយតបជាធម្មតា ១–៣០ នាទី</p>
+                </div>
+            </div>
+            <button onclick="toggleLiveChatWidget()" class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="p-3 bg-slate-50 flex-1 max-h-[300px] overflow-y-auto space-y-2 text-xs" id="chat-messages-box">
+            <div class="bg-white p-2.5 rounded-2xl border border-slate-200 text-slate-800 shadow-sm">
+                សួស្ដី 👋 តើយើងអាចជួយអ្វីបានដែរ? គ្រាន់តែផ្ញើសារមក ក្រុមការងារយើងនឹងឆ្លើយតបភ្លាមៗ។
+            </div>
+            <div class="flex flex-wrap gap-1.5 pt-1">
+                <button onclick="sendQuickChat('តម្លៃប៉ុន្មាន?')" class="px-2.5 py-1 bg-white border border-[#0066b3] text-[#0066b3] rounded-full text-[11px] font-bold">តម្លៃប៉ុន្មាន?</button>
+                <button onclick="sendQuickChat('តើបង់ប្រាក់យ៉ាងដូចម្តេច?')" class="px-2.5 py-1 bg-white border border-[#0066b3] text-[#0066b3] rounded-full text-[11px] font-bold">តើបង់ប្រាក់យ៉ាងដូចម្តេច?</button>
+            </div>
+        </div>
+        <div class="p-2 bg-white border-t border-slate-100 flex items-center gap-1.5">
+            <input type="text" id="chat-input" placeholder="សរសេរសារ..." class="flex-1 px-3 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs focus:outline-none">
+            <button onclick="sendUserMessage()" class="w-8 h-8 rounded-full bg-[#0066b3] text-white flex items-center justify-center text-xs"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Floating Chat Trigger -->
+    <div class="fixed bottom-16 md:bottom-5 right-4 md:right-5 z-30">
+        <button onclick="toggleLiveChatWidget()" class="w-12 h-12 rounded-full bg-[#0066b3] hover:bg-blue-700 text-white shadow-xl flex items-center justify-center text-lg transition">
+            <i class="fa-solid fa-comment-dots"></i>
+        </button>
+    </div>
+
+    <!-- ================= JAVASCRIPT SYSTEM ENGINE ================= -->
     <script>
         let currentBalance = 0.000788;
         let currentSelectedAmount = 10.00;
+        let showMoreOpen = true;
 
+        const allViewIds = ['neworder', 'orders', 'addfunds', 'services', 'tickets', 'massorder', 'api', 'dashboard', 'affiliates', 'childpanel', 'faq', 'updates', 'terms'];
+
+        // Full Extended SMM Database
         const smmData = [
             {
                 catId: "fb_reactions",
-                categoryName: "🔥 Facebook - Post Reaction [Cheapest]",
+                categoryName: "🔥 Facebook - Post Reaction [Cheapest] [Global]",
                 type: "facebook",
                 services: [
                     { id: "17095", name: "Facebook Post Likes 🔥 - Instant - $0.1311/1k", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "7 mins", guarantee: "No Refill", example: "https://facebook.com/post/123", desc: "Super fast speed likes for public posts." },
-                    { id: "17096", name: "Facebook Love ❤️ - Instant - $0.1311/1k", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "12 mins", guarantee: "No Refill", example: "https://facebook.com/post/123", desc: "Love reactions from real worldwide accounts." }
+                    { id: "17096", name: "Facebook Love ❤️ - Instant - $0.1311/1k", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "12 mins", guarantee: "No Refill", example: "https://facebook.com/post/123", desc: "Love reactions from real worldwide accounts." },
+                    { id: "17097", name: "Facebook Care 🥰 - Instant - $0.1311/1k", ratePer1k: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "7 mins", guarantee: "No Refill", example: "https://facebook.com/post/123", desc: "Care reactions." }
+                ]
+            },
+            {
+                catId: "fb_followers",
+                categoryName: "👤 Facebook - Page / Profile Followers",
+                type: "facebook",
+                services: [
+                    { id: "17083", name: "Facebook Profile/Page Followers - Max 1M - $0.2478/1k", ratePer1k: 0.2478, min: 10, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "15 mins", guarantee: "No Refill", example: "https://facebook.com/username", desc: "High speed followers." },
+                    { id: "17084", name: "Facebook Profile/Page Followers - 30 Days Refill ♻️ - $0.2791/1k", ratePer1k: 0.2791, min: 10, max: 1000000, speed: "50k/day", start: "Instant", avgTime: "1 hour", guarantee: "30 Days Refill", example: "https://facebook.com/username", desc: "Followers with auto-refill." }
                 ]
             },
             {
@@ -391,22 +582,42 @@
                 categoryName: "📱 TikTok - Followers, Likes & Views",
                 type: "tiktok",
                 services: [
-                    { id: "18494", name: "TikTok Reposts HQ - $1.04/1k", ratePer1k: 1.0400, min: 10, max: 10000, speed: "10k/day", start: "Instant", avgTime: "15 mins", guarantee: "No Refill", example: "https://tiktok.com/@user/video/123", desc: "High quality real TikTok reposts." },
-                    { id: "18495", name: "TikTok Video Views - Instant - $0.02/1k", ratePer1k: 0.0200, min: 500, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 mins", guarantee: "No Refill", example: "https://tiktok.com/@user/video/123", desc: "Instant views for TikTok videos." }
+                    { id: "18494", name: "TikTok Reposts HQ - $1.04/1k", ratePer1k: 1.0400, min: 10, max: 10000, speed: "10k/day", start: "Instant", avgTime: "15 mins", guarantee: "No Refill", example: "https://tiktok.com/@u/video/123", desc: "Real TikTok reposts." },
+                    { id: "18495", name: "TikTok Video Views - Instant - $0.02/1k", ratePer1k: 0.0200, min: 500, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 mins", guarantee: "No Refill", example: "https://tiktok.com/@u/video/123", desc: "Fastest views." },
+                    { id: "18496", name: "TikTok Followers [Real - 30D Refill] - $1.25/1k", ratePer1k: 1.2500, min: 50, max: 500000, speed: "20k/day", start: "Instant", avgTime: "30 mins", guarantee: "30 Days Refill", example: "https://tiktok.com/@username", desc: "Non-drop followers." }
                 ]
             },
             {
                 catId: "telegram_all",
-                categoryName: "✈️ Telegram - Members & Views",
+                categoryName: "✈️ Telegram - Members & Post Views",
                 type: "telegram",
                 services: [
-                    { id: "13717", name: "Telegram Members - SuperInstant - $0.098/1k", ratePer1k: 0.0980, min: 100, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "5 mins", guarantee: "No Refill", example: "https://t.me/channel", desc: "Instant Telegram bot members." }
+                    { id: "13717", name: "Telegram Members - SuperInstant - $0.098/1k", ratePer1k: 0.0980, min: 100, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "5 mins", guarantee: "No Refill", example: "https://t.me/channel", desc: "Instant bot members." },
+                    { id: "13719", name: "Telegram Post Views - $0.015/1k", ratePer1k: 0.0150, min: 100, max: 500000, speed: "100k/day", start: "Instant", avgTime: "2 mins", guarantee: "No Refill", example: "https://t.me/channel/123", desc: "Post views." }
+                ]
+            },
+            {
+                catId: "youtube_all",
+                categoryName: "▶️ YouTube - Views & Subscribers",
+                type: "youtube",
+                services: [
+                    { id: "20011", name: "YouTube Views [Lifetime Refill] - $1.80/1k", ratePer1k: 1.8000, min: 100, max: 1000000, speed: "50k/day", start: "0-1 Hour", avgTime: "1 hour", guarantee: "Lifetime Refill", example: "https://youtube.com/watch?v=123", desc: "Organic search views." },
+                    { id: "20015", name: "YouTube Subscribers [Real HQ - 30D Refill] - $6.50/1k", ratePer1k: 6.5000, min: 50, max: 50000, speed: "1k/day", start: "0-6 Hours", avgTime: "3 hours", guarantee: "30 Days Refill", example: "https://youtube.com/@channel", desc: "Real subscribers." }
+                ]
+            },
+            {
+                catId: "website_all",
+                categoryName: "🌐 Website Traffic - Google Organic",
+                type: "website",
+                services: [
+                    { id: "22010", name: "Google Organic Search Visitors - $0.50/1k", ratePer1k: 0.5000, min: 500, max: 500000, speed: "10k/day", start: "1-3 Hours", avgTime: "2 hours", guarantee: "GA4 Supported", example: "https://yourwebsite.com", desc: "Real search visitors." }
                 ]
             }
         ];
 
         let ordersHistory = [
-            { id: "3764322", date: "2026-08-16", link: "https://t.me/+OK", charge: "$0.0098", qty: 100, status: "In progress" }
+            { id: "3764322", date: "2026-08-16", link: "https://t.me/+OK", charge: "$0.0098", qty: 100, service: "Telegram Members", status: "In progress" },
+            { id: "3540616", date: "2026-08-04", link: "https://fb.com/post/1", charge: "$0.0720", qty: 200, service: "Facebook Likes", status: "Completed" }
         ];
 
         let ticketsHistory = [
@@ -415,6 +626,7 @@
 
         let selectedService = smmData[0].services[0];
 
+        // KHQR EMVCo CRC16 Engine
         function calculateCRC16(str) {
             let crc = 0xFFFF;
             for (let i = 0; i < str.length; i++) {
@@ -462,11 +674,12 @@
             renderKHQRDisplay(amt);
         }
 
-        function confirmPaymentSuccess() {
-            currentBalance += currentSelectedAmount;
-            updateBalanceUI();
-            alert(`🎉 បញ្ចូលទឹកប្រាក់ជោគជ័យ +$${currentSelectedAmount.toFixed(2)} USD!`);
-            switchTab('neworder');
+        function submitManualPayment() {
+            const trx = document.getElementById('manual-trx-id').value.trim();
+            if (!trx) return alert("សូមបញ្ចូលលេខ Transaction ID!");
+            alert("🎉 បានផ្ញើព័ត៌មានវិក្កយបត្រជោគជ័យ! Admin នឹងពិនិត្យ និងបញ្ចូលលុយជូនក្នុងរយៈពេល ១-៥ នាទី។");
+            document.getElementById('manual-trx-id').value = '';
+            document.getElementById('receipt-text').textContent = 'ចុចទីនេះដើម្បី Upload រូបភាពវិក្កយបត្រ';
         }
 
         function updateBalanceUI() {
@@ -476,7 +689,7 @@
         }
 
         function switchTab(tabId) {
-            ['neworder', 'orders', 'addfunds', 'services', 'tickets', 'massorder'].forEach(id => {
+            allViewIds.forEach(id => {
                 const el = document.getElementById('view-' + id);
                 if (el) el.classList.add('hidden');
             });
@@ -487,6 +700,7 @@
             if (tabId === 'addfunds') renderKHQRDisplay(currentSelectedAmount);
             if (tabId === 'orders') renderOrdersTable();
             if (tabId === 'services') renderServicesListFull();
+            if (tabId === 'tickets') renderTicketsHistory();
         }
 
         function toggleMobileSidebar() {
@@ -501,23 +715,43 @@
             }
         }
 
+        function toggleShowMore() {
+            showMoreOpen = !showMoreOpen;
+            const sub = document.getElementById('show-more-sublist');
+            const ch = document.getElementById('show-more-chevron');
+            if (showMoreOpen) { sub.classList.remove('hidden'); ch.style.transform='rotate(0deg)'; }
+            else { sub.classList.add('hidden'); ch.style.transform='rotate(-90deg)'; }
+        }
+
         function renderServicesListFull() {
             const tbody = document.getElementById('services-full-tbody');
             tbody.innerHTML = '';
+            const search = (document.getElementById('service-search-input') ? document.getElementById('service-search-input').value.toLowerCase() : '');
+
             smmData.forEach(cat => {
-                cat.services.forEach(s => {
-                    const tr = document.createElement('tr');
-                    tr.className = "hover:bg-slate-50 border-b border-slate-100";
-                    tr.innerHTML = `
-                        <td class="p-2.5 font-bold text-blue-600">${s.id}</td>
-                        <td class="p-2.5 font-semibold text-slate-700">${s.name}</td>
-                        <td class="p-2.5 font-bold text-slate-900 whitespace-nowrap">$${s.ratePer1k}</td>
-                        <td class="p-2.5 text-center">
-                            <button onclick="quickOrderDirectly('${cat.catId}', '${s.id}')" class="px-3 py-1.5 bg-[#0070e0] text-white rounded-lg text-xs font-bold">Order</button>
-                        </td>
-                    `;
-                    tbody.appendChild(tr);
-                });
+                const matched = cat.services.filter(s => s.name.toLowerCase().includes(search) || s.id.includes(search) || cat.categoryName.toLowerCase().includes(search));
+                if (matched.length > 0) {
+                    const header = document.createElement('tr');
+                    header.className = "bg-[#0070e0] text-white font-bold";
+                    header.innerHTML = `<td colspan="6" class="py-2.5 px-4 text-xs tracking-wide">${cat.categoryName}</td>`;
+                    tbody.appendChild(header);
+
+                    matched.forEach(s => {
+                        const tr = document.createElement('tr');
+                        tr.className = "hover:bg-slate-50 border-b border-slate-100 transition";
+                        tr.innerHTML = `
+                            <td class="p-3 font-bold text-blue-600">${s.id}</td>
+                            <td class="p-3 font-semibold text-slate-700">${s.name}</td>
+                            <td class="p-3 font-bold text-slate-900 whitespace-nowrap">$${s.ratePer1k.toFixed(4)}</td>
+                            <td class="p-3 text-slate-500 whitespace-nowrap">${s.min} / ${s.max.toLocaleString()}</td>
+                            <td class="p-3 text-slate-500 whitespace-nowrap">${s.avgTime}</td>
+                            <td class="p-3 text-center whitespace-nowrap">
+                                <button onclick="quickOrderDirectly('${cat.catId}', '${s.id}')" class="px-3 py-1 bg-[#0070e0] text-white rounded-lg text-xs font-bold">Order Now</button>
+                            </td>
+                        `;
+                        tbody.appendChild(tr);
+                    });
+                }
             });
         }
 
@@ -591,7 +825,7 @@
             const qty = parseInt(document.getElementById('order-qty').value);
             if (!link || !qty) return alert("សូមបំពេញ Link និង Quantity!");
             const cost = (qty / 1000) * selectedService.ratePer1k;
-            if (cost > currentBalance) return alert("សមតុល្យមិនគ្រប់គ្រាន់ទេ! សូមចូល Add funds។");
+            if (cost > currentBalance) return alert("សមតុល្យមិនគ្រប់គ្រាន់ទេ! សូមចូល Add funds ដើម្បីបញ្ចូលលុយ។");
             currentBalance -= cost;
             updateBalanceUI();
             alert("🎉 បញ្ជាទិញបានជោគជ័យ!");
@@ -605,19 +839,61 @@
                 const tr = document.createElement('tr');
                 tr.className = "border-b border-slate-100";
                 tr.innerHTML = `
-                    <td class="p-2.5 font-bold text-blue-600">${o.id}</td>
-                    <td class="p-2.5 text-slate-500 whitespace-nowrap">${o.date}</td>
-                    <td class="p-2.5 truncate max-w-[100px]"><a href="${o.link}" class="text-blue-600">${o.link}</a></td>
-                    <td class="p-2.5 font-bold">${o.charge}</td>
-                    <td class="p-2.5">${o.qty}</td>
-                    <td class="p-2.5"><span class="px-2 py-0.5 rounded text-[10px] bg-blue-100 text-blue-700">${o.status}</span></td>
+                    <td class="p-3 font-bold text-blue-600">${o.id}</td>
+                    <td class="p-3 text-slate-500 whitespace-nowrap">${o.date}</td>
+                    <td class="p-3 truncate max-w-[150px]"><a href="${o.link}" target="_blank" class="text-blue-600">${o.link}</a></td>
+                    <td class="p-3 font-bold">${o.charge}</td>
+                    <td class="p-3">${o.qty}</td>
+                    <td class="p-3 truncate max-w-[150px]">${o.service || 'SMM Service'}</td>
+                    <td class="p-3"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-100 text-blue-700">${o.status}</span></td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
+        function renderTicketsHistory() {
+            const container = document.getElementById('tickets-history-container');
+            container.innerHTML = '';
+            ticketsHistory.forEach(t => {
+                const card = document.createElement('div');
+                card.className = "border border-red-300 bg-white rounded-xl p-3 shadow-sm flex items-center justify-between text-xs";
+                card.innerHTML = `
+                    <div><h4 class="font-bold">${t.user} - <span class="text-red-500">${t.status}</span></h4><p class="text-[10px] text-slate-400">${t.date}</p></div>
+                    <span class="font-bold text-slate-400">#${t.id}</span>
+                `;
+                container.appendChild(card);
+            });
+        }
+
         function submitTicket() { alert("បានផ្ញើ Ticket ជោគជ័យ!"); }
         function submitMassOrder() { alert("បានបង្កើត Mass Order ជោគជ័យ!"); switchTab('orders'); }
+
+        // Live Chat Functions
+        function toggleLiveChatWidget() { document.getElementById('live-chat-modal').classList.toggle('hidden'); }
+        function sendQuickChat(msg) {
+            appendChat(msg, 'user');
+            setTimeout(() => {
+                appendChat("អរគុណសម្រាប់ការទាក់ទងមក Smey Lov! ក្រុមការងារនឹងឆ្លើយតបក្នុងពេលឆាប់ៗ។", 'bot');
+            }, 600);
+        }
+        function sendUserMessage() {
+            const inp = document.getElementById('chat-input');
+            const txt = inp.value.trim();
+            if (!txt) return;
+            appendChat(txt, 'user');
+            inp.value = '';
+            setTimeout(() => {
+                appendChat("ក្រុមការងារ Support បានទទួលសារហើយ។", 'bot');
+            }, 800);
+        }
+        function appendChat(txt, sender) {
+            const box = document.getElementById('chat-messages-box');
+            const div = document.createElement('div');
+            div.className = sender === 'user' ? "flex justify-end" : "flex justify-start";
+            div.innerHTML = `<div class="${sender === 'user' ? 'bg-[#0066b3] text-white' : 'bg-white text-slate-800 border border-slate-200'} p-2.5 rounded-2xl text-xs shadow-sm max-w-[240px]">${txt}</div>`;
+            box.appendChild(div);
+            box.scrollTop = box.scrollHeight;
+        }
 
         window.onload = () => {
             renderCategories(smmData);
