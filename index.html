@@ -14,25 +14,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        * { -webkit-tap-highlight-color: transparent; }
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
         body { font-family: 'Plus Jakarta Sans', 'Kantumruy Pro', sans-serif; background-color: #f8fafc; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         .hero-gradient { background: linear-gradient(135deg, #e0f2fe 0%, #ffffff 50%, #eff6ff 100%); }
-        .chat-pattern {
-            background-color: #0266b3;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
-            background-size: 16px 16px;
-        }
-        select, input, textarea, button { font-size: 13.5px !important; }
+        /* Touch Screen Optimization */
+        button, a, select, input, textarea { touch-action: manipulation; }
+        input, select, textarea { font-size: 14px !important; }
     </style>
 </head>
-<body class="text-slate-700 min-h-screen flex flex-col relative overflow-x-hidden">
+<body class="text-slate-700 min-h-screen flex flex-col relative overflow-x-hidden pb-20 md:pb-0">
 
     <!-- ========================================================================= -->
-    <!-- SECTION 1: PUBLIC LANDING PAGE (SIGN IN & SIGN UP WITH GOOGLE)            -->
+    <!-- SECTION 1: PUBLIC LANDING PAGE (SIGN IN, SIGN UP & GOOGLE ONE-TAP)        -->
     <!-- ========================================================================= -->
-    <div id="landing-auth-view" class="min-h-screen flex flex-col justify-between hero-gradient">
+    <div id="landing-auth-view" class="min-h-screen flex flex-col justify-between hero-gradient z-30">
         
         <!-- Public Top Header -->
         <header class="max-w-7xl mx-auto w-full px-4 sm:px-8 py-4 flex items-center justify-between">
@@ -42,178 +39,91 @@
                 </div>
                 <div>
                     <span class="font-extrabold text-xl tracking-tight text-blue-900 block leading-none">SMEY LOV</span>
-                    <span class="text-[9px] font-bold text-blue-600 tracking-widest uppercase">SMM Marketing</span>
+                    <span class="text-[9px] font-bold text-blue-600 tracking-widest uppercase">100,000+ SMM Hub</span>
                 </div>
             </div>
 
-            <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-600">
-                <a href="javascript:void(0)" onclick="showAuthMode('signin')" class="hover:text-blue-600">Sign in</a>
-                <a href="javascript:void(0)" onclick="bypassToApp(); switchTab('services');" class="hover:text-blue-600">Services</a>
-                <a href="javascript:void(0)" class="hover:text-blue-600">Free Tools</a>
-                <a href="javascript:void(0)" class="hover:text-blue-600">API</a>
-                <a href="javascript:void(0)" class="hover:text-blue-600">Blogs</a>
-                <a href="javascript:void(0)" class="hover:text-blue-600">About Us</a>
-            </nav>
-
-            <button onclick="showAuthMode('signup')" class="px-5 py-2.5 bg-[#0070e0] hover:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md shadow-blue-500/20 flex items-center gap-1.5 transition hover:scale-105">
-                <i class="fa-solid fa-user-plus"></i> SignUp
-            </button>
+            <div class="flex items-center gap-2">
+                <div class="relative inline-block text-left">
+                    <button onclick="document.getElementById('admin-quick-menu').classList.toggle('hidden')" class="px-3.5 py-2.5 bg-slate-900 active:bg-black text-amber-300 rounded-xl text-xs font-bold shadow flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-shield-halved text-amber-400"></i> Admin Portal <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div id="admin-quick-menu" class="hidden absolute right-0 mt-2 w-52 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2 z-50 text-xs space-y-1">
+                        <button onclick="loginWithRole('Super Admin', 'owner@smeylov.com', 'owner')" class="w-full text-left p-2.5 hover:bg-amber-50 rounded-xl font-bold text-slate-800 flex items-center gap-2">👑 Super Admin (Full)</button>
+                        <button onclick="loginWithRole('Finance Admin', 'finance@smeylov.com', 'finance')" class="w-full text-left p-2.5 hover:bg-green-50 rounded-xl font-bold text-slate-800 flex items-center gap-2">💳 Finance (ដាក់លុយ)</button>
+                        <button onclick="loginWithRole('Support Admin', 'support@smeylov.com', 'support')" class="w-full text-left p-2.5 hover:bg-blue-50 rounded-xl font-bold text-slate-800 flex items-center gap-2">🛠️ Support (សេវាកម្ម)</button>
+                    </div>
+                </div>
+                <button onclick="showAuthMode('signup')" class="px-4 py-2.5 bg-[#0070e0] active:bg-blue-700 text-white rounded-xl text-xs font-bold shadow-md transition">SignUp</button>
+            </div>
         </header>
 
         <!-- Main Hero Section -->
-        <main class="max-w-7xl mx-auto w-full px-4 sm:px-8 py-8 sm:py-12 my-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div class="lg:col-span-7 space-y-6">
+        <main class="max-w-7xl mx-auto w-full px-4 sm:px-8 py-6 sm:py-12 my-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="lg:col-span-7 space-y-5">
                 <div>
                     <span class="text-xs font-bold text-blue-600 tracking-wide uppercase bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
-                        Smey Lov - Top-Rated SMM Panel
+                        Smey Lov - #1 SMM Panel in Cambodia
                     </span>
                     <h1 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight mt-3 leading-tight">
                         #1 Cheapest SMM<br><span class="text-[#0070e0]">Panel in Cambodia</span>
                     </h1>
                     <p class="text-xs sm:text-sm text-slate-500 mt-2 max-w-lg">
-                        Experience unparalleled growth on social media with our expert SMM services (TikTok, Facebook, Telegram, YouTube).
+                        សេវាកម្ម SMM រាប់រយមុខតម្លៃទាបបំផុតនៅកម្ពុជា (TikTok, Facebook, Telegram, YouTube)។
                     </p>
                 </div>
 
                 <!-- SIGN IN FORM -->
-                <div id="form-signin-container" class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-3xl p-6 sm:p-7 shadow-xl max-w-md space-y-4">
-                    
-                    <!-- Google One Tap Config -->
-                    <div id="g_id_onload"
-                         data-client_id="76819152698-7gf68nkclt76alh44at4bkc6el4rl91r.apps.googleusercontent.com"
-                         data-context="signin"
-                         data-ux_mode="popup"
-                         data-callback="handleGoogleCredentialResponse"
-                         data-auto_prompt="true">
-                    </div>
+                <div id="form-signin-container" class="bg-white/95 backdrop-blur border border-slate-200/80 rounded-3xl p-5 sm:p-7 shadow-xl max-w-md space-y-4">
+                    <div id="g_id_onload" data-client_id="76819152698-7gf68nkclt76alh44at4bkc6el4rl91r.apps.googleusercontent.com" data-context="signin" data-ux_mode="popup" data-callback="handleGoogleCredentialResponse" data-auto_prompt="true"></div>
 
-                    <!-- Exact Google Sign-In Pill Button -->
                     <div class="flex items-center gap-2">
-                        <button onclick="handleManualSignIn()" class="flex-1 py-3 bg-[#0070e0] hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-md shadow-blue-500/20 transition">
+                        <button onclick="handleManualSignIn()" class="flex-1 py-3 bg-[#0070e0] active:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-md transition">
                             Sign in
                         </button>
-
                         <span class="text-xs text-slate-400 font-bold">or</span>
-
-                        <div onclick="triggerGoogleOfficialPrompt()" class="flex-1 bg-[#4285F4] hover:bg-blue-600 text-white rounded-xl p-1 flex items-center justify-between cursor-pointer shadow-md transition hover:scale-[1.02] select-none">
+                        <div onclick="triggerGoogleOfficialPrompt()" class="flex-1 bg-[#4285F4] active:bg-blue-600 text-white rounded-xl p-1 flex items-center justify-between cursor-pointer shadow-md transition select-none">
                             <div class="flex items-center gap-2 pl-2 overflow-hidden">
-                                <div class="w-7 h-7 rounded-full bg-blue-300 flex items-center justify-center text-blue-700 text-xs shrink-0">
-                                    <i class="fa-solid fa-user"></i>
-                                </div>
+                                <div class="w-7 h-7 rounded-full bg-blue-300 flex items-center justify-center text-blue-700 text-xs shrink-0"><i class="fa-solid fa-user"></i></div>
                                 <div class="text-left overflow-hidden">
                                     <span class="text-[11px] font-bold block leading-tight truncate">Continue as សំណា</span>
                                     <span class="text-[9px] text-blue-100 font-mono block truncate">ooo060565719@gmail.com</span>
                                 </div>
                             </div>
-                            <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1.5 shrink-0 ml-1">
-                                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-full h-full">
-                            </div>
+                            <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1.5 shrink-0 ml-1"><img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-full h-full"></div>
                         </div>
                     </div>
 
-                    <div class="space-y-3 pt-2">
-                        <div class="relative">
-                            <i class="fa-solid fa-user absolute left-4 top-3.5 text-slate-400 text-xs"></i>
-                            <input type="text" id="auth-signin-username" value="nang232" placeholder="Username / Email" class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                        </div>
-
-                        <div class="relative">
-                            <i class="fa-solid fa-lock absolute left-4 top-3.5 text-slate-400 text-xs"></i>
-                            <input type="password" id="auth-signin-password" value="123456" placeholder="Password" class="w-full pl-10 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                        </div>
-
-                        <div class="flex items-center justify-between text-xs text-slate-500">
-                            <label class="flex items-center gap-2 cursor-pointer">
-                                <input type="checkbox" checked class="rounded text-blue-600 focus:ring-0">
-                                <span>Remember me</span>
-                            </label>
-                            <a href="javascript:void(0)" onclick="alert('សូមទាក់ទង Admin តាម Live Chat!')" class="text-blue-600 hover:underline font-semibold">Forgot password?</a>
-                        </div>
+                    <div class="space-y-3 pt-1">
+                        <input type="text" id="auth-signin-username" value="nang232" placeholder="Username / Email" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500">
+                        <input type="password" id="auth-signin-password" value="123456" placeholder="Password" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500">
                     </div>
-
-                    <p class="text-center text-xs text-slate-500 pt-2 border-t border-slate-100">
-                        Do not have an account? 
-                        <a href="javascript:void(0)" onclick="showAuthMode('signup')" class="text-blue-600 font-bold hover:underline">Sign up</a>
-                    </p>
+                    <p class="text-center text-xs text-slate-500 pt-2 border-t border-slate-100">Do not have an account? <a href="javascript:void(0)" onclick="showAuthMode('signup')" class="text-blue-600 font-bold hover:underline">Sign up</a></p>
                 </div>
 
                 <!-- SIGN UP FORM -->
-                <div id="form-signup-container" class="bg-white/90 backdrop-blur border border-slate-200/80 rounded-3xl p-6 sm:p-7 shadow-xl max-w-md space-y-4 hidden">
-                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
-                        <i class="fa-solid fa-user-plus text-[#0070e0]"></i> បង្កើតគណនីថ្មី (Sign Up)
-                    </h3>
-
-                    <!-- Google Quick Register -->
-                    <div onclick="triggerGoogleOfficialPrompt()" class="w-full bg-[#4285F4] hover:bg-blue-600 text-white rounded-xl p-1.5 flex items-center justify-between cursor-pointer shadow-md transition">
-                        <div class="flex items-center gap-2.5 pl-2 truncate">
-                            <div class="w-7 h-7 rounded-full bg-blue-300 flex items-center justify-center text-blue-700 text-xs shrink-0">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                            <div class="text-left truncate">
-                                <span class="text-xs font-bold block">ចុះឈ្មោះរហ័សជាមួយ Google (១ ចុច)</span>
-                                <span class="text-[10px] text-blue-100 font-mono block truncate">ooo060565719@gmail.com</span>
-                            </div>
-                        </div>
-                        <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1.5 shrink-0 ml-1">
-                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-full h-full">
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-3 my-2">
-                        <div class="h-px bg-slate-200 flex-1"></div>
-                        <span class="text-[11px] text-slate-400 font-semibold uppercase">ឬ បំពេញព័ត៌មាន</span>
-                        <div class="h-px bg-slate-200 flex-1"></div>
-                    </div>
-
-                    <div class="space-y-3">
-                        <input type="text" id="auth-reg-username" placeholder="Username (ឈ្មោះប្រើប្រាស់)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                        <input type="email" id="auth-reg-email" placeholder="Email Address (អ៊ីមែល)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                        <input type="password" id="auth-reg-password" placeholder="Password (ពាក្យសម្ងាត់)" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none focus:border-blue-500 focus:bg-white transition">
-                        
-                        <button onclick="handleUserSignUp()" class="w-full py-3.5 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl text-xs shadow-md shadow-green-500/20 transition">
-                            បង្កើតគណនី (Register Account)
-                        </button>
-                    </div>
-
-                    <p class="text-center text-xs text-slate-500 pt-2 border-t border-slate-100">
-                        Already have an account? 
-                        <a href="javascript:void(0)" onclick="showAuthMode('signin')" class="text-blue-600 font-bold hover:underline">Sign in</a>
-                    </p>
-                </div>
-
-            </div>
-
-            <!-- Right Graphic Illustration -->
-            <div class="lg:col-span-5 flex justify-center items-center relative">
-                <div class="relative w-full max-w-sm">
-                    <div class="relative bg-white rounded-3xl p-6 shadow-2xl border border-blue-100 space-y-4">
-                        <div class="w-full h-56 bg-gradient-to-tr from-blue-500 via-sky-400 to-indigo-600 rounded-2xl flex flex-col items-center justify-center text-white p-6 text-center shadow-inner relative overflow-hidden">
-                            <div class="w-16 h-16 rounded-2xl bg-white/20 border border-white/30 backdrop-blur flex items-center justify-center text-3xl mb-3 shadow">
-                                🚀
-                            </div>
-                            <h4 class="font-extrabold text-lg tracking-tight">Boost Social Media</h4>
-                            <p class="text-[11px] text-blue-100 mt-1">Automatic • High Speed • 24/7 Support</p>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2.5 pt-1">
-                            <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 flex items-center gap-2.5">
-                                <i class="fa-brands fa-tiktok text-black text-xl"></i>
-                                <div><span class="text-[10px] text-slate-400 block font-bold">TikTok</span><span class="text-xs font-black text-slate-800">Views & Likes</span></div>
-                            </div>
-                            <div class="bg-blue-50 p-3 rounded-xl border border-blue-100 flex items-center gap-2.5">
-                                <i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
-                                <div><span class="text-[10px] text-slate-400 block font-bold">Facebook</span><span class="text-xs font-black text-slate-800">Reactions</span></div>
-                            </div>
-                        </div>
-                    </div>
+                <div id="form-signup-container" class="bg-white/95 backdrop-blur border border-slate-200/80 rounded-3xl p-5 sm:p-7 shadow-xl max-w-md space-y-3 hidden">
+                    <h3 class="text-base font-bold text-slate-800 flex items-center gap-2"><i class="fa-solid fa-user-plus text-[#0070e0]"></i> Sign Up</h3>
+                    <input type="text" id="auth-reg-username" placeholder="Username" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none">
+                    <input type="email" id="auth-reg-email" placeholder="Email Address" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none">
+                    <input type="password" id="auth-reg-password" placeholder="Password" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold focus:outline-none">
+                    <button onclick="handleUserSignUp()" class="w-full py-3.5 bg-green-600 active:bg-green-700 text-white font-bold rounded-xl text-xs shadow-md transition">Register Account</button>
+                    <p class="text-center text-xs text-slate-500 pt-2 border-t border-slate-100">Already have an account? <a href="javascript:void(0)" onclick="showAuthMode('signin')" class="text-blue-600 font-bold hover:underline">Sign in</a></p>
                 </div>
             </div>
 
+            <div class="lg:col-span-5 flex justify-center items-center">
+                <div class="w-full max-w-sm bg-white rounded-3xl p-6 shadow-2xl border border-blue-100 text-center space-y-3">
+                    <div class="w-20 h-20 bg-blue-50 text-blue-600 rounded-3xl mx-auto flex items-center justify-center text-4xl shadow-inner">⚡</div>
+                    <h3 class="text-base font-black text-slate-800">100,000 Services Engine</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">ប្រព័ន្ធស្វ័យប្រវត្តិលំដាប់កំពូល ផ្ទុកសេវាកម្មរាប់ម៉ឺនមុខ គាំទ្រការទូទាត់ប្រាក់ KHQR និង Google Sign-In ពេញលេញ។</p>
+                </div>
+            </div>
         </main>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- SECTION 2: AUTHENTICATED USER DASHBOARD (FULL COMPLETE SMM PANEL)          -->
+    <!-- SECTION 2: AUTHENTICATED WORKSPACE (FULL COMPLETE APPLICATION)             -->
     <!-- ========================================================================= -->
     <div id="main-app-container" class="min-h-screen flex flex-col hidden">
         
@@ -230,11 +140,11 @@
             </div>
 
             <div class="flex items-center gap-2 sm:gap-3">
-                <button onclick="switchTab('addfunds')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-400 active:bg-amber-500 text-slate-900 font-bold text-xs shadow-sm transition">
+                <button onclick="switchTab('addfunds')" class="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-400 active:bg-amber-500 text-slate-900 font-bold text-xs shadow-sm transition">
                     <i class="fa-solid fa-wallet"></i>
                     <span class="user-balance-display">$0.0008</span>
                 </button>
-                <button onclick="handleUserLogout()" class="w-8 h-8 rounded-full bg-red-500/80 hover:bg-red-600 text-white flex items-center justify-center text-xs shadow-sm transition" title="Logout">
+                <button onclick="handleUserLogout()" class="w-9 h-9 rounded-full bg-red-500 hover:bg-red-600 text-white flex items-center justify-center text-xs shadow transition" title="Logout">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </button>
             </div>
@@ -242,14 +152,14 @@
 
         <div class="flex flex-1 overflow-hidden relative">
             
+            <!-- Mobile Overlay -->
+            <div id="sidebar-overlay" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity md:hidden"></div>
+
             <!-- Left Sidebar Navigation -->
             <aside id="sidebar-container" class="fixed inset-y-0 left-0 w-72 bg-[#0971dc] text-white flex flex-col p-4 space-y-4 shrink-0 overflow-y-auto z-50 transform -translate-x-full md:translate-x-0 md:static md:w-64 transition-transform duration-200 ease-in-out shadow-2xl md:shadow-none">
                 
-                <!-- User Profile Badge -->
                 <div class="relative bg-gradient-to-b from-sky-400 to-blue-600 rounded-2xl p-4 text-center border border-blue-300/30 shadow-md">
-                    <span class="absolute top-2 right-2 bg-green-400 text-slate-900 text-[9px] uppercase font-black px-2 py-0.5 rounded-full flex items-center gap-1">
-                        <i class="fa-brands fa-google text-[8px]"></i> Google Verified
-                    </span>
+                    <span id="role-badge" class="absolute top-2 right-2 bg-green-400 text-slate-900 text-[9px] uppercase font-black px-2 py-0.5 rounded-full">User</span>
                     <div class="w-14 h-14 rounded-full bg-white/20 border-2 border-white mx-auto p-0.5 mb-2 overflow-hidden shadow-inner">
                         <img id="dashboard-user-avatar" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Samnang" alt="User" class="w-full h-full">
                     </div>
@@ -258,17 +168,17 @@
                     <p class="text-[10px] text-blue-100 font-mono truncate mt-0.5" id="dashboard-user-email">ooo060565719@gmail.com</p>
                 </div>
 
-                <!-- Menus -->
+                <!-- Menus List -->
                 <nav class="flex-1 space-y-1 text-xs font-semibold">
-                    <button onclick="switchTab('neworder'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-neworder" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white text-blue-700 shadow-md font-bold text-left transition"><i class="fa-solid fa-cart-shopping w-4 text-center"></i><span>New order</span></button>
-                    <button onclick="switchTab('orders'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-orders" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-clock-rotate-left w-4 text-center"></i><span>My Orders</span></button>
-                    <button onclick="switchTab('addfunds'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-addfunds" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-wallet w-4 text-center"></i><span>Add funds</span></button>
-                    <button onclick="switchTab('services'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-services" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-list-check w-4 text-center"></i><span>Services</span></button>
-                    <button onclick="switchTab('tickets'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-tickets" class="menu-btn w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
+                    <button onclick="switchTab('neworder'); closeMobileSidebar();" id="menu-neworder" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl bg-white text-blue-700 shadow-md font-bold text-left transition"><i class="fa-solid fa-cart-shopping w-4 text-center"></i><span>New order</span></button>
+                    <button onclick="switchTab('orders'); closeMobileSidebar();" id="menu-orders" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-clock-rotate-left w-4 text-center"></i><span>My Orders</span></button>
+                    <button onclick="switchTab('addfunds'); closeMobileSidebar();" id="menu-addfunds" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-wallet w-4 text-center"></i><span>Add funds</span></button>
+                    <button onclick="switchTab('services'); closeMobileSidebar();" id="menu-services" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-list-check w-4 text-center"></i><span>Services (100k)</span></button>
+                    <button onclick="switchTab('tickets'); closeMobileSidebar();" id="menu-tickets" class="menu-btn w-full flex items-center justify-between px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition">
                         <div class="flex items-center gap-3"><i class="fa-solid fa-ticket w-4 text-center"></i><span>Tickets</span></div>
-                        <span id="ticket-badge-count" class="bg-amber-400 text-slate-900 text-[10px] font-bold px-1.5 py-0.2 rounded-full">1</span>
+                        <span class="bg-amber-400 text-slate-900 text-[10px] font-bold px-1.5 py-0.2 rounded-full">1</span>
                     </button>
-                    <button onclick="switchTab('massorder'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-massorder" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-layer-group w-4 text-center"></i><span>Mass order</span></button>
+                    <button onclick="switchTab('massorder'); closeMobileSidebar();" id="menu-massorder" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-blue-50 hover:bg-white/10 text-left transition"><i class="fa-solid fa-layer-group w-4 text-center"></i><span>Mass order</span></button>
 
                     <!-- Show More Dropdown -->
                     <div class="pt-1">
@@ -281,15 +191,21 @@
                         </button>
 
                         <div id="show-more-sublist" class="mt-1 space-y-1 pl-2">
-                            <button onclick="switchTab('api'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-api" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-code w-4 text-center text-amber-300"></i><span>API</span></button>
-                            <button onclick="switchTab('dashboard'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-dashboard" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-table-cells-large w-4 text-center text-sky-300"></i><span>Dashboard</span></button>
-                            <button onclick="switchTab('affiliates'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-affiliates" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-share-nodes w-4 text-center text-green-300"></i><span>Affiliates</span></button>
-                            <button onclick="switchTab('childpanel'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-childpanel" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-child w-4 text-center text-pink-300"></i><span>Child panel</span></button>
-                            <button onclick="switchTab('faq'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-faq" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-circle-question w-4 text-center text-amber-300"></i><span>FAQ</span></button>
-                            <button onclick="switchTab('updates'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-updates" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-bullhorn w-4 text-center text-red-300"></i><span>Updates</span></button>
-                            <button onclick="switchTab('terms'); if(window.innerWidth<768) toggleMobileSidebar();" id="menu-terms" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-book w-4 text-center text-slate-300"></i><span>Terms</span></button>
+                            <button onclick="switchTab('api'); closeMobileSidebar();" id="menu-api" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-code w-4 text-center text-amber-300"></i><span>API</span></button>
+                            <button onclick="switchTab('dashboard'); closeMobileSidebar();" id="menu-dashboard" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-table-cells-large w-4 text-center text-sky-300"></i><span>Dashboard</span></button>
+                            <button onclick="switchTab('affiliates'); closeMobileSidebar();" id="menu-affiliates" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-share-nodes w-4 text-center text-green-300"></i><span>Affiliates</span></button>
+                            <button onclick="switchTab('childpanel'); closeMobileSidebar();" id="menu-childpanel" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-child w-4 text-center text-pink-300"></i><span>Child panel</span></button>
+                            <button onclick="switchTab('faq'); closeMobileSidebar();" id="menu-faq" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-circle-question w-4 text-center text-amber-300"></i><span>FAQ</span></button>
+                            <button onclick="switchTab('updates'); closeMobileSidebar();" id="menu-updates" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-bullhorn w-4 text-center text-red-300"></i><span>Updates</span></button>
+                            <button onclick="switchTab('terms'); closeMobileSidebar();" id="menu-terms" class="menu-btn w-full flex items-center gap-3 px-4 py-2 rounded-xl text-blue-100 hover:bg-white/10 text-left transition"><i class="fa-solid fa-book w-4 text-center text-slate-300"></i><span>Terms</span></button>
                         </div>
                     </div>
+                    
+                    <!-- Admin Menu Trigger -->
+                    <button onclick="switchTab('admin'); closeMobileSidebar();" id="menu-admin" class="menu-btn w-full flex items-center gap-3 px-4 py-2.5 rounded-xl bg-amber-400 text-slate-950 font-black text-left shadow-md transition mt-2 hidden">
+                        <i class="fa-solid fa-shield-halved w-4 text-center text-red-600"></i>
+                        <span>Admin Control</span>
+                    </button>
                 </nav>
             </aside>
 
@@ -298,9 +214,9 @@
                 
                 <!-- Status Bar -->
                 <div class="bg-white border border-slate-200 rounded-2xl p-3 sm:px-5 sm:py-3.5 flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-slate-600 shadow-sm">
-                    <div>Page: <span class="text-blue-600 font-bold" id="current-page-text">New order</span></div>
-                    <div>Services Active: <span class="text-blue-600 font-bold" id="total-services-count">240+</span></div>
-                    <div>Panel Orders: <span class="text-blue-600 font-bold">3,772,062</span></div>
+                    <div>Page: <span class="text-blue-600 font-bold uppercase" id="current-page-text">New order</span></div>
+                    <div>Services Active: <span class="text-blue-600 font-extrabold text-sm">100,000+ Live</span></div>
+                    <div>Role: <span class="text-amber-600 font-bold" id="current-role-text">Member</span></div>
                     <div>Balance: <span class="text-green-600 font-bold user-balance-display">$0.000788</span></div>
                 </div>
 
@@ -315,23 +231,28 @@
                                 <button onclick="switchTab('massorder')" class="py-2.5 text-xs font-semibold rounded-lg text-slate-600 active:text-slate-900 flex items-center justify-center gap-2"><i class="fa-solid fa-star text-amber-500"></i> Mass order</button>
                             </div>
 
-                            <div><label class="block text-xs font-bold text-slate-700 mb-1">Category</label><select id="category-select" onchange="onCategoryChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none focus:border-blue-500"></select></div>
-                            <div><label class="block text-xs font-bold text-slate-700 mb-1">Service</label><select id="service-select" onchange="onServiceChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none focus:border-blue-500"></select></div>
-                            <div><label class="block text-xs font-bold text-slate-700 mb-1">Link</label><input type="url" id="order-link" placeholder="https://..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none focus:border-blue-500"></div>
-                            <div><label class="block text-xs font-bold text-slate-700 mb-1">Quantity</label><input type="number" id="order-qty" oninput="calculateCharge()" placeholder="1000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none focus:border-blue-500"><p class="text-[11px] text-slate-400 mt-1" id="min-max-text">Min: 10 - Max: 100 000</p></div>
-                            <div><label class="block text-xs font-bold text-slate-700 mb-1">Charge ($)</label><input type="text" id="order-charge" readonly value="$0.00" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-3 py-3 text-xs font-bold text-blue-600 focus:outline-none"></div>
-                            <button onclick="submitOrder()" class="w-full py-3.5 bg-[#0070e0] active:bg-blue-700 text-white font-bold rounded-xl shadow-md text-sm transition flex items-center justify-center gap-2"><i class="fa-solid fa-paper-plane"></i> Submit Order</button>
-                        </div>
-
-                        <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3.5">
-                            <div class="py-2.5 px-4 bg-blue-50 rounded-xl border border-blue-100 flex items-center gap-2 text-xs font-bold text-blue-600"><i class="fa-solid fa-circle-info"></i> Service details</div>
-                            <div class="grid grid-cols-2 gap-2.5 pt-1">
-                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block mb-0.5">Speed</span><div class="flex items-center gap-1.5 text-xs font-semibold text-slate-700" id="detail-speed"><i class="fa-solid fa-truck-fast text-purple-500"></i> <span>50k/day</span></div></div>
-                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block mb-0.5">Start Time</span><div class="flex items-center gap-1.5 text-xs font-semibold text-slate-700" id="detail-start"><i class="fa-solid fa-cloud text-sky-500"></i> <span>Instant</span></div></div>
-                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block mb-0.5">Average Time</span><div class="flex items-center gap-1.5 text-xs font-semibold text-slate-700" id="detail-avg"><i class="fa-solid fa-stopwatch text-blue-500"></i> <span>7 minutes</span></div></div>
-                                <div class="bg-slate-50 border border-slate-100 rounded-xl p-2.5"><span class="text-[10px] font-bold text-slate-500 block mb-0.5">Guarantee</span><div class="flex items-center gap-1.5 text-xs font-semibold text-green-600" id="detail-guarantee"><i class="fa-solid fa-arrows-rotate"></i> <span>No Refill</span></div></div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Category (ប្រភេទសេវាកម្ម)</label>
+                                <select id="category-select" onchange="onCategoryChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none"></select>
                             </div>
-                            <div class="border-t border-slate-100 pt-3 text-xs space-y-1.5"><h4 class="font-bold text-slate-800">More Details</h4><div class="text-slate-500 text-xs leading-relaxed" id="detail-desc"></div></div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Service (ជ្រើសរើសសេវាកម្ម)</label>
+                                <select id="service-select" onchange="onServiceChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs font-medium focus:outline-none"></select>
+                            </div>
+                            <div><label class="block text-xs font-bold text-slate-700 mb-1">Link (តំណភ្ជាប់)</label><input type="url" id="order-link" placeholder="https://..." class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none"></div>
+                            <div><label class="block text-xs font-bold text-slate-700 mb-1">Quantity (ចំនួន)</label><input type="number" id="order-qty" oninput="calculateCharge()" placeholder="1000" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-3 text-xs focus:outline-none"><p class="text-[11px] text-slate-400 mt-1" id="min-max-text">Min: 10 - Max: 100 000</p></div>
+                            <div><label class="block text-xs font-bold text-slate-700 mb-1">Charge ($)</label><input type="text" id="order-charge" readonly value="$0.00" class="w-full bg-slate-100 border border-slate-300 rounded-xl px-3 py-3 text-xs font-bold text-blue-600"></div>
+                            <button onclick="submitOrder()" class="w-full py-3.5 bg-[#0070e0] active:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-md">Submit Order</button>
+                        </div>
+                        <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+                            <div class="py-2.5 px-4 bg-blue-50 rounded-xl border border-blue-100 flex items-center gap-2 text-xs font-bold text-blue-600"><i class="fa-solid fa-circle-info"></i> Service details</div>
+                            <div class="grid grid-cols-2 gap-2 text-xs">
+                                <div class="p-3 bg-slate-50 rounded-xl"><b>Speed:</b> <span id="detail-speed">1M/day</span></div>
+                                <div class="p-3 bg-slate-50 rounded-xl"><b>Start Time:</b> <span id="detail-start">Instant (0-5m)</span></div>
+                                <div class="p-3 bg-slate-50 rounded-xl"><b>Average Time:</b> <span id="detail-avg">2 mins</span></div>
+                                <div class="p-3 bg-slate-50 rounded-xl"><b>Guarantee:</b> <span id="detail-guarantee" class="text-green-600">Auto Refill ♻️</span></div>
+                            </div>
+                            <div class="border-t border-slate-100 pt-2 text-xs text-slate-500 leading-relaxed" id="detail-desc">សេវាកម្ម Server លំដាប់ Ultra VIP ដំណើរការស្វ័យប្រវត្តិ ២៤/៧។</div>
                         </div>
                     </div>
                 </div>
@@ -339,7 +260,7 @@
                 <!-- ================= 2. MY ORDERS VIEW ================= -->
                 <div id="view-orders" class="space-y-4 hidden">
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
-                        <input type="text" id="order-search-input" oninput="renderOrdersTable()" placeholder="Search ID, Link, or Service..." class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none">
+                        <input type="text" id="order-search-input" oninput="renderOrdersTable()" placeholder="Search ID, Link..." class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none">
                         
                         <div class="flex flex-wrap gap-2 text-xs font-semibold border-b border-slate-100 pb-3">
                             <button onclick="filterOrderStatus('All')" class="order-tab-btn px-4 py-1.5 rounded-lg bg-blue-600 text-white shadow-sm">All</button>
@@ -348,23 +269,7 @@
                             <button onclick="filterOrderStatus('Completed')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100">Completed</button>
                         </div>
 
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left text-xs">
-                                <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
-                                    <tr>
-                                        <th class="p-3 whitespace-nowrap">ID</th>
-                                        <th class="p-3 whitespace-nowrap">Date</th>
-                                        <th class="p-3 whitespace-nowrap">Link</th>
-                                        <th class="p-3 whitespace-nowrap">Charge</th>
-                                        <th class="p-3 whitespace-nowrap">Qty</th>
-                                        <th class="p-3 whitespace-nowrap">Service</th>
-                                        <th class="p-3 whitespace-nowrap">Status</th>
-                                        <th class="p-3 text-center whitespace-nowrap">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="orders-tbody" class="divide-y divide-slate-100 font-medium"></tbody>
-                            </table>
-                        </div>
+                        <div class="overflow-x-auto"><table class="w-full text-left text-xs"><tbody id="orders-tbody" class="divide-y divide-slate-100 font-medium"></tbody></table></div>
                     </div>
                 </div>
 
@@ -372,50 +277,44 @@
                 <div id="view-addfunds" class="space-y-4 hidden">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
                         <div class="lg:col-span-7 space-y-4">
-                            <div class="bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 rounded-2xl p-4 sm:p-5 text-white shadow-md">
-                                <h3 class="text-lg sm:text-xl font-black">ប្រព័ន្ធ ដាក់លុយ ស្វ័យប្រវត្តិ 24/7</h3>
+                            <div class="bg-gradient-to-br from-sky-500 via-blue-600 to-indigo-700 rounded-2xl p-5 text-white shadow-md">
+                                <h3 class="text-lg font-black">ប្រព័ន្ធ ដាក់លុយ ស្វ័យប្រវត្តិ 24/7</h3>
                                 <p class="text-xs text-blue-100 mt-1">ស្កេន KHQR ជាមួយ ABA, ACLEDA, Wing គ្រប់ធនាគារ</p>
                             </div>
-                            <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
+                            <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
                                 <label class="block text-xs font-bold text-slate-700">ចំនួនទឹកប្រាក់ ($ USD)</label>
-                                <input type="number" id="deposit-amount-input" value="10" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold focus:outline-none">
+                                <input type="number" id="deposit-amount-input" value="10" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold">
                                 <button onclick="processDeposit()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">បង្កើត KHQR ទូទាត់ប្រាក់</button>
                                 <div class="grid grid-cols-3 gap-2 pt-1">
-                                    <button onclick="setAmount(1)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$1</button>
-                                    <button onclick="setAmount(5)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$5</button>
-                                    <button onclick="setAmount(10)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$10</button>
-                                    <button onclick="setAmount(20)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$20</button>
-                                    <button onclick="setAmount(50)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$50</button>
-                                    <button onclick="setAmount(100)" class="py-3 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$100</button>
+                                    <button onclick="setAmount(1)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$1</button>
+                                    <button onclick="setAmount(5)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$5</button>
+                                    <button onclick="setAmount(10)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$10</button>
+                                    <button onclick="setAmount(20)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$20</button>
+                                    <button onclick="setAmount(50)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$50</button>
+                                    <button onclick="setAmount(100)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$100</button>
                                 </div>
                             </div>
                         </div>
                         <div class="lg:col-span-5 flex flex-col items-center">
-                            <div class="w-full max-w-[300px] bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden relative">
+                            <div class="w-full max-w-[300px] bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden text-center">
                                 <div class="bg-[#d0021b] pt-3 pb-2.5 flex items-center justify-center text-white"><span class="font-black text-xl tracking-tighter">KH</span><div class="border-2 border-white rounded px-1 text-[11px] font-extrabold uppercase">QR</div></div>
-                                <div class="px-5 pt-4 pb-3">
-                                    <h3 class="text-base font-semibold text-slate-800 tracking-tight" id="khqr-card-merchant-name">Smey Lov</h3>
-                                    <div class="mt-0.5 flex items-baseline gap-1.5"><span class="text-xl font-extrabold text-slate-950" id="khqr-card-amount">10,00</span><span class="text-xs font-bold text-slate-600">USD</span></div>
-                                </div>
-                                <div class="w-full border-b border-dashed border-slate-300"></div>
-                                <div class="p-5 flex justify-center items-center">
-                                    <div class="relative w-52 h-52 bg-white p-1 flex items-center justify-center">
-                                        <img id="dynamic-qr" src="" alt="KHQR" class="w-full h-full object-contain">
-                                        <div class="absolute inset-0 m-auto w-10 h-10 bg-slate-900 text-white rounded-full border-2 border-white flex items-center justify-center text-base font-bold shadow-md">$</div>
-                                    </div>
-                                </div>
-                                <div class="p-4 bg-slate-50 border-t border-slate-100 text-center"><span class="text-[11px] font-mono text-slate-400">Bakong: mon_samnang@bkrt</span></div>
+                                <div class="p-4"><h3 class="text-base font-semibold text-slate-800">Smey Lov</h3><span class="text-xl font-black text-slate-950" id="khqr-card-amount">10,00 USD</span></div>
+                                <div class="p-4 border-t border-dashed"><img id="dynamic-qr" src="" alt="KHQR" class="w-48 h-48 mx-auto object-contain"></div>
+                                <div class="p-3 bg-slate-50 border-t text-[11px] font-mono text-slate-400">mon_samnang@bkrt</div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- ================= 4. SERVICES LIST VIEW ================= -->
+                <!-- ================= 4. SERVICES VIEW (100,000 SERVICES VIEWER) ================= -->
                 <div id="view-services" class="space-y-4 hidden">
                     <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
                         <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                            <h3 class="text-sm font-bold text-slate-800">📋 តារាងតម្លៃសេវាកម្មទាំងអស់ (<span id="services-table-count">0</span> សេវាកម្ម)</h3>
-                            <input type="text" id="service-search-input" oninput="renderServicesListFull()" placeholder="ស្វែងរកសេវាកម្ម..." class="px-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none w-full sm:w-64">
+                            <div>
+                                <h3 class="text-sm font-bold text-slate-800">📋 តារាងតម្លៃសេវាកម្ម (<span class="text-blue-600 font-extrabold">100,000+ Services Live</span>)</h3>
+                                <p class="text-[11px] text-slate-400">ស្វែងរកសេវាកម្មតាម ID (10001 - 110000) ឬឈ្មោះសេវាកម្ម</p>
+                            </div>
+                            <input type="text" id="service-search-input" oninput="resetAndSearchServices()" placeholder="ស្វែងរកតាម ID ឬឈ្មោះ..." class="px-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none w-full sm:w-64">
                         </div>
                         <div class="overflow-x-auto">
                             <table class="w-full text-left text-xs">
@@ -423,14 +322,22 @@
                                     <tr>
                                         <th class="p-3 w-16">ID</th>
                                         <th class="p-3">Service Name</th>
-                                        <th class="p-3 whitespace-nowrap">Rate per 1000</th>
+                                        <th class="p-3 whitespace-nowrap">Rate / 1k</th>
                                         <th class="p-3 whitespace-nowrap">Min / Max</th>
-                                        <th class="p-3 whitespace-nowrap">Average time</th>
+                                        <th class="p-3 whitespace-nowrap">Speed</th>
                                         <th class="p-3 text-center">Order</th>
                                     </tr>
                                 </thead>
                                 <tbody id="services-full-tbody" class="divide-y divide-slate-100"></tbody>
                             </table>
+                        </div>
+
+                        <!-- Lazy Loading Pagination Controls -->
+                        <div class="p-3 bg-slate-50 rounded-xl flex items-center justify-between text-xs">
+                            <span id="showing-services-text" class="text-slate-500 font-semibold">បង្ហាញ 0 នៃ 100,000 សេវាកម្ម</span>
+                            <button onclick="loadMoreServices()" id="btn-load-more" class="px-5 py-2.5 bg-[#0070e0] active:bg-blue-700 text-white font-bold rounded-xl shadow transition">
+                                ផ្ទុក 50 សេវាកម្មទៀត (Load More)
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -457,13 +364,13 @@
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
                         <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
                             <label class="block text-xs font-bold text-slate-700">One order per line (service_id | link | quantity)</label>
-                            <textarea id="massorder-text" rows="8" placeholder="17095 | https://facebook.com/post/1 | 1000" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-mono"></textarea>
+                            <textarea id="massorder-text" rows="8" placeholder="10001 | https://facebook.com/post/1 | 1000" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-mono"></textarea>
                             <button onclick="submitMassOrder()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit Order</button>
                         </div>
                         <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-2 text-xs">
                             <h4 class="font-bold text-slate-800 border-b border-slate-100 pb-2">How Does Mass Order Work?</h4>
                             <p class="font-mono text-pink-600 bg-pink-50 p-2 rounded-lg">service_id | link | quantity</p>
-                            <p class="text-slate-500">ឧទាហរណ៍៖<br>17095|https://fb.com/post1|1000<br>18494|https://tiktok.com/@u/video/1|500</p>
+                            <p class="text-slate-500">ឧទាហរណ៍៖<br>10001|https://fb.com/post1|1000<br>10005|https://tiktok.com/@u/video/1|500</p>
                         </div>
                     </div>
                 </div>
@@ -538,7 +445,7 @@
                 <div id="view-updates" class="space-y-4 hidden">
                     <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-xs">
                         <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Updates Log</h3>
-                        <p class="text-slate-500">2026-08-19: បន្ថែមសេវាកម្ម TikTok, FB Reactions តម្លៃដើមទាបបំផុត។</p>
+                        <p class="text-slate-500">2026-08-19: បន្ថែម 100,000 សេវាកម្ម TikTok, Facebook, YouTube តម្លៃដើមទាបបំផុត។</p>
                     </div>
                 </div>
 
@@ -547,6 +454,38 @@
                     <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3 text-xs text-slate-600">
                         <h3 class="text-sm font-bold text-slate-800 border-b border-slate-100 pb-2">Terms of Service</h3>
                         <p>Smey Lov ផ្ដល់ជូនសេវាកម្ម SMM លំដាប់ខ្ពស់។ ទឹកប្រាក់ដែលបានបញ្ចូលមិនអាចដកវិញជាសាច់ប្រាក់បានឡើយ។</p>
+                    </div>
+                </div>
+
+                <!-- ================= 👑 ADMIN MASTER PANEL ================= -->
+                <div id="view-admin" class="space-y-5 hidden">
+                    <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 rounded-3xl p-5 text-white shadow-xl flex items-center justify-between border border-slate-700">
+                        <div>
+                            <h3 class="text-base font-black text-amber-300">ADMIN CONTROL CENTER</h3>
+                            <p class="text-xs text-slate-300">គ្រប់គ្រងសមតុល្យភ្ញៀវតាម Email និង 100,000 សេវាកម្ម</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+                        <div id="admin-sec-finance" class="lg:col-span-6 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
+                            <h4 class="text-xs font-black text-slate-800 uppercase flex items-center gap-2 border-b pb-2"><i class="fa-solid fa-money-bill-transfer text-green-600"></i> បញ្ចូលសមតុល្យឱ្យភ្ញៀវតាម Email</h4>
+                            <input type="email" id="admin-target-email" placeholder="ooo060565719@gmail.com" class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-xs">
+                            <input type="number" step="0.01" id="admin-add-amount" placeholder="10.00" class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-xs font-bold text-green-600">
+                            <button onclick="adminDepositToUser()" class="w-full py-3 bg-green-600 active:bg-green-700 text-white font-bold rounded-xl text-xs shadow">បញ្ចូលលុយភ្លាមៗ</button>
+                        </div>
+
+                        <div id="admin-sec-discount" class="lg:col-span-6 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
+                            <h4 class="text-xs font-black text-slate-800 uppercase flex items-center gap-2 border-b pb-2"><i class="fa-solid fa-percent text-rose-600"></i> បញ្ចុះតម្លៃ 100,000 សេវាកម្ម</h4>
+                            <div class="flex gap-2">
+                                <input type="number" id="admin-discount-input" value="0" min="0" max="90" class="w-full px-3.5 py-2.5 bg-slate-50 border rounded-xl text-xs font-bold text-rose-600">
+                                <button onclick="applyGlobalDiscount()" class="px-5 py-2.5 bg-rose-600 active:bg-rose-700 text-white font-bold rounded-xl text-xs">Apply</button>
+                            </div>
+                        </div>
+
+                        <div id="admin-sec-users" class="lg:col-span-12 bg-white border border-slate-200 rounded-3xl p-5 shadow-sm space-y-3">
+                            <h4 class="text-xs font-black text-slate-800 uppercase flex items-center gap-2 border-b pb-2"><i class="fa-solid fa-users text-slate-700"></i> បញ្ជីអ្នកប្រើប្រាស់</h4>
+                            <div class="overflow-x-auto"><table class="w-full text-left text-xs"><tbody id="admin-users-tbody" class="divide-y divide-slate-100"></tbody></table></div>
+                        </div>
                     </div>
                 </div>
 
@@ -593,198 +532,227 @@
         </div>
     </div>
 
-    <!-- Floating Chat Trigger Button -->
     <div class="fixed bottom-16 md:bottom-5 right-4 md:right-5 z-30">
-        <button onclick="toggleLiveChatWidget()" class="w-12 h-12 rounded-full bg-[#0066b3] hover:bg-blue-700 text-white shadow-xl flex items-center justify-center text-lg transition">
+        <button onclick="toggleLiveChatWidget()" class="w-12 h-12 rounded-full bg-[#0066b3] hover:bg-blue-700 active:bg-blue-800 text-white shadow-xl flex items-center justify-center text-lg transition">
             <i class="fa-solid fa-comment-dots"></i>
         </button>
     </div>
 
-    <!-- ================= SMM SERVICES ENGINE & APP LOGIC ================= -->
+    <!-- ================= JAVASCRIPT SYSTEM ENGINE ================= -->
     <script>
         let currentBalance = 0.000788;
         let currentSelectedAmount = 10.00;
         let currentUser = "សំណា";
         let currentUserEmail = "ooo060565719@gmail.com";
+        let currentRole = "user";
+        let globalDiscountPercent = 0;
         let showMoreOpen = true;
 
-        const allViewIds = ['neworder', 'orders', 'addfunds', 'services', 'tickets', 'massorder', 'api', 'dashboard', 'affiliates', 'childpanel', 'faq', 'updates', 'terms'];
-        let registeredUsers = JSON.parse(localStorage.getItem('smeylov_users') || '[{"username":"nang232","password":"123456","email":"ooo060565719@gmail.com"}]');
+        const TOTAL_SERVICES_TARGET = 100000;
+        let serviceListPage = 1;
+        const PAGE_SIZE = 50;
 
-        // Master SMM Database Templates (Expanded to 200+ Services)
-        const masterTemplates = [
-            {
-                catId: "tiktok_views", categoryName: "📱 TikTok - Video Views [Instant & Fast]", type: "tiktok",
-                items: [
-                    { name: "TikTok Video Views [Super Fast] [Instant] - Server 1", rate: 0.015, min: 100, max: 10000000, speed: "1M/day", time: "2 mins" },
-                    { name: "TikTok Video Views [HQ Non-Drop] [Lifetime Refill]", rate: 0.025, min: 500, max: 50000000, speed: "5M/day", time: "1 min" }
-                ]
-            },
-            {
-                catId: "tiktok_likes", categoryName: "❤️ TikTok - Video Likes [Real & HQ]", type: "tiktok",
-                items: [
-                    { name: "TikTok Likes [Cheap Server] [No Refill] - Max 50k", rate: 0.35, min: 50, max: 50000, speed: "20k/day", time: "5 mins" },
-                    { name: "TikTok Likes [High Quality] [30 Days Refill ♻️]", rate: 0.55, min: 50, max: 100000, speed: "50k/day", time: "10 mins" }
-                ]
-            },
-            {
-                catId: "tiktok_followers", categoryName: "👥 TikTok - Followers [Real Accounts & Non-Drop]", type: "tiktok",
-                items: [
-                    { name: "TikTok Followers [Standard HQ] [No Refill]", rate: 1.10, min: 50, max: 100000, speed: "10k/day", time: "20 mins" },
-                    { name: "TikTok Followers [Real Profiles] [30 Days Auto-Refill ♻️]", rate: 1.45, min: 50, max: 500000, speed: "20k/day", time: "30 mins" }
-                ]
-            },
-            {
-                catId: "fb_reactions", categoryName: "🔥 Facebook - Post Reactions (Like/Love/Care/Haha)", type: "facebook",
-                items: [
-                    { name: "Facebook Post Likes 🔥 - Max 100k - 50k/day - Instant - NO REFILL", rate: 0.1311, min: 10, max: 100000, speed: "50k/day", time: "7 mins" },
-                    { name: "Facebook Post Reaction - Love ❤️ - Max 100k - Instant", rate: 0.1311, min: 10, max: 100000, speed: "50k/day", time: "10 mins" },
-                    { name: "Facebook Post Reaction - Care 🥰 - Max 100k - Instant", rate: 0.1311, min: 10, max: 100000, speed: "50k/day", time: "8 mins" }
-                ]
-            },
-            {
-                catId: "fb_followers", categoryName: "👤 Facebook - Profile & Page Followers", type: "facebook",
-                items: [
-                    { name: "Facebook Profile/Page Followers - Bot Data - Cheapest - NO REFILL", rate: 0.1731, min: 100, max: 15000, speed: "10k/day", time: "2 hours" },
-                    { name: "Facebook - All Type Profile/Page Followers - Worldwide - Max 1M", rate: 0.2478, min: 10, max: 1000000, speed: "100k/day", time: "15 mins" },
-                    { name: "Facebook Profile/Page Followers - 30 Days Refill ♻️", rate: 0.2791, min: 10, max: 1000000, speed: "50k/day", time: "1 hour" }
-                ]
-            },
-            {
-                catId: "tg_members", categoryName: "✈️ Telegram - Channel / Group Members", type: "telegram",
-                items: [
-                    { name: "Telegram Members | Max 1M | LQ Bot Accounts | SuperInstant", rate: 0.098, min: 100, max: 1000000, speed: "100k/day", time: "5 mins" },
-                    { name: "Telegram Channel Members [Real Active Profiles - 30D Refill]", rate: 0.85, min: 50, max: 50000, speed: "10k/day", time: "20 mins" }
-                ]
-            },
-            {
-                catId: "yt_views", categoryName: "▶️ YouTube - Video Views & Shorts Views", type: "youtube",
-                items: [
-                    { name: "YouTube Video Views [Non-Drop] [Lifetime Refill] - Fast Speed", rate: 1.80, min: 100, max: 1000000, speed: "50k/day", time: "1 hour" },
-                    { name: "YouTube Shorts Views - Super Fast - Max 10M", rate: 0.50, min: 500, max: 10000000, speed: "500k/day", time: "10 mins" }
-                ]
-            },
-            {
-                catId: "ig_services", categoryName: "📸 Instagram - Followers, Likes & Reels", type: "instagram",
-                items: [
-                    { name: "Instagram Likes [HQ - Instant Start] - Max 100k", rate: 0.30, min: 20, max: 100000, speed: "50k/day", time: "5 mins" },
-                    { name: "Instagram Followers [High Quality - 30 Days Refill]", rate: 0.95, min: 50, max: 100000, speed: "20k/day", time: "15 mins" }
-                ]
-            }
-        ];
-
-        let smmData = [];
-        let idCounter = 18000;
-
-        masterTemplates.forEach((tpl) => {
-            const catObj = { catId: tpl.catId, categoryName: tpl.categoryName, type: tpl.type, services: [] };
-            tpl.items.forEach(it => {
-                idCounter++;
-                catObj.services.push({
-                    id: String(idCounter),
-                    name: `[${idCounter}] - ${it.name} - $${it.rate.toFixed(4)}/1k`,
-                    ratePer1k: it.rate,
-                    min: it.min,
-                    max: it.max,
-                    speed: it.speed,
-                    start: "Instant",
-                    avgTime: it.time,
-                    guarantee: it.name.includes("Refill") ? "Auto Refill ♻️" : "No Refill",
-                    example: `https://${tpl.type}.com/link`,
-                    desc: `<p class="font-bold">ព័ត៌មាន ${it.name}:</p><p>• Speed: ${it.speed}</p><p>• Start: Instant</p>`
-                });
-            });
-
-            for (let v = 1; v <= 10; v++) {
-                idCounter++;
-                const base = tpl.items[v % tpl.items.length];
-                const variedRate = parseFloat((base.rate * (1 + (v * 0.04))).toFixed(4));
-                catObj.services.push({
-                    id: String(idCounter),
-                    name: `[${idCounter}] - ${base.name} [VIP Server ${v}] - $${variedRate.toFixed(4)}/1k`,
-                    ratePer1k: variedRate,
-                    min: base.min,
-                    max: base.max,
-                    speed: base.speed,
-                    start: "Instant",
-                    avgTime: base.time,
-                    guarantee: base.name.includes("Refill") ? "Auto Refill ♻️" : "No Refill",
-                    example: `https://${tpl.type}.com/link`,
-                    desc: `<p class="font-bold">VIP Server ${v}:</p><p>• Speed: ${base.speed}</p><p>• Rate: $${variedRate}/1k</p>`
-                });
-            }
-            smmData.push(catObj);
-        });
+        const allViewIds = ['neworder', 'orders', 'addfunds', 'services', 'tickets', 'massorder', 'api', 'dashboard', 'affiliates', 'childpanel', 'faq', 'updates', 'terms', 'admin'];
+        
+        let registeredUsers = JSON.parse(localStorage.getItem('smeylov_users') || JSON.stringify([
+            { username: "សំណា", email: "ooo060565719@gmail.com", role: "user", balance: 0.0008 },
+            { username: "owner_boss", email: "owner@smeylov.com", role: "owner", balance: 9999.00 },
+            { username: "finance_team", email: "finance@smeylov.com", role: "finance", balance: 500.00 }
+        ]));
 
         let ordersHistory = [
             { id: "3764322", date: "2026-08-16 18:07:38", link: "https://t.me/+OK", charge: "$0.0098", qty: 100, service: "Telegram Members", status: "In progress" }
         ];
 
         let ticketsHistory = [
-            { id: "261", user: "SmeyLov", date: "2026-08-19 01:49:38", subject: "AI Support", status: "Closed" }
+            { id: "261", user: "សំណា", date: "2026-08-19 01:49:38", subject: "AI Support", status: "Closed" }
         ];
 
-        let selectedService = smmData[0].services[0];
+        // Base Categories for 100,000 Services Engine
+        const baseCategories = [
+            { id: "tiktok", name: "📱 TikTok - Views, Likes, Followers & Shares", baseRate: 0.015, min: 100, max: 10000000, speed: "1M/day" },
+            { id: "facebook_react", name: "🔥 Facebook - Post Reactions (Like/Love/Care/Haha)", baseRate: 0.131, min: 10, max: 100000, speed: "50k/day" },
+            { id: "facebook_follow", name: "👤 Facebook - Page / Profile Followers", baseRate: 0.247, min: 10, max: 1000000, speed: "100k/day" },
+            { id: "facebook_live", name: "🎥 Facebook - Live Stream Viewers (30m - 240m)", baseRate: 1.800, min: 20, max: 5000, speed: "Instant" },
+            { id: "telegram", name: "✈️ Telegram - Members & Post Views", baseRate: 0.098, min: 50, max: 1000000, speed: "100k/day" },
+            { id: "youtube_views", name: "▶️ YouTube - Video Views & Shorts", baseRate: 1.800, min: 100, max: 1000000, speed: "50k/day" },
+            { id: "youtube_subs", name: "🔔 YouTube - Subscribers & Watch Time", baseRate: 6.500, min: 50, max: 50000, speed: "1k/day" },
+            { id: "instagram", name: "📸 Instagram - Followers, Likes & Reels", baseRate: 0.300, min: 20, max: 100000, speed: "50k/day" },
+            { id: "website", name: "🌐 Website Traffic - Google Organic & Direct", baseRate: 0.500, min: 500, max: 500000, speed: "10k/day" },
+            { id: "threads_twitter", name: "🕊️ Threads & Twitter / X - Followers & Retweets", baseRate: 0.750, min: 50, max: 100000, speed: "20k/day" }
+        ];
 
-        // 1. Google Official One Tap Callback
-        function handleGoogleCredentialResponse(response) {
-            try {
-                const base64Url = response.credential.split('.')[1];
-                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-                const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-                    return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-                }).join(''));
+        function getServiceByIndex(index) {
+            const cat = baseCategories[index % baseCategories.length];
+            const serverNum = Math.floor(index / baseCategories.length) + 1;
+            const id = 10001 + index;
+            
+            let rate = cat.baseRate * (1 + ((index % 50) * 0.02));
+            if (globalDiscountPercent > 0) rate = rate * (1 - (globalDiscountPercent / 100));
 
-                const googleUser = JSON.parse(jsonPayload);
-                currentUser = googleUser.name || googleUser.given_name || "សំណា";
-                currentUserEmail = googleUser.email || "ooo060565719@gmail.com";
-                
-                launchAppDashboard();
-            } catch (e) {
-                triggerGoogleOfficialPrompt();
+            return {
+                id: String(id),
+                catId: cat.id,
+                catName: cat.name,
+                name: `[${id}] ${cat.name.split('-')[0]} - Server ${serverNum} [Ultra VIP Fast]`,
+                ratePer1k: parseFloat(rate.toFixed(4)),
+                min: cat.min,
+                max: cat.max,
+                speed: cat.speed,
+                start: "Instant",
+                avgTime: "2-5 mins",
+                guarantee: (index % 2 === 0) ? "Auto Refill ♻️" : "No Refill"
+            };
+        }
+
+        let selectedService = getServiceByIndex(0);
+
+        function renderServicesListFull(append = false) {
+            const tbody = document.getElementById('services-full-tbody');
+            if (!append) tbody.innerHTML = '';
+
+            const search = document.getElementById('service-search-input').value.toLowerCase().trim();
+            const startIdx = (serviceListPage - 1) * PAGE_SIZE;
+            const endIdx = serviceListPage * PAGE_SIZE;
+
+            if (search) {
+                tbody.innerHTML = '';
+                let count = 0;
+                for (let i = 0; i < TOTAL_SERVICES_TARGET && count < 60; i++) {
+                    const s = getServiceByIndex(i);
+                    if (s.id.includes(search) || s.name.toLowerCase().includes(search) || s.catName.toLowerCase().includes(search)) {
+                        appendServiceRow(tbody, s);
+                        count++;
+                    }
+                }
+                document.getElementById('showing-services-text').textContent = `ស្វែងរកឃើញ ${count} សេវាកម្ម`;
+                return;
+            }
+
+            for (let i = startIdx; i < endIdx && i < TOTAL_SERVICES_TARGET; i++) {
+                const s = getServiceByIndex(i);
+                appendServiceRow(tbody, s);
+            }
+
+            document.getElementById('showing-services-text').textContent = `បង្ហាញ ${Math.min(endIdx, TOTAL_SERVICES_TARGET).toLocaleString()} នៃ ${TOTAL_SERVICES_TARGET.toLocaleString()} សេវាកម្ម`;
+        }
+
+        function appendServiceRow(tbody, s) {
+            const tr = document.createElement('tr');
+            tr.className = "hover:bg-slate-50 border-b border-slate-100 transition";
+            tr.innerHTML = `
+                <td class="p-3 font-bold text-blue-600">${s.id}</td>
+                <td class="p-3 font-semibold text-slate-700">${s.name}</td>
+                <td class="p-3 font-bold text-slate-900 whitespace-nowrap">$${s.ratePer1k}</td>
+                <td class="p-3 text-slate-500 whitespace-nowrap">${s.min} / ${s.max.toLocaleString()}</td>
+                <td class="p-3 text-slate-500 whitespace-nowrap">${s.speed}</td>
+                <td class="p-3 text-center whitespace-nowrap">
+                    <button onclick="quickOrder100k('${s.id}')" class="px-3 py-1 bg-[#0070e0] hover:bg-blue-600 text-white rounded-lg text-xs font-bold shadow-sm">Order</button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        function loadMoreServices() { serviceListPage++; renderServicesListFull(true); }
+        function resetAndSearchServices() { serviceListPage = 1; renderServicesListFull(false); }
+
+        function quickOrder100k(serviceId) {
+            const idNum = parseInt(serviceId) - 10001;
+            if (idNum >= 0 && idNum < TOTAL_SERVICES_TARGET) {
+                selectedService = getServiceByIndex(idNum);
+                switchTab('neworder');
+                document.getElementById('category-select').value = selectedService.catId;
+                onCategoryChange();
+                document.getElementById('service-select').value = selectedService.id;
+                onServiceChange();
             }
         }
 
-        function triggerGoogleOfficialPrompt() {
-            currentUser = "សំណា";
-            currentUserEmail = "ooo060565719@gmail.com";
-            
-            if (!registeredUsers.some(u => u.email === currentUserEmail)) {
-                registeredUsers.push({ username: currentUser, email: currentUserEmail, password: "google_verified_auth" });
-                localStorage.setItem('smeylov_users', JSON.stringify(registeredUsers));
-            }
+        function renderCategories() {
+            const catSelect = document.getElementById('category-select');
+            catSelect.innerHTML = '';
+            baseCategories.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.id;
+                opt.textContent = `${c.name} (10,000 Servers)`;
+                catSelect.appendChild(opt);
+            });
+        }
 
+        function onCategoryChange() {
+            const catId = document.getElementById('category-select').value;
+            const servSelect = document.getElementById('service-select');
+            servSelect.innerHTML = '';
+
+            const catIdx = baseCategories.findIndex(c => c.id === catId);
+            for (let v = 0; v < 100; v++) {
+                const s = getServiceByIndex(catIdx + (v * baseCategories.length));
+                const opt = document.createElement('option');
+                opt.value = s.id;
+                opt.textContent = `${s.name} - $${s.ratePer1k}/1k`;
+                servSelect.appendChild(opt);
+            }
+            onServiceChange();
+        }
+
+        function onServiceChange() {
+            const servId = document.getElementById('service-select').value;
+            const idNum = parseInt(servId) - 10001;
+            if (idNum >= 0 && idNum < TOTAL_SERVICES_TARGET) {
+                selectedService = getServiceByIndex(idNum);
+            }
+            updateDetailsUI();
+            calculateCharge();
+        }
+
+        function updateDetailsUI() {
+            if (!selectedService) return;
+            document.getElementById('min-max-text').textContent = `Min: ${selectedService.min} - Max: ${selectedService.max.toLocaleString()}`;
+            document.getElementById('detail-speed').textContent = selectedService.speed;
+            document.getElementById('detail-start').textContent = selectedService.start;
+            document.getElementById('detail-avg').textContent = selectedService.avgTime;
+            document.getElementById('detail-guarantee').textContent = selectedService.guarantee;
+        }
+
+        function calculateCharge() {
+            const qty = parseFloat(document.getElementById('order-qty').value) || 0;
+            document.getElementById('order-charge').value = `$${((qty / 1000) * selectedService.ratePer1k).toFixed(4)}`;
+        }
+
+        function submitOrder() {
+            const link = document.getElementById('order-link').value;
+            const qty = parseInt(document.getElementById('order-qty').value);
+            if (!link || !qty) return alert("សូមបំពេញ Link និង Quantity!");
+            alert("🎉 បញ្ជាទិញបានជោគជ័យលើប្រព័ន្ធ 100,000 សេវាកម្ម!");
+            switchTab('orders');
+        }
+
+        function loginWithRole(name, email, role) {
+            currentUser = name;
+            currentUserEmail = email;
+            currentRole = role;
+            document.getElementById('admin-quick-menu').classList.add('hidden');
             launchAppDashboard();
         }
+
+        function handleGoogleCredentialResponse() { triggerGoogleOfficialPrompt(); }
+        function triggerGoogleOfficialPrompt() { loginWithRole("សំណា", "ooo060565719@gmail.com", "user"); }
 
         function handleManualSignIn() {
             const u = document.getElementById('auth-signin-username').value.trim();
             const p = document.getElementById('auth-signin-password').value.trim();
-
-            const found = registeredUsers.find(user => (user.username === u || user.email === u) && user.password === p);
-
-            if (found || (u === 'nang232' && p === '123456')) {
-                currentUser = found ? found.username : u;
-                currentUserEmail = found ? found.email : "ooo060565719@gmail.com";
-                launchAppDashboard();
-            } else {
-                alert("Username ឬ Password មិនត្រឹមត្រូវទេ!");
-            }
+            if (u === 'owner' && p === 'owner123') return loginWithRole("Super Admin (Owner)", "owner@smeylov.com", "owner");
+            if (u === 'finance_admin' && p === 'finance123') return loginWithRole("Finance Admin", "finance@smeylov.com", "finance");
+            loginWithRole(u, `${u}@gmail.com`, "user");
         }
 
         function handleUserSignUp() {
             const u = document.getElementById('auth-reg-username').value.trim();
             const e = document.getElementById('auth-reg-email').value.trim();
-            const p = document.getElementById('auth-reg-password').value.trim();
-            if (!u || !e || !p) return alert("សូមបំពេញ Username, Email និង Password!");
-
-            registeredUsers.push({ username: u, email: e, password: p });
+            if (!u || !e) return alert("សូមបំពេញ Username និង Email!");
+            registeredUsers.push({ username: u, email: e, role: "user", balance: 0.00 });
             localStorage.setItem('smeylov_users', JSON.stringify(registeredUsers));
-
-            alert("🎉 ចុះឈ្មោះបានជោគជ័យ!");
-            currentUser = u;
-            currentUserEmail = e;
-            launchAppDashboard();
+            loginWithRole(u, e, "user");
         }
 
         function showAuthMode(mode) {
@@ -797,31 +765,73 @@
             }
         }
 
-        function bypassToApp() {
-            currentUser = "SmeyLov";
-            currentUserEmail = "smeylov.official@gmail.com";
-            launchAppDashboard();
-        }
-
         function launchAppDashboard() {
             document.getElementById('landing-auth-view').classList.add('hidden');
             document.getElementById('main-app-container').classList.remove('hidden');
 
             document.getElementById('dashboard-username-text').textContent = "User: " + currentUser;
             document.getElementById('dashboard-user-email').textContent = currentUserEmail;
-            document.getElementById('dashboard-user-avatar').src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${currentUser}`;
-            switchTab('neworder');
+            document.getElementById('current-role-text').textContent = currentRole.toUpperCase();
+
+            const roleBadge = document.getElementById('role-badge');
+            const adminMenu = document.getElementById('menu-admin');
+
+            if (currentRole === 'owner' || currentRole === 'finance') {
+                roleBadge.textContent = "👑 ADMIN";
+                roleBadge.className = "absolute top-2 right-2 bg-amber-400 text-slate-950 text-[9px] uppercase font-black px-2 py-0.5 rounded-full";
+                adminMenu.classList.remove('hidden');
+                switchTab('admin');
+            } else {
+                roleBadge.textContent = "VERIFIED";
+                roleBadge.className = "absolute top-2 right-2 bg-green-400 text-slate-900 text-[9px] uppercase font-black px-2 py-0.5 rounded-full";
+                adminMenu.classList.add('hidden');
+                switchTab('neworder');
+            }
         }
 
         function handleUserLogout() {
-            currentUser = null;
-            currentUserEmail = null;
             document.getElementById('main-app-container').classList.add('hidden');
             document.getElementById('landing-auth-view').classList.remove('hidden');
             showAuthMode('signin');
         }
 
-        // KHQR Engine
+        function adminDepositToUser() {
+            const email = document.getElementById('admin-target-email').value.trim();
+            const amount = parseFloat(document.getElementById('admin-add-amount').value);
+            if (!email || isNaN(amount) || amount <= 0) return alert("សូមបញ្ចូល Gmail និងចំនួនទឹកប្រាក់!");
+            let found = registeredUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
+            if (found) found.balance = (found.balance || 0) + amount;
+            else registeredUsers.push({ username: email.split('@')[0], email: email, role: 'user', balance: amount });
+            localStorage.setItem('smeylov_users', JSON.stringify(registeredUsers));
+            alert(`🎉 បានបញ្ចូល +$${amount.toFixed(2)} USD ទៅកាន់ ${email}!`);
+            document.getElementById('admin-add-amount').value = '';
+            renderAdminUsersTable();
+        }
+
+        function applyGlobalDiscount() {
+            globalDiscountPercent = parseFloat(document.getElementById('admin-discount-input').value) || 0;
+            resetAndSearchServices();
+            onCategoryChange();
+            alert(`🎉 បានដាក់បញ្ចុះតម្លៃ ${globalDiscountPercent}% លើ 100,000 សេវាកម្ម!`);
+        }
+
+        function renderAdminUsersTable() {
+            const tbody = document.getElementById('admin-users-tbody');
+            if (!tbody) return;
+            tbody.innerHTML = '';
+            registeredUsers.forEach(u => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-slate-100";
+                tr.innerHTML = `
+                    <td class="p-3 font-bold">${u.username}</td>
+                    <td class="p-3 text-blue-600 font-mono">${u.email}</td>
+                    <td class="p-3 font-bold text-green-600">$${(u.balance || 0).toFixed(4)}</td>
+                    <td class="p-3 text-center"><button onclick="document.getElementById('admin-target-email').value='${u.email}'; document.getElementById('admin-add-amount').focus();" class="px-2.5 py-1 bg-green-600 text-white rounded-lg text-xs font-bold">+ ដាក់លុយ</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
         function calculateCRC16(str) {
             let crc = 0xFFFF;
             for (let i = 0; i < str.length; i++) {
@@ -851,7 +861,7 @@
         function renderKHQRDisplay(amt) {
             currentSelectedAmount = parseFloat(amt) || 10.00;
             const khqrString = generateSmeyLovKHQR(currentSelectedAmount);
-            document.getElementById('khqr-card-amount').textContent = currentSelectedAmount.toFixed(2).replace('.', ',');
+            document.getElementById('khqr-card-amount').textContent = currentSelectedAmount.toFixed(2).replace('.', ',') + " USD";
             document.getElementById('dynamic-qr').src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(khqrString)}`;
         }
 
@@ -866,17 +876,33 @@
             const activeView = document.getElementById('view-' + tabId);
             if (activeView) activeView.classList.remove('hidden');
 
-            document.getElementById('current-page-text').textContent = tabId.charAt(0).toUpperCase() + tabId.slice(1);
+            document.getElementById('current-page-text').textContent = tabId.toUpperCase();
             if (tabId === 'addfunds') renderKHQRDisplay(currentSelectedAmount);
+            if (tabId === 'services') renderServicesListFull(false);
+            if (tabId === 'admin') renderAdminUsersTable();
             if (tabId === 'orders') renderOrdersTable();
-            if (tabId === 'services') renderServicesListFull();
             if (tabId === 'tickets') renderTicketsHistory();
         }
 
         function toggleMobileSidebar() {
             const sb = document.getElementById('sidebar-container');
-            if (sb.classList.contains('-translate-x-full')) sb.classList.remove('-translate-x-full');
-            else sb.classList.add('-translate-x-full');
+            const ov = document.getElementById('sidebar-overlay');
+            if (sb.classList.contains('-translate-x-full')) {
+                sb.classList.remove('-translate-x-full');
+                ov.classList.remove('hidden');
+            } else {
+                sb.classList.add('-translate-x-full');
+                ov.classList.add('hidden');
+            }
+        }
+
+        function closeMobileSidebar() {
+            const sb = document.getElementById('sidebar-container');
+            const ov = document.getElementById('sidebar-overlay');
+            if (window.innerWidth < 768) {
+                sb.classList.add('-translate-x-full');
+                ov.classList.add('hidden');
+            }
         }
 
         function toggleShowMore() {
@@ -887,68 +913,22 @@
             else { sub.classList.add('hidden'); ch.style.transform='rotate(-90deg)'; }
         }
 
-        function renderCategories(categories) {
-            const catSelect = document.getElementById('category-select');
-            catSelect.innerHTML = '';
-            categories.forEach(c => {
-                const opt = document.createElement('option');
-                opt.value = c.catId;
-                opt.textContent = `${c.categoryName} (${c.services.length})`;
-                catSelect.appendChild(opt);
-            });
+        function renderCategoryChips() {
+            const bar = document.getElementById('category-chips-bar');
+            bar.innerHTML = `
+                <button onclick="filterCategory('tiktok')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-tiktok text-black"></i> TikTok</button>
+                <button onclick="filterCategory('facebook_react')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-facebook text-blue-600"></i> FB Reactions</button>
+                <button onclick="filterCategory('facebook_follow')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-solid fa-users text-blue-600"></i> FB Followers</button>
+                <button onclick="filterCategory('telegram')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-telegram text-sky-500"></i> Telegram</button>
+                <button onclick="filterCategory('youtube_views')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-youtube text-red-600"></i> YouTube</button>
+                <button onclick="filterCategory('instagram')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-instagram text-pink-600"></i> Instagram</button>
+                <button onclick="filterCategory('website')" class="whitespace-nowrap px-4 py-2.5 bg-white border rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-solid fa-globe text-amber-600"></i> Traffic</button>
+            `;
         }
 
         function filterCategory(type) {
-            const list = (type === 'all') ? smmData : smmData.filter(c => c.type === type);
-            renderCategories(list.length > 0 ? list : smmData);
+            document.getElementById('category-select').value = type;
             onCategoryChange();
-        }
-
-        function onCategoryChange() {
-            const catId = document.getElementById('category-select').value;
-            const currentCat = smmData.find(c => c.catId === catId) || smmData[0];
-            const servSelect = document.getElementById('service-select');
-            servSelect.innerHTML = '';
-            currentCat.services.forEach(s => {
-                const opt = document.createElement('option');
-                opt.value = s.id;
-                opt.textContent = s.name;
-                servSelect.appendChild(opt);
-            });
-            onServiceChange();
-        }
-
-        function onServiceChange() {
-            const servId = document.getElementById('service-select').value;
-            for (const cat of smmData) {
-                const s = cat.services.find(item => item.id === servId);
-                if (s) { selectedService = s; break; }
-            }
-            updateDetailsUI();
-            calculateCharge();
-        }
-
-        function updateDetailsUI() {
-            if (!selectedService) return;
-            document.getElementById('min-max-text').textContent = `Min: ${selectedService.min} - Max: ${selectedService.max.toLocaleString()}`;
-            document.getElementById('detail-speed').querySelector('span').textContent = selectedService.speed;
-            document.getElementById('detail-start').querySelector('span').textContent = selectedService.start;
-            document.getElementById('detail-avg').querySelector('span').textContent = selectedService.avgTime;
-            document.getElementById('detail-guarantee').querySelector('span').textContent = selectedService.guarantee;
-            document.getElementById('detail-desc').innerHTML = selectedService.desc;
-        }
-
-        function calculateCharge() {
-            const qty = parseFloat(document.getElementById('order-qty').value) || 0;
-            document.getElementById('order-charge').value = `$${((qty / 1000) * selectedService.ratePer1k).toFixed(4)}`;
-        }
-
-        function submitOrder() {
-            const link = document.getElementById('order-link').value;
-            const qty = parseInt(document.getElementById('order-qty').value);
-            if (!link || !qty) return alert("សូមបំពេញ Link និង Quantity!");
-            alert("🎉 បញ្ជាទិញបានជោគជ័យ!");
-            switchTab('orders');
         }
 
         function renderOrdersTable() {
@@ -965,67 +945,9 @@
                     <td class="p-3">${o.qty}</td>
                     <td class="p-3 truncate max-w-[150px]">${o.service || 'SMM Service'}</td>
                     <td class="p-3"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-100 text-blue-700">${o.status}</span></td>
-                    <td class="p-3 text-center"><button onclick="alert('Order: ${o.id}')" class="px-3 py-1 bg-[#0070e0] text-white rounded-lg text-xs font-bold">Action</button></td>
                 `;
                 tbody.appendChild(tr);
             });
-        }
-
-        function renderServicesListFull() {
-            const tbody = document.getElementById('services-full-tbody');
-            tbody.innerHTML = '';
-            const search = (document.getElementById('service-search-input') ? document.getElementById('service-search-input').value.toLowerCase() : '');
-            let count = 0;
-
-            smmData.forEach(cat => {
-                const matched = cat.services.filter(s => s.name.toLowerCase().includes(search) || s.id.includes(search) || cat.categoryName.toLowerCase().includes(search));
-                if (matched.length > 0) {
-                    const header = document.createElement('tr');
-                    header.className = "bg-[#0070e0] text-white font-bold";
-                    header.innerHTML = `<td colspan="6" class="py-2.5 px-4 text-xs tracking-wide">${cat.categoryName}</td>`;
-                    tbody.appendChild(header);
-
-                    matched.forEach(s => {
-                        count++;
-                        const tr = document.createElement('tr');
-                        tr.className = "hover:bg-slate-50 border-b border-slate-100 transition";
-                        tr.innerHTML = `
-                            <td class="p-3 font-bold text-blue-600">${s.id}</td>
-                            <td class="p-3 font-semibold text-slate-700">${s.name}</td>
-                            <td class="p-3 font-bold text-slate-900 whitespace-nowrap">$${s.ratePer1k.toFixed(4)}</td>
-                            <td class="p-3 text-slate-500 whitespace-nowrap">${s.min} / ${s.max.toLocaleString()}</td>
-                            <td class="p-3 text-slate-500 whitespace-nowrap">${s.avgTime}</td>
-                            <td class="p-3 text-center whitespace-nowrap">
-                                <button onclick="quickOrderDirectly('${cat.catId}', '${s.id}')" class="px-3 py-1.5 bg-[#0070e0] hover:bg-blue-600 text-white rounded-lg text-xs font-bold shadow-sm">Order</button>
-                            </td>
-                        `;
-                        tbody.appendChild(tr);
-                    });
-                }
-            });
-            document.getElementById('services-table-count').textContent = count;
-            document.getElementById('total-services-count').textContent = count + "+";
-        }
-
-        function quickOrderDirectly(catId, serviceId) {
-            switchTab('neworder');
-            renderCategories(smmData);
-            document.getElementById('category-select').value = catId;
-            onCategoryChange();
-            document.getElementById('service-select').value = serviceId;
-            onServiceChange();
-        }
-
-        function renderCategoryChips() {
-            const bar = document.getElementById('category-chips-bar');
-            bar.innerHTML = `
-                <button onclick="filterCategory('all')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-solid fa-table-cells-large text-blue-500"></i> All Services</button>
-                <button onclick="filterCategory('tiktok')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-tiktok text-black"></i> TikTok</button>
-                <button onclick="filterCategory('facebook')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-facebook text-blue-600"></i> Facebook</button>
-                <button onclick="filterCategory('telegram')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-telegram text-sky-500"></i> Telegram</button>
-                <button onclick="filterCategory('youtube')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-youtube text-red-600"></i> YouTube</button>
-                <button onclick="filterCategory('instagram')" class="whitespace-nowrap px-4 py-2.5 bg-white active:bg-blue-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 shadow-sm shrink-0 flex items-center gap-1.5"><i class="fa-brands fa-instagram text-pink-600"></i> Instagram</button>
-            `;
         }
 
         function renderTicketsHistory() {
@@ -1042,7 +964,6 @@
         function submitTicket() { alert("បានផ្ញើ Ticket ជោគជ័យ!"); }
         function submitMassOrder() { alert("បានបង្កើត Mass Order ជោគជ័យ!"); switchTab('orders'); }
 
-        // Live Chat Widget Functions
         function toggleLiveChatWidget() { document.getElementById('live-chat-modal').classList.toggle('hidden'); }
         function sendQuickChat(msg) {
             appendChat(msg, 'user');
@@ -1067,10 +988,10 @@
 
         window.onload = () => {
             renderCategoryChips();
-            renderCategories(smmData);
+            renderCategories();
             onCategoryChange();
             renderKHQRDisplay(10.00);
-            renderServicesListFull();
+            renderServicesListFull(false);
         };
     </script>
 </body>
