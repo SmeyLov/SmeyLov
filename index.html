@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Khmer SMM - #1 SMM Panel in Cambodia</title>
+    <title>Smey Lov - #1 SMM Panel in Cambodia</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
@@ -30,14 +30,14 @@
             </button>
             <div class="flex items-center gap-2 bg-white/10 px-3 py-1 rounded-lg border border-white/20">
                 <i class="fa-solid fa-crown text-amber-300 text-sm"></i>
-                <span class="font-extrabold tracking-wider text-sm sm:text-base">KHMER SMM</span>
+                <span class="font-extrabold tracking-wider text-sm sm:text-base">SMEY LOV</span>
             </div>
         </div>
 
         <div class="flex items-center gap-2 sm:gap-3">
             <div class="hidden sm:flex items-center gap-1.5 bg-white/10 px-2.5 py-1 rounded-lg text-xs font-semibold">
                 <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-                <span>KhmerSMM API Connected</span>
+                <span id="api-status-badge">API Connected</span>
             </div>
             <button onclick="switchTab('addfunds')" class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-400 text-slate-900 font-black text-xs shadow-sm">
                 <span>$</span>
@@ -92,7 +92,7 @@
         <!-- ================= MAIN WORKSPACE ================= -->
         <main class="flex-1 p-3 sm:p-5 overflow-y-auto space-y-3.5 max-w-7xl mx-auto w-full">
             
-            <!-- Top Status Bar -->
+            <!-- Status Bar -->
             <div class="bg-white border border-slate-200 rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-slate-600 shadow-sm">
                 <div>You are currently on: <span class="text-blue-600 font-bold" id="current-page-text">New order</span></div>
                 <div>Panel Orders: <span class="text-blue-600 font-bold">3772895</span></div>
@@ -115,7 +115,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                    <!-- Left Form -->
+                    <!-- Left Order Form -->
                     <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
                         <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-xl">
                             <button class="py-2 text-xs font-bold rounded-lg bg-[#0070e0] text-white shadow-sm flex items-center justify-center gap-2"><i class="fa-solid fa-cart-shopping"></i> New Order</button>
@@ -168,7 +168,7 @@
                         </button>
                     </div>
 
-                    <!-- Right Details -->
+                    <!-- Right Column: Service Details -->
                     <div class="lg:col-span-6 space-y-3">
                         <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
                             <div class="flex items-center gap-2">
@@ -229,7 +229,6 @@
                                 <h5 class="font-bold text-amber-800">Important Notes:</h5>
                                 <p>• When the service is experiencing high demand, the starting speed may vary.</p>
                                 <p>• Please avoid placing a second order on the same link until the current order is fully completed in the system.</p>
-                                <p>• If you encounter any issues with the service, kindly reach out to our support team for assistance.</p>
                             </div>
                         </div>
                     </div>
@@ -269,7 +268,7 @@
             <div id="view-services" class="space-y-4 hidden">
                 <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
                     <div class="flex justify-between items-center border-b pb-3">
-                        <h3 class="text-sm font-bold text-slate-800">📋 All Services (KhmerSMM + 1% Margin)</h3>
+                        <h3 class="text-sm font-bold text-slate-800">📋 All Services (Smey Lov + 1% Margin)</h3>
                         <input type="text" id="service-search-input" oninput="renderServicesListFull()" placeholder="Search..." class="px-4 py-2 bg-slate-50 border rounded-xl text-xs w-56">
                     </div>
                     <div class="overflow-x-auto"><table class="w-full text-left text-xs whitespace-nowrap"><thead class="bg-slate-100 font-bold border-b"><tr><th class="p-3">ID</th><th class="p-3">Service</th><th class="p-3">Rate / 1000</th><th class="p-3">Min</th><th class="p-3">Max</th><th class="p-3">Time</th><th class="p-3">Order</th></tr></thead><tbody id="services-full-tbody" class="divide-y divide-slate-100"></tbody></table></div>
@@ -279,7 +278,7 @@
             <!-- Other Tabs (Tickets, Mass, API, FAQ...) -->
             <div id="view-tickets" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border space-y-3"><h4 class="font-bold text-sm">Tickets</h4><input type="text" value="AI Support" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs"><button onclick="alert('Ticket Sent!')" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Submit</button></div></div>
             <div id="view-massorder" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border space-y-3"><h4 class="font-bold text-sm">Mass Order</h4><textarea rows="6" placeholder="service_id | link | quantity" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-mono"></textarea><button onclick="alert('Submitted!')" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Submit</button></div></div>
-            <div id="view-api" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border space-y-2 text-xs"><h4 class="font-bold text-sm mb-2">API Documentation</h4><p>URL: <b>https://khmer-smm.com/api/v2</b></p></div></div>
+            <div id="view-api" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border space-y-2 text-xs"><h4 class="font-bold text-sm mb-2">API Documentation</h4><p>HTTP Method: <b>POST</b></p></div></div>
             <div id="view-dashboard" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm">Dashboard Overview</h4></div></div>
             <div id="view-affiliates" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm">Affiliates Program</h4></div></div>
             <div id="view-childpanel" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm">Child Panel Rental</h4></div></div>
@@ -303,7 +302,7 @@
     <!-- ================= LIVE CHAT ================= -->
     <div id="live-chat-modal" class="fixed bottom-20 right-4 sm:right-6 w-[320px] bg-white rounded-3xl shadow-2xl border z-50 overflow-hidden hidden flex flex-col">
         <div class="bg-[#0066b3] p-3 text-white flex items-center justify-between shadow-sm">
-            <div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-white flex items-center justify-center p-1 text-[#0066b3]"><i class="fa-solid fa-crown text-xs"></i></div><div><h4 class="text-xs font-bold">Khmer Smm — Support</h4><p class="text-[9px] text-green-300">🟢 ឆ្លើយតប ១–៣០ នាទី</p></div></div>
+            <div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-white flex items-center justify-center p-1 text-[#0066b3]"><i class="fa-solid fa-crown text-xs"></i></div><div><h4 class="text-xs font-bold">Smey Lov — Support</h4><p class="text-[9px] text-green-300">🟢 ឆ្លើយតប ១–៣០ នាទី</p></div></div>
             <button onclick="toggleLiveChatWidget()" class="text-xs"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="p-3 bg-slate-50 flex-1 max-h-[260px] overflow-y-auto space-y-2 text-xs" id="chat-messages-box">
@@ -327,11 +326,11 @@
         <button onclick="switchTab('services')" class="flex flex-col items-center gap-1 text-slate-500"><i class="fa-solid fa-list-check text-base"></i><span class="text-[9px] font-bold">Services</span></button>
     </div>
 
-    <!-- ================= FULL SMM DATABASE & ENGINE ================= -->
+    <!-- ================= SMM AUTO FETCHER & ENGINE ================= -->
     <script>
         const KHMER_SMM_API_URL = "https://khmer-smm.com/api/v2";
         const KHMER_SMM_API_KEY = "38d2a283544fd9b91ac3bf81fd649f49";
-        const PROFIT_MARGIN = 0.01; // +1% Profit
+        const PROFIT_MARGIN = 0.01; // +1% Profit Margin
 
         let currentBalance = 0.000788;
         let currentSelectedAmount = 3.00;
@@ -340,8 +339,8 @@
 
         const allViewIds = ['neworder', 'orders', 'addfunds', 'services', 'tickets', 'massorder', 'api', 'dashboard', 'affiliates', 'childpanel', 'faq', 'updates', 'terms'];
 
-        // COMPREHENSIVE KHMERSMM SERVICES LIST (គ្រប់សេវាកម្មទាំងអស់ដូចក្នុងវីដេអូ)
-        const rawServices = [
+        // MASTER SMM CATALOG (+1% PROFIT FORMULA)
+        const masterRawServices = [
             // TIKTOK
             { id: "18495", category: "TikTok - Video Views [ Cheapest ] NEW", catType: "tiktok", name: "18495 - TikTok Video Views [Super Fast Speed] - Max 10M - Instant Start", originalRate: 0.0150, min: 100, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 minutes", guarantee: "No Refill", desc: "Link: TikTok Video Link<br>Speed: 1M/day<br>Start: Instant" },
             { id: "18496", category: "TikTok - Video Views [ Base ] [ No Drop ]", catType: "tiktok", name: "18496 - TikTok Video Views [ Non Drop - Cheapest ] NEW", originalRate: 0.0220, min: 100, max: 50000000, speed: "5M/day", start: "Instant", avgTime: "1 minute", guarantee: "Lifetime Refill", desc: "Non-drop views." },
@@ -350,8 +349,6 @@
             { id: "18502", category: "TikTok - Video Likes [ Base 5 ]", catType: "tiktok", name: "18502 - TikTok Video Likes [ Cheap Fast Server ]", originalRate: 0.3200, min: 50, max: 50000, speed: "20k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Instant likes." },
             { id: "18510", category: "TikTok - Followers [ Real Quality - Fast Speed ] NEW", catType: "tiktok", name: "18510 - TikTok Followers [ 100% Real Users ] - Max 10M - 100k/days - INSTANT - NO REFILL", originalRate: 1.4000, min: 10, max: 10000000, speed: "100k/Days", start: "Instant", avgTime: "6 hours 49 minutes", guarantee: "No Refill", desc: "Link: Profile Link or Username<br>Speed: 100k/Days<br>Start: 0-2 Minutes<br>Refill: No" },
             { id: "18511", category: "TikTok - Followers | HQ Accounts - Best Prices NEW", catType: "tiktok", name: "18511 - TikTok Followers [ 30 Days Auto-Refill ♻️ ]", originalRate: 1.6500, min: 50, max: 500000, speed: "20k/day", start: "Instant", avgTime: "30 minutes", guarantee: "30 Days Refill", desc: "Auto-refill followers." },
-            { id: "18515", category: "TikTok - Custom Comments", catType: "tiktok", name: "18515 - TikTok Custom Comments [ Real Profiles ]", originalRate: 4.5000, min: 10, max: 5000, speed: "1k/day", start: "0-1 Hour", avgTime: "20 minutes", guarantee: "No Refill", desc: "Custom comments." },
-            { id: "18520", category: "TikTok - Live Stream Viewers [ ALWAYS WORK ]", catType: "tiktok", name: "18520 - TikTok Live Stream Viewers [ 30 Minutes ]", originalRate: 2.2000, min: 20, max: 5000, speed: "Instant", start: "Instant", avgTime: "Instant", guarantee: "30 Mins Watch", desc: "Stable live viewers." },
 
             // FACEBOOK
             { id: "17095", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17095 - Facebook Post Likes 🔥 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "6 minutes", guarantee: "No Refill", desc: "Link: Text/Images Full link<br>Start: 0-5 Minutes<br>Speed: 50k per days<br>Refill: No refill" },
@@ -369,96 +366,82 @@
             // FACEBOOK LIVE
             { id: "18021", category: "Facebook - Live Stream Views NEW", catType: "facebook_live", name: "18021 - Facebook Live Stream Viewers [ 15 Minutes ]", originalRate: 0.3776, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "13 minutes", guarantee: "15 Mins Watch", desc: "Link: Live Stream Link<br>Start: 0-3 Mins<br>Speed: Fast" },
             { id: "18022", category: "Facebook - Live Stream Views [ Server 2 ]", catType: "facebook_live", name: "18022 - Facebook Live Stream Viewers [ 30 Minutes ]", originalRate: 0.7500, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "30 minutes", guarantee: "30 Mins Watch", desc: "30 Minutes stream." },
-            { id: "18023", category: "Facebook - Live Stream Views [ Server 3 ]", catType: "facebook_live", name: "18023 - Facebook Live Stream Viewers [ 60 Minutes ]", originalRate: 1.5000, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "60 minutes", guarantee: "60 Mins Watch", desc: "60 Minutes stream." },
 
             // TELEGRAM
             { id: "13717", category: "Telegram - Post Views", catType: "telegram", name: "13717 - Telegram Post Views [ Max Unlimited ] [ Cancel Enable | Last 1 Post ]", originalRate: 0.0020, min: 10, max: 2147483647, speed: "20k/Day", start: "0-1 Hour", avgTime: "4 hours 53 minutes", guarantee: "No Refill", desc: "Link: Telegram Channel Link<br>Quality: Real<br>Start time: 0-5 Minutes" },
             { id: "13718", category: "Telegram - Members [ Best Server ]", catType: "telegram", name: "13718 - Telegram Members | Max 1M | SuperInstant", originalRate: 0.0980, min: 100, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Instant members." },
             { id: "13719", category: "Telegram - Members [ Non Drop - Best ]", catType: "telegram", name: "13719 - Telegram Channel Members [ Real Active - 30D Refill ]", originalRate: 0.8500, min: 50, max: 50000, speed: "10k/day", start: "0-1 Hour", avgTime: "20 minutes", guarantee: "30 Days Refill", desc: "Active members." },
-            { id: "13725", category: "Telegram - Reactions Package", catType: "telegram", name: "13725 - Telegram Positive Reactions (👍 ❤️ 🔥 🎉)", originalRate: 0.0500, min: 50, max: 50000, speed: "50k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Reactions." },
 
             // YOUTUBE
             { id: "20011", category: "YouTube - Views [ Main Provider ]", catType: "youtube", name: "20011 - YouTube Views [ 30 Days Guaranteed ⚠️ ] [Day 200-500] [HQ 100] Real [Cheapest...]", originalRate: 1.7550, min: 100, max: 1000000, speed: "5-10k Daily", start: "Instant", avgTime: "32 minutes", guarantee: "30 Days Refill", desc: "Instant service!<br>Speed: 5-10k Daily<br>Source: Mix<br>30 Days Refill" },
             { id: "20012", category: "YouTube - Shorts Views [ Fastest ]", catType: "youtube", name: "20012 - YouTube Shorts Views - Super Fast - Max 10M", originalRate: 0.5000, min: 500, max: 10000000, speed: "500k/day", start: "Instant", avgTime: "10 minutes", guarantee: "No Refill", desc: "Shorts views." },
-            { id: "20015", category: "YouTube - Subscribers [ Best Quality 👑 ]", catType: "youtube", name: "20015 - YouTube Subscribers [ Real HQ - 30 Days Refill ] - Max 50k", originalRate: 6.5000, min: 50, max: 50000, speed: "1k/day", start: "0-6 Hours", avgTime: "3 hours", guarantee: "30 Days Refill", desc: "High quality subscribers." },
-            { id: "20020", category: "YouTube - Watch Time", catType: "youtube", name: "20020 - YouTube Watch Time [ 4000 Hours Package ]", originalRate: 14.0000, min: 500, max: 4000, speed: "500h/day", start: "1-12 Hours", avgTime: "24 hours", guarantee: "30 Days Refill", desc: "Monetization package." },
 
             // INSTAGRAM
             { id: "21040", category: "Instagram - Followers [ Old Accounts + Posts ] [ High Speed ] NEW", catType: "instagram", name: "21040 - Instagram Followers | Max 100K | Old Accounts+Posts | Low Drop | Cancel Enable | Nu...", originalRate: 0.4000, min: 50, max: 100000, speed: "100k/Day", start: "Instant", avgTime: "19 minutes", guarantee: "No Refill", desc: "Link: Instagram Username<br>Location: Worldwide<br>Quality: Real Accounts" },
             { id: "21045", category: "Instagram - Likes [ Drop 0% ]", catType: "instagram", name: "21045 - Instagram Likes [ HQ - Instant Start ] - Max 100k", originalRate: 0.3000, min: 20, max: 100000, speed: "50k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Likes." },
-            { id: "21050", category: "Instagram - Reels Views", catType: "instagram", name: "21050 - Instagram Reels Views - Instant - Max 10M", originalRate: 0.0350, min: 500, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 minutes", guarantee: "No Refill", desc: "Reels views." },
 
             // WEBSITE TRAFFIC
             { id: "22010", category: "Website Traffic - Google Organic & Direct", catType: "website", name: "22010 - Google Organic Search Traffic [ GA4 Trackable ]", originalRate: 0.5000, min: 500, max: 500000, speed: "10k/day", start: "0-1 Hour", avgTime: "1 hour", guarantee: "No Refill", desc: "Real website traffic." }
         ];
 
-        // Format smmData with +1% Profit automatically
         let smmData = [];
-        const catMap = {};
-        rawServices.forEach(s => {
-            const sellingRate = parseFloat((s.originalRate * (1 + PROFIT_MARGIN)).toFixed(4));
-            if (!catMap[s.category]) {
-                catMap[s.category] = { catId: s.category.toLowerCase().replace(/[^a-z0-9]/g, '_'), categoryName: s.category, type: s.catType, services: [] };
-                smmData.push(catMap[s.category]);
-            }
-            catMap[s.category].services.push({
-                id: s.id,
-                name: `${s.name} - $${sellingRate} per 1000`,
-                ratePer1k: sellingRate,
-                min: s.min,
-                max: s.max,
-                speed: s.speed,
-                start: s.start,
-                avgTime: s.avgTime,
-                guarantee: s.guarantee,
-                desc: s.desc
-            });
-        });
+        function initializeServicesCatalog(rawList) {
+            smmData = [];
+            const catMap = {};
+            rawList.forEach(s => {
+                const originalRate = s.originalRate || parseFloat(s.rate) || 0.1;
+                const sellingRate = parseFloat((originalRate * (1 + PROFIT_MARGIN)).toFixed(4));
+                const cat = s.category || "General Services";
+                const catKey = cat.toLowerCase().replace(/[^a-z0-9]/g, '_');
+                const catType = s.catType || (cat.toLowerCase().includes('tiktok') ? 'tiktok' : cat.toLowerCase().includes('facebook') ? 'facebook' : cat.toLowerCase().includes('telegram') ? 'telegram' : cat.toLowerCase().includes('youtube') ? 'youtube' : cat.toLowerCase().includes('instagram') ? 'instagram' : 'website');
 
-        let selectedService = smmData[0].services[0];
+                if (!catMap[catKey]) {
+                    catMap[catKey] = { catId: catKey, categoryName: cat, type: catType, services: [] };
+                    smmData.push(catMap[catKey]);
+                }
+                catMap[catKey].services.push({
+                    id: String(s.id || s.service),
+                    name: `${s.name || s.id} - $${sellingRate} per 1000`,
+                    ratePer1k: sellingRate,
+                    min: s.min || 10,
+                    max: s.max || 100000,
+                    speed: s.speed || "50k/day",
+                    start: s.start || "Instant",
+                    avgTime: s.avgTime || "6 minutes",
+                    guarantee: s.guarantee || "No Refill",
+                    desc: s.desc || "High quality service."
+                });
+            });
+            renderCategories(smmData);
+            onCategoryChange();
+            renderServicesListFull();
+        }
+
+        let selectedService = null;
 
         let ordersHistory = [
             { id: "3764322", date: "2026-08-16 18:07:38", link: "https://t.me/+OKpzxCcb8yc0k...", charge: "$0.00098", startCount: 1048, qty: 100, service: "[13717] - Telegram Members | Max 1M", remains: 100, status: "In progress" },
             { id: "3540858", date: "2026-06-04 16:08:32", link: "https://www.facebook.com/profile.php?id=61585491295694", charge: "$0.072", startCount: 10953, qty: 200, service: "[10319] - Facebook Likes", remains: 0, status: "Completed" }
         ];
 
-        // Fetch Live Services with Proxy Fallback
-        async function fetchServicesFromKhmerSMM() {
+        // 🚀 Ultra Fast Async Live API Fetcher
+        async function fetchLiveKhmerSMMServices() {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s timeout for speed
+
             try {
                 const proxyUrl = "https://api.allorigins.win/raw?url=";
                 const target = encodeURIComponent(`${KHMER_SMM_API_URL}?key=${KHMER_SMM_API_KEY}&action=services`);
-                const res = await fetch(proxyUrl + target);
+                const res = await fetch(proxyUrl + target, { signal: controller.signal });
+                clearTimeout(timeoutId);
                 const data = await res.json();
                 if (Array.isArray(data) && data.length > 0) {
-                    smmData = [];
-                    const liveCatMap = {};
-                    data.forEach(s => {
-                        const originalRate = parseFloat(s.rate) || 0.1;
-                        const sellingRate = parseFloat((originalRate * (1 + PROFIT_MARGIN)).toFixed(4));
-                        const cat = s.category || "General Services";
-                        if (!liveCatMap[cat]) {
-                            liveCatMap[cat] = { catId: cat.toLowerCase().replace(/[^a-z0-9]/g, '_'), categoryName: cat, type: 'all', services: [] };
-                            smmData.push(liveCatMap[cat]);
-                        }
-                        liveCatMap[cat].services.push({
-                            id: String(s.service),
-                            name: `${s.service} - ${s.name} - $${sellingRate} per 1000`,
-                            ratePer1k: sellingRate,
-                            min: parseInt(s.min) || 10,
-                            max: parseInt(s.max) || 100000,
-                            speed: "Instant",
-                            start: "Instant",
-                            avgTime: "5 mins",
-                            guarantee: "Auto Refill",
-                            desc: s.name
-                        });
-                    });
-                    renderCategories(smmData);
-                    onCategoryChange();
-                    renderServicesListFull();
+                    initializeServicesCatalog(data);
+                    document.getElementById('api-status-badge').textContent = `Live Synced (${data.length} Services)`;
                 }
             } catch (e) {
-                console.log("Using Enhanced KhmerSMM Master Catalog");
+                // Fallback to instantly loaded master data
+                console.log("Instant Master Services Active");
             }
         }
 
@@ -479,12 +462,14 @@
             const servSelect = document.getElementById('service-select');
             servSelect.innerHTML = '';
 
-            currentCat.services.forEach(s => {
-                const opt = document.createElement('option');
-                opt.value = s.id;
-                opt.textContent = s.name;
-                servSelect.appendChild(opt);
-            });
+            if (currentCat && currentCat.services) {
+                currentCat.services.forEach(s => {
+                    const opt = document.createElement('option');
+                    opt.value = s.id;
+                    opt.textContent = s.name;
+                    servSelect.appendChild(opt);
+                });
+            }
             onServiceChange();
         }
 
@@ -510,13 +495,17 @@
         }
 
         function calculateCharge() {
+            if (!selectedService) return;
             const qty = parseFloat(document.getElementById('order-qty').value) || 0;
             document.getElementById('order-charge').value = `$${((qty / 1000) * selectedService.ratePer1k).toFixed(4)}`;
         }
 
+        // Real API Order Submission
         async function submitOrderToKhmerSMM() {
             const link = document.getElementById('order-link').value.trim();
             const qty = parseInt(document.getElementById('order-qty').value);
+            if (!selectedService) return alert("Please select a service!");
+
             const totalCharge = (qty / 1000) * selectedService.ratePer1k;
 
             if (!link || !qty) return alert("Please fill Link and Quantity!");
@@ -529,7 +518,7 @@
             btn.disabled = true;
 
             try {
-                // Post to KhmerSMM
+                // Post to KhmerSMM via Background API
                 const formData = new URLSearchParams();
                 formData.append('key', KHMER_SMM_API_KEY);
                 formData.append('action', 'add');
@@ -648,7 +637,7 @@
             });
         }
 
-        // Exact ABA KHQR Functions
+        // KHQR Engine
         function calculateCRC16(str) {
             let crc = 0xFFFF;
             for (let i = 0; i < str.length; i++) {
@@ -677,6 +666,7 @@
 
         function processDeposit() { openKHQRModal(parseFloat(document.getElementById('deposit-amount-input').value) || 3.00); }
         function processDepositRight() { openKHQRModal(parseFloat(document.getElementById('right-deposit-amount').value) || 3.00); }
+        function setAmount(amt) { document.getElementById('deposit-amount-input').value = amt; openKHQRModal(amt); }
 
         function openKHQRModal(amt) {
             currentSelectedAmount = amt;
@@ -747,7 +737,6 @@
             else { sub.classList.add('hidden'); ch.style.transform='rotate(-90deg)'; }
         }
 
-        // Live Chat Widget
         function toggleLiveChatWidget() { document.getElementById('live-chat-modal').classList.toggle('hidden'); }
         function sendUserMessage() {
             const inp = document.getElementById('chat-input');
@@ -757,7 +746,7 @@
             box.innerHTML += `<div class="flex justify-end"><div class="bg-[#0066b3] text-white p-2.5 rounded-2xl text-xs">${txt}</div></div>`;
             inp.value = '';
             setTimeout(() => {
-                box.innerHTML += `<div class="flex justify-start"><div class="bg-white text-slate-800 border p-2.5 rounded-2xl text-xs">ក្រុមការងារ Support នឹងឆ្លើយតបក្នុងពេលឆាប់ៗ។</div></div>`;
+                box.innerHTML += `<div class="flex justify-start"><div class="bg-white text-slate-800 border p-2.5 rounded-2xl text-xs">Smey Lov Support នឹងឆ្លើយតបក្នុងពេលឆាប់ៗ។</div></div>`;
                 box.scrollTop = box.scrollHeight;
             }, 600);
         }
@@ -769,11 +758,9 @@
         }
 
         window.onload = () => {
-            renderCategories(smmData);
-            onCategoryChange();
-            renderServicesListFull();
+            initializeServicesCatalog(masterRawServices);
+            fetchLiveKhmerSMMServices();
             renderOrdersTable();
-            fetchServicesFromKhmerSMM();
         };
     </script>
 </body>
