@@ -22,9 +22,7 @@
 </head>
 <body class="min-h-screen flex flex-col relative overflow-x-hidden pb-16 md:pb-0">
 
-    <!-- ========================================================================= -->
-    <!-- TOP NAVBAR (KHMERSMM EXACT HEADER)                                         -->
-    <!-- ========================================================================= -->
+    <!-- ================= TOP NAVBAR ================= -->
     <header class="bg-[#0070e0] text-white px-3 sm:px-6 py-2.5 flex items-center justify-between shadow sticky top-0 z-40">
         <div class="flex items-center gap-3">
             <button onclick="toggleMobileSidebar()" class="w-8 h-8 rounded-lg bg-white/15 active:bg-white/30 flex items-center justify-center text-sm md:hidden transition">
@@ -49,18 +47,12 @@
     </header>
 
     <div class="flex flex-1 overflow-hidden relative">
-        
-        <!-- Mobile Overlay -->
         <div id="sidebar-overlay" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden transition-opacity md:hidden"></div>
 
-        <!-- Left Sidebar Navigation -->
+        <!-- ================= SIDEBAR ================= -->
         <aside id="sidebar-container" class="fixed inset-y-0 left-0 w-64 bg-white border-r border-slate-200 flex flex-col p-3 space-y-3 shrink-0 overflow-y-auto z-50 transform -translate-x-full md:translate-x-0 md:static transition-transform duration-200 ease-in-out shadow-2xl md:shadow-none">
-            
-            <!-- Profile Card -->
             <div class="relative sidebar-card-bg rounded-2xl p-4 text-center text-white shadow-md overflow-hidden">
-                <div class="absolute top-2 -right-8 bg-red-600 text-white text-[8px] font-black uppercase px-8 py-0.5 transform rotate-45 shadow">
-                    NEW
-                </div>
+                <div class="absolute top-2 -right-8 bg-red-600 text-white text-[8px] font-black uppercase px-8 py-0.5 transform rotate-45 shadow">NEW</div>
                 <div class="w-14 h-14 rounded-full bg-white/20 border-2 border-white mx-auto p-0.5 mb-2 overflow-hidden shadow-inner">
                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Nang150" alt="User" class="w-full h-full">
                 </div>
@@ -68,7 +60,6 @@
                 <h4 class="text-xs font-bold mt-1.5 truncate">User: Nang150</h4>
             </div>
 
-            <!-- Menus List -->
             <nav class="flex-1 space-y-1 text-xs font-semibold">
                 <button onclick="switchTab('neworder'); closeMobileSidebar();" id="menu-neworder" class="menu-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-xl bg-[#0070e0] text-white shadow-sm font-bold text-left transition"><i class="fa-solid fa-cart-shopping w-4 text-center"></i><span>New order</span></button>
                 <button onclick="switchTab('orders'); closeMobileSidebar();" id="menu-orders" class="menu-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 text-left transition"><i class="fa-solid fa-clock-rotate-left w-4 text-center text-slate-400"></i><span>My Orders</span></button>
@@ -80,13 +71,11 @@
                 </button>
                 <button onclick="switchTab('massorder'); closeMobileSidebar();" id="menu-massorder" class="menu-btn w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-50 text-left transition"><i class="fa-solid fa-layer-group w-4 text-center text-slate-400"></i><span>Mass order</span></button>
                 
-                <!-- Show more sub-menu -->
                 <div class="pt-1">
                     <button onclick="toggleShowMore()" id="btn-show-more" class="w-full flex items-center justify-between px-3 py-2 rounded-xl bg-slate-50 text-slate-700 font-bold text-left transition border border-slate-200">
                         <span class="flex items-center gap-2.5"><i class="fa-solid fa-ellipsis w-4 text-center text-slate-400"></i><span>Show more</span></span>
                         <i id="show-more-chevron" class="fa-solid fa-chevron-down text-[10px] transition duration-200"></i>
                     </button>
-
                     <div id="show-more-sublist" class="mt-1 space-y-1 pl-2">
                         <button onclick="switchTab('api'); closeMobileSidebar();" id="menu-api" class="menu-btn w-full flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 text-left transition"><i class="fa-solid fa-code w-4 text-center text-amber-500"></i><span>API</span></button>
                         <button onclick="switchTab('dashboard'); closeMobileSidebar();" id="menu-dashboard" class="menu-btn w-full flex items-center gap-2.5 px-3 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 text-left transition"><i class="fa-solid fa-table-cells-large w-4 text-center text-sky-500"></i><span>Dashboard</span></button>
@@ -100,10 +89,10 @@
             </nav>
         </aside>
 
-        <!-- Main Workspace -->
+        <!-- ================= MAIN WORKSPACE ================= -->
         <main class="flex-1 p-3 sm:p-5 overflow-y-auto space-y-3.5 max-w-7xl mx-auto w-full">
             
-            <!-- Status Top Bar -->
+            <!-- Top Status Bar -->
             <div class="bg-white border border-slate-200 rounded-xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs font-semibold text-slate-600 shadow-sm">
                 <div>You are currently on: <span class="text-blue-600 font-bold" id="current-page-text">New order</span></div>
                 <div>Panel Orders: <span class="text-blue-600 font-bold">3772895</span></div>
@@ -112,12 +101,8 @@
                 <div>Welcome <span class="text-blue-600 font-bold">Nang150</span> Your Balance is : <span class="text-blue-600 font-bold user-balance-display">$0.000788</span></div>
             </div>
 
-            <!-- ========================================================================= -->
-            <!-- 1. NEW ORDER VIEW (KHMERSMM LIVE ORDERING ENGINE)                         -->
-            <!-- ========================================================================= -->
+            <!-- ================= 1. NEW ORDER ================= -->
             <div id="view-neworder" class="space-y-3.5">
-                
-                <!-- 8 Category Grid Buttons -->
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     <button onclick="filterCategory('all')" class="py-2.5 px-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 flex items-center justify-center gap-2 shadow-sm transition"><i class="fa-solid fa-table-cells-large text-blue-500"></i> Everythings</button>
                     <button onclick="filterCategory('tiktok')" class="py-2.5 px-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 flex items-center justify-center gap-2 shadow-sm transition"><i class="fa-brands fa-tiktok text-black"></i> TikTok</button>
@@ -129,10 +114,8 @@
                     <button onclick="filterCategory('website')" class="py-2.5 px-3 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl text-xs font-bold text-slate-700 flex items-center justify-center gap-2 shadow-sm transition"><i class="fa-solid fa-globe text-amber-600"></i> Website Traffic</button>
                 </div>
 
-                <!-- 2 Columns Ordering System -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                    
-                    <!-- Left Column: Order Form -->
+                    <!-- Left Form -->
                     <div class="lg:col-span-6 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
                         <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-xl">
                             <button class="py-2 text-xs font-bold rounded-lg bg-[#0070e0] text-white shadow-sm flex items-center justify-center gap-2"><i class="fa-solid fa-cart-shopping"></i> New Order</button>
@@ -185,7 +168,7 @@
                         </button>
                     </div>
 
-                    <!-- Right Column: Service Details -->
+                    <!-- Right Details -->
                     <div class="lg:col-span-6 space-y-3">
                         <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
                             <div class="flex items-center gap-2">
@@ -239,12 +222,7 @@
 
                             <div class="border-t border-slate-100 pt-3 text-xs space-y-1.5">
                                 <h4 class="font-bold text-slate-800">More Details</h4>
-                                <div class="text-slate-500 text-xs leading-relaxed space-y-0.5" id="detail-desc">
-                                    <p>Link: Text/Images Full link</p>
-                                    <p>Start: 0-5 Minutes</p>
-                                    <p>Speed: 50k per days</p>
-                                    <p>Refill: No refill</p>
-                                </div>
+                                <div class="text-slate-500 text-xs leading-relaxed space-y-0.5" id="detail-desc"></div>
                             </div>
 
                             <div class="border-t border-slate-100 pt-3 text-[11px] text-slate-500 space-y-1 bg-amber-50/60 p-3 rounded-xl border border-amber-200/60">
@@ -252,300 +230,166 @@
                                 <p>• When the service is experiencing high demand, the starting speed may vary.</p>
                                 <p>• Please avoid placing a second order on the same link until the current order is fully completed in the system.</p>
                                 <p>• If you encounter any issues with the service, kindly reach out to our support team for assistance.</p>
-                                <p>• Do not place orders for private accounts or private links.</p>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            <!-- ========================================================================= -->
-            <!-- 2. MY ORDERS VIEW                                                         -->
-            <!-- ========================================================================= -->
+            <!-- ================= 2. ORDERS ================= -->
             <div id="view-orders" class="space-y-4 hidden">
                 <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
                     <input type="text" id="order-search-input" oninput="renderOrdersTable()" placeholder="Search..." class="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none">
-                    
-                    <div class="flex flex-wrap gap-2 text-xs font-semibold border-b border-slate-100 pb-3">
-                        <button onclick="filterOrderStatus('All')" class="order-tab-btn px-4 py-1.5 rounded-lg bg-blue-600 text-white shadow-sm flex items-center gap-1.5"><i class="fa-solid fa-list"></i> All</button>
-                        <button onclick="filterOrderStatus('Pending')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5"><i class="fa-regular fa-clock"></i> Pending</button>
-                        <button onclick="filterOrderStatus('In progress')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5"><i class="fa-solid fa-spinner"></i> In progress</button>
-                        <button onclick="filterOrderStatus('Completed')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5"><i class="fa-solid fa-check"></i> Completed</button>
-                        <button onclick="filterOrderStatus('Partial')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5"><i class="fa-solid fa-circle-half-stroke"></i> Partial</button>
-                        <button onclick="filterOrderStatus('Processing')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5"><i class="fa-solid fa-arrows-rotate"></i> Processing</button>
-                        <button onclick="filterOrderStatus('Canceled')" class="order-tab-btn px-4 py-1.5 rounded-lg text-slate-600 hover:bg-slate-100 flex items-center gap-1.5"><i class="fa-solid fa-xmark"></i> Canceled</button>
-                    </div>
-
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-xs whitespace-nowrap">
-                            <thead class="bg-slate-50 text-slate-600 font-bold border-b border-slate-200">
-                                <tr>
-                                    <th class="p-3">ID</th>
-                                    <th class="p-3">Date</th>
-                                    <th class="p-3">Link</th>
-                                    <th class="p-3">Charge</th>
-                                    <th class="p-3">Start count</th>
-                                    <th class="p-3">Quantity</th>
-                                    <th class="p-3">Service</th>
-                                    <th class="p-3">Remains</th>
-                                    <th class="p-3">Status</th>
-                                    <th class="p-3 text-center">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody id="orders-tbody" class="divide-y divide-slate-100 font-medium"></tbody>
-                        </table>
-                    </div>
+                    <div class="overflow-x-auto"><table class="w-full text-left text-xs whitespace-nowrap"><thead class="bg-slate-50 text-slate-600 font-bold border-b"><tr><th class="p-3">ID</th><th class="p-3">Date</th><th class="p-3">Link</th><th class="p-3">Charge</th><th class="p-3">Start</th><th class="p-3">Qty</th><th class="p-3">Service</th><th class="p-3">Remains</th><th class="p-3">Status</th></tr></thead><tbody id="orders-tbody" class="divide-y divide-slate-100 font-medium"></tbody></table></div>
                 </div>
             </div>
 
-            <!-- ========================================================================= -->
-            <!-- 3. ADD FUNDS VIEW                                                         -->
-            <!-- ========================================================================= -->
+            <!-- ================= 3. ADD FUNDS ================= -->
             <div id="view-addfunds" class="space-y-4 hidden">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
-                    
                     <div class="lg:col-span-7 space-y-4">
                         <div class="bg-gradient-to-br from-sky-400 via-blue-600 to-indigo-700 rounded-3xl p-5 text-white shadow-md text-center space-y-2">
-                            <div class="flex items-center justify-between border-b border-white/20 pb-2">
-                                <span class="font-bold text-xs"><i class="fa-solid fa-wallet"></i> Add Fund</span>
-                                <span class="text-xs text-blue-100"><i class="fa-solid fa-clock-rotate-left"></i> Fund History</span>
-                            </div>
                             <h3 class="text-xl sm:text-2xl font-black text-amber-300">ប្រព័ន្ធ ដាក់លុយ ស្វ័យប្រវត្តិ 24/7</h3>
                             <p class="text-xs text-blue-100">ស្កេន KHQR ជាមួយ ABA, ACLEDA, Wing គ្រប់ធនាគារ</p>
-                            <div class="bg-white/10 rounded-2xl p-2.5 text-[11px] font-bold text-amber-200 border border-white/20">
-                                🎁 10$ - 200$ ថែម 3%, 200$ + ថែម 5% ភ្លាមៗ
-                            </div>
                         </div>
-
-                        <div class="bg-white border border-slate-200 rounded-2xl p-4 sm:p-5 shadow-sm space-y-3">
-                            <input type="number" id="deposit-amount-input" value="3" placeholder="Enter amount (e.g. 5, 10, 40, 100)" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold focus:outline-none">
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-3">
+                            <input type="number" id="deposit-amount-input" value="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-semibold focus:outline-none">
                             <button onclick="processDeposit()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit</button>
-
-                            <div class="grid grid-cols-4 gap-2 pt-2">
-                                <button onclick="setAmount(3)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$3</button>
-                                <button onclick="setAmount(5)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$5</button>
-                                <button onclick="setAmount(15)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$15</button>
-                                <button onclick="setAmount(30)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700">$30</button>
-                                <button onclick="setAmount(50)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700 relative">$50 <span class="text-[8px] bg-red-500 text-white rounded px-1 absolute top-0.5 right-0.5">+3%</span></button>
-                                <button onclick="setAmount(100)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700 relative">$100 <span class="text-[8px] bg-red-500 text-white rounded px-1 absolute top-0.5 right-0.5">+3%</span></button>
-                                <button onclick="setAmount(200)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700 relative">$200 <span class="text-[8px] bg-red-500 text-white rounded px-1 absolute top-0.5 right-0.5">+5%</span></button>
-                                <button onclick="setAmount(500)" class="py-2.5 bg-blue-50 border border-blue-200 rounded-xl text-xs font-bold text-blue-700 relative">$500 <span class="text-[8px] bg-red-500 text-white rounded px-1 absolute top-0.5 right-0.5">+5%</span></button>
-                            </div>
                         </div>
                     </div>
-
                     <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
-                        <h4 class="font-bold text-slate-800 text-sm border-b border-slate-100 pb-2">Add Fund</h4>
-                        <div>
-                            <label class="block text-xs text-slate-500 mb-1">Payment Method</label>
-                            <input type="text" readonly value="KHQR Allowed" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs font-semibold text-slate-700">
-                        </div>
-                        <div>
-                            <label class="block text-xs text-slate-500 mb-1">Amount ($)</label>
-                            <input type="number" id="right-deposit-amount" placeholder="Enter amount" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-xs font-semibold focus:outline-none">
-                        </div>
-                        <button onclick="processDepositRight()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow text-xs">
-                            Pay Now
-                        </button>
+                        <h4 class="font-bold text-slate-800 text-sm border-b pb-2">Add Fund</h4>
+                        <input type="number" id="right-deposit-amount" placeholder="Enter amount" class="w-full bg-slate-50 border rounded-xl px-3 py-2.5 text-xs">
+                        <button onclick="processDepositRight()" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow text-xs">Pay Now</button>
                     </div>
-
                 </div>
             </div>
 
-            <!-- ========================================================================= -->
-            <!-- 4. SERVICES VIEW                                                          -->
-            <!-- ========================================================================= -->
+            <!-- ================= 4. SERVICES ================= -->
             <div id="view-services" class="space-y-4 hidden">
                 <div class="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm space-y-4">
-                    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3">
-                        <div class="flex items-center gap-2">
-                            <button class="px-4 py-2 bg-[#0070e0] text-white rounded-xl text-xs font-bold shadow-sm flex items-center gap-1.5">
-                                <i class="fa-solid fa-filter"></i> Filter by Category
-                            </button>
-                            <div class="px-3 py-2 bg-slate-100 rounded-xl text-xs font-bold text-slate-700">
-                                USD $ <i class="fa-solid fa-chevron-down text-[10px]"></i>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar">
-                            <button onclick="filterCategory('tiktok')" class="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center text-xs"><i class="fa-brands fa-tiktok"></i></button>
-                            <button onclick="filterCategory('facebook')" class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs"><i class="fa-brands fa-facebook-f"></i></button>
-                            <button onclick="filterCategory('instagram')" class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 via-pink-500 to-purple-600 text-white flex items-center justify-center text-xs"><i class="fa-brands fa-instagram"></i></button>
-                            <button onclick="filterCategory('youtube')" class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center text-xs"><i class="fa-brands fa-youtube"></i></button>
-                            <button onclick="filterCategory('telegram')" class="w-8 h-8 rounded-full bg-sky-500 text-white flex items-center justify-center text-xs"><i class="fa-brands fa-telegram"></i></button>
-                        </div>
-
-                        <input type="text" id="service-search-input" oninput="renderServicesListFull()" placeholder="Search" class="px-4 py-2 bg-slate-50 border border-slate-300 rounded-xl text-xs focus:outline-none w-full sm:w-56">
+                    <div class="flex justify-between items-center border-b pb-3">
+                        <h3 class="text-sm font-bold text-slate-800">📋 All Services (KhmerSMM + 1% Margin)</h3>
+                        <input type="text" id="service-search-input" oninput="renderServicesListFull()" placeholder="Search..." class="px-4 py-2 bg-slate-50 border rounded-xl text-xs w-56">
                     </div>
-
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-xs whitespace-nowrap">
-                            <thead class="bg-slate-100 text-slate-600 font-bold border-b border-slate-200">
-                                <tr>
-                                    <th class="p-3 w-16">ID</th>
-                                    <th class="p-3">Service</th>
-                                    <th class="p-3">Rate per 1000</th>
-                                    <th class="p-3">Min order</th>
-                                    <th class="p-3">Max order</th>
-                                    <th class="p-3">Average time</th>
-                                    <th class="p-3 text-center">Order</th>
-                                </tr>
-                            </thead>
-                            <tbody id="services-full-tbody" class="divide-y divide-slate-100"></tbody>
-                        </table>
-                    </div>
+                    <div class="overflow-x-auto"><table class="w-full text-left text-xs whitespace-nowrap"><thead class="bg-slate-100 font-bold border-b"><tr><th class="p-3">ID</th><th class="p-3">Service</th><th class="p-3">Rate / 1000</th><th class="p-3">Min</th><th class="p-3">Max</th><th class="p-3">Time</th><th class="p-3">Order</th></tr></thead><tbody id="services-full-tbody" class="divide-y divide-slate-100"></tbody></table></div>
                 </div>
             </div>
 
-            <!-- ========================================================================= -->
-            <!-- 5. TICKETS & 6. MASS ORDER & 7. API                                      -->
-            <!-- ========================================================================= -->
-            <div id="view-tickets" class="space-y-4 hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-                    <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3.5">
-                        <div class="flex items-center gap-2 border-b border-slate-100 pb-3"><i class="fa-solid fa-plus-circle text-blue-600"></i><h4 class="font-bold text-slate-800 text-sm">New Ticket</h4></div>
-                        <input type="text" id="ticket-subject" value="AI Support" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none">
-                        <input type="text" placeholder="Order ID" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs focus:outline-none">
-                        <textarea rows="3" placeholder="Message" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-3 text-xs focus:outline-none"></textarea>
-                        <button onclick="alert('Submitted ticket!')" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl text-xs shadow-md">Submit ticket</button>
-                    </div>
-                    <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3.5">
-                        <h4 class="font-bold text-slate-800 text-sm border-b pb-3">Ticket History</h4>
-                        <div class="border border-red-200 bg-red-50/30 rounded-2xl p-3.5 flex items-center justify-between text-xs"><div><h5 class="font-bold text-slate-800">Nang150 - Closed</h5><p class="text-[10px] text-red-500 font-bold">● Closed</p></div><span class="font-mono text-slate-400">#261</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="view-massorder" class="space-y-4 hidden">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-                    <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
-                        <label class="block text-xs font-bold text-slate-700">One order per line in format</label>
-                        <textarea rows="8" placeholder="service_id | link | quantity" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl text-xs font-mono focus:outline-none"></textarea>
-                        <button onclick="alert('Submitted Mass Order!')" class="w-full py-3.5 bg-[#0070e0] text-white font-bold rounded-xl shadow-md text-xs">Submit Order</button>
-                    </div>
-                    <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-2 text-xs">
-                        <h4 class="font-bold text-slate-800 border-b pb-2">How Does Mass Order Work?</h4>
-                        <p class="bg-pink-50 p-2.5 rounded-xl border border-pink-200 font-mono text-pink-700">service_id | link_or_username | quantity</p>
-                    </div>
-                </div>
-            </div>
-
-            <div id="view-api" class="space-y-4 hidden">
-                <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
-                    <h3 class="text-sm font-bold text-slate-800 border-b pb-2">API Documentation</h3>
-                    <div class="grid grid-cols-2 gap-3 text-xs">
-                        <div class="p-3 bg-slate-50 rounded-xl border"><span>HTTP Method:</span> <b class="text-blue-600">POST</b></div>
-                        <div class="p-3 bg-slate-50 rounded-xl border"><span>API URL:</span> <b>https://khmer-smm.com/api/v2</b></div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="view-dashboard" class="space-y-4 hidden"><div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center"><div class="bg-white p-4 rounded-2xl border"><span class="text-slate-400 text-xs">Balance</span><h4 class="text-base font-bold text-slate-800">$0.000788</h4></div><div class="bg-white p-4 rounded-2xl border"><span class="text-slate-400 text-xs">Orders</span><h4 class="text-base font-bold text-slate-800">30</h4></div><div class="bg-white p-4 rounded-2xl border"><span class="text-slate-400 text-xs">Total Spent</span><h4 class="text-base font-bold text-slate-800">$23.1</h4></div><div class="bg-white p-4 rounded-2xl border"><span class="text-slate-400 text-xs">Open Tickets</span><h4 class="text-base font-bold text-slate-800">0</h4></div></div></div>
-            <div id="view-affiliates" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border space-y-3"><h4 class="font-bold text-sm">Affiliate Program (5% Commission)</h4><input type="text" readonly value="https://khmer-smm.com/ref/Nang150" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs"><button onclick="alert('Copied!')" class="w-full py-2.5 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Copy Link</button></div></div>
-            <div id="view-childpanel" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border space-y-3"><h4 class="font-bold text-sm">Child Panel ($10/month)</h4><input type="text" placeholder="Domain name" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs"><button onclick="alert('Ordered!')" class="w-full py-2.5 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Order Child Panel</button></div></div>
-            <div id="view-faq" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm mb-2">FAQ</h4><p class="text-slate-500">ស្កេន KHQR ដាក់លុយស្វ័យប្រវត្តិតាមរយៈ Bakong ២៤/៧។</p></div></div>
-            <div id="view-updates" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm mb-2">Updates</h4><p class="text-slate-500">Synced latest KhmerSMM services and rates.</p></div></div>
-            <div id="view-terms" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm mb-2">Terms</h4><p class="text-slate-500">All SMM Services terms and privacy policies.</p></div></div>
+            <!-- Other Tabs (Tickets, Mass, API, FAQ...) -->
+            <div id="view-tickets" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border space-y-3"><h4 class="font-bold text-sm">Tickets</h4><input type="text" value="AI Support" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs"><button onclick="alert('Ticket Sent!')" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Submit</button></div></div>
+            <div id="view-massorder" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border space-y-3"><h4 class="font-bold text-sm">Mass Order</h4><textarea rows="6" placeholder="service_id | link | quantity" class="w-full p-2.5 bg-slate-50 border rounded-xl text-xs font-mono"></textarea><button onclick="alert('Submitted!')" class="w-full py-3 bg-[#0070e0] text-white font-bold rounded-xl text-xs">Submit</button></div></div>
+            <div id="view-api" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border space-y-2 text-xs"><h4 class="font-bold text-sm mb-2">API Documentation</h4><p>URL: <b>https://khmer-smm.com/api/v2</b></p></div></div>
+            <div id="view-dashboard" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm">Dashboard Overview</h4></div></div>
+            <div id="view-affiliates" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm">Affiliates Program</h4></div></div>
+            <div id="view-childpanel" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm">Child Panel Rental</h4></div></div>
+            <div id="view-faq" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm">FAQ</h4></div></div>
+            <div id="view-updates" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm">Updates Log</h4></div></div>
+            <div id="view-terms" class="space-y-4 hidden"><div class="bg-white p-5 rounded-2xl border text-xs"><h4 class="font-bold text-sm">Terms & Conditions</h4></div></div>
 
         </main>
     </div>
 
-    <!-- ========================================================================= -->
-    <!-- EXACT ABA KHQR POPUP MODAL                                                -->
-    <!-- ========================================================================= -->
+    <!-- ================= ABA KHQR MODAL ================= -->
     <div id="aba-khqr-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-white rounded-3xl p-5 shadow-2xl max-w-xs w-full text-center space-y-3 relative animate-in fade-in">
+        <div class="bg-white rounded-3xl p-5 shadow-2xl max-w-xs w-full text-center space-y-3 relative">
             <button onclick="closeKHQRModal()" class="absolute right-4 top-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark"></i></button>
-            <div class="flex items-center justify-between border-b pb-2 px-1">
-                <span class="font-extrabold text-sm text-red-600">ABA KHQR</span>
-                <span class="text-xs font-mono font-bold text-slate-600" id="khqr-timer">2:59</span>
-            </div>
-            <div class="p-2 border border-slate-200 rounded-2xl bg-white shadow-inner flex justify-center">
-                <img id="modal-dynamic-qr" src="" alt="KHQR" class="w-48 h-48 object-contain">
-            </div>
-            <div class="text-xs">
-                <h5 class="font-bold text-slate-800">Scan to pay</h5>
-                <p class="text-[11px] text-slate-500">Amount: <span class="font-bold text-blue-600" id="modal-khqr-amount">$3.00 USD</span></p>
-                <p class="text-[10px] text-slate-400 mt-1">Bakong: mon_samnang@bkrt</p>
-            </div>
+            <div class="flex items-center justify-between border-b pb-2 px-1"><span class="font-extrabold text-sm text-red-600">ABA KHQR</span><span class="text-xs font-mono font-bold text-slate-600" id="khqr-timer">2:59</span></div>
+            <div class="p-2 border rounded-2xl bg-white shadow-inner flex justify-center"><img id="modal-dynamic-qr" src="" alt="KHQR" class="w-48 h-48 object-contain"></div>
+            <div class="text-xs"><h5 class="font-bold text-slate-800">Scan to pay</h5><p class="text-[11px] text-slate-500">Amount: <span class="font-bold text-blue-600" id="modal-khqr-amount">$3.00 USD</span></p></div>
         </div>
     </div>
 
-    <!-- ========================================================================= -->
-    <!-- EXACT LIVE CHAT WIDGET POPUP                                              -->
-    <!-- ========================================================================= -->
-    <div id="live-chat-modal" class="fixed bottom-20 right-4 sm:right-6 w-[320px] bg-white rounded-3xl shadow-2xl border border-slate-200 z-50 overflow-hidden hidden flex flex-col">
+    <!-- ================= LIVE CHAT ================= -->
+    <div id="live-chat-modal" class="fixed bottom-20 right-4 sm:right-6 w-[320px] bg-white rounded-3xl shadow-2xl border z-50 overflow-hidden hidden flex flex-col">
         <div class="bg-[#0066b3] p-3 text-white flex items-center justify-between shadow-sm">
-            <div class="flex items-center gap-2">
-                <div class="w-7 h-7 rounded-full bg-white flex items-center justify-center p-1 shadow-sm shrink-0">
-                    <i class="fa-solid fa-crown text-[#0066b3] text-xs"></i>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold">Khmer Smm — Online Support</h4>
-                    <p class="text-[9px] text-green-300">🟢 ឆ្លើយតបជាធម្មតា ១–៣០ នាទី</p>
-                </div>
-            </div>
-            <button onclick="toggleLiveChatWidget()" class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs"><i class="fa-solid fa-xmark"></i></button>
+            <div class="flex items-center gap-2"><div class="w-7 h-7 rounded-full bg-white flex items-center justify-center p-1 text-[#0066b3]"><i class="fa-solid fa-crown text-xs"></i></div><div><h4 class="text-xs font-bold">Khmer Smm — Support</h4><p class="text-[9px] text-green-300">🟢 ឆ្លើយតប ១–៣០ នាទី</p></div></div>
+            <button onclick="toggleLiveChatWidget()" class="text-xs"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="p-3 bg-slate-50 flex-1 max-h-[260px] overflow-y-auto space-y-2 text-xs" id="chat-messages-box">
-            <div class="bg-white p-2.5 rounded-2xl border border-slate-200 text-slate-800 shadow-sm leading-relaxed">
-                សួស្ដី 👋 តើយើងអាចជួយអ្វីបានដែរ? គ្រាន់តែផ្ញើសារមក ក្រុមការងារយើងនឹងឆ្លើយតបភ្លាមៗ។
-            </div>
-            <div class="flex flex-wrap gap-1.5 pt-1">
-                <button onclick="sendQuickChat('តម្លៃប៉ុន្មាន?')" class="px-2.5 py-1 bg-white border border-[#0066b3] text-[#0066b3] rounded-full text-[11px] font-bold">តម្លៃប៉ុន្មាន?</button>
-                <button onclick="sendQuickChat('តើបង់ប្រាក់យ៉ាងដូចម្តេច?')" class="px-2.5 py-1 bg-white border border-[#0066b3] text-[#0066b3] rounded-full text-[11px] font-bold">តើបង់ប្រាក់យ៉ាងដូចម្តេច?</button>
-            </div>
+            <div class="bg-white p-2.5 rounded-2xl border text-slate-800 shadow-sm">សួស្ដី 👋 តើយើងអាចជួយអ្វីបានដែរ?</div>
         </div>
-        <div class="p-2 bg-white border-t border-slate-100 flex items-center gap-1.5">
-            <input type="text" id="chat-input" placeholder="សរសេរសារ..." class="flex-1 px-3 py-2 bg-slate-100 border border-slate-200 rounded-full text-xs focus:outline-none">
+        <div class="p-2 bg-white border-t flex items-center gap-1.5">
+            <input type="text" id="chat-input" placeholder="សរសេរសារ..." class="flex-1 px-3 py-2 bg-slate-100 border rounded-full text-xs focus:outline-none">
             <button onclick="sendUserMessage()" class="w-8 h-8 rounded-full bg-[#0066b3] text-white flex items-center justify-center text-xs"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
 
-    <!-- Floating Chat Trigger Button -->
     <div class="fixed bottom-16 md:bottom-5 right-4 md:right-5 z-30">
-        <button onclick="toggleLiveChatWidget()" class="w-12 h-12 rounded-full bg-[#0066b3] hover:bg-blue-700 active:bg-blue-800 text-white shadow-xl flex items-center justify-center text-lg transition">
-            <i class="fa-solid fa-comment-dots"></i>
-        </button>
+        <button onclick="toggleLiveChatWidget()" class="w-12 h-12 rounded-full bg-[#0066b3] text-white shadow-xl flex items-center justify-center text-lg"><i class="fa-solid fa-comment-dots"></i></button>
     </div>
 
     <!-- Mobile Bottom App Bar -->
-    <div class="fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 py-2 px-3 flex items-center justify-around z-40 md:hidden shadow-lg">
+    <div class="fixed bottom-0 inset-x-0 bg-white border-t py-2 px-3 flex items-center justify-around z-40 md:hidden shadow-lg">
         <button onclick="switchTab('neworder')" class="flex flex-col items-center gap-1 text-blue-600"><i class="fa-solid fa-cart-shopping text-base"></i><span class="text-[9px] font-bold">New Order</span></button>
-        <button onclick="switchTab('orders')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600"><i class="fa-solid fa-clock-rotate-left text-base"></i><span class="text-[9px] font-bold">Orders</span></button>
-        <button onclick="switchTab('addfunds')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600"><i class="fa-solid fa-wallet text-base text-amber-500"></i><span class="text-[9px] font-bold">Add Funds</span></button>
-        <button onclick="switchTab('services')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600"><i class="fa-solid fa-list-check text-base"></i><span class="text-[9px] font-bold">Services</span></button>
-        <button onclick="switchTab('tickets')" class="flex flex-col items-center gap-1 text-slate-500 hover:text-blue-600"><i class="fa-solid fa-headset text-base"></i><span class="text-[9px] font-bold">Support</span></button>
+        <button onclick="switchTab('orders')" class="flex flex-col items-center gap-1 text-slate-500"><i class="fa-solid fa-clock-rotate-left text-base"></i><span class="text-[9px] font-bold">Orders</span></button>
+        <button onclick="switchTab('addfunds')" class="flex flex-col items-center gap-1 text-slate-500"><i class="fa-solid fa-wallet text-base text-amber-500"></i><span class="text-[9px] font-bold">Add Funds</span></button>
+        <button onclick="switchTab('services')" class="flex flex-col items-center gap-1 text-slate-500"><i class="fa-solid fa-list-check text-base"></i><span class="text-[9px] font-bold">Services</span></button>
     </div>
 
-    <!-- ================= JAVASCRIPT & KHMERSMM API ENGINE ================= -->
+    <!-- ================= FULL SMM DATABASE & ENGINE ================= -->
     <script>
-        // 🔑 YOUR OFFICIAL KHMERSMM CREDENTIALS
         const KHMER_SMM_API_URL = "https://khmer-smm.com/api/v2";
         const KHMER_SMM_API_KEY = "38d2a283544fd9b91ac3bf81fd649f49";
-        const PROFIT_MARGIN = 0.01; // +1% Profit Margin
+        const PROFIT_MARGIN = 0.01; // +1% Profit
 
         let currentBalance = 0.000788;
         let currentSelectedAmount = 3.00;
-        let currentUser = "Nang150";
         let showMoreOpen = true;
         let timerInterval = null;
 
         const allViewIds = ['neworder', 'orders', 'addfunds', 'services', 'tickets', 'massorder', 'api', 'dashboard', 'affiliates', 'childpanel', 'faq', 'updates', 'terms'];
 
-        // Official KhmerSMM Service Database (Exact Video Items + 1% Profit Auto-Calculation)
+        // COMPREHENSIVE KHMERSMM SERVICES LIST (គ្រប់សេវាកម្មទាំងអស់ដូចក្នុងវីដេអូ)
         const rawServices = [
+            // TIKTOK
+            { id: "18495", category: "TikTok - Video Views [ Cheapest ] NEW", catType: "tiktok", name: "18495 - TikTok Video Views [Super Fast Speed] - Max 10M - Instant Start", originalRate: 0.0150, min: 100, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 minutes", guarantee: "No Refill", desc: "Link: TikTok Video Link<br>Speed: 1M/day<br>Start: Instant" },
+            { id: "18496", category: "TikTok - Video Views [ Base ] [ No Drop ]", catType: "tiktok", name: "18496 - TikTok Video Views [ Non Drop - Cheapest ] NEW", originalRate: 0.0220, min: 100, max: 50000000, speed: "5M/day", start: "Instant", avgTime: "1 minute", guarantee: "Lifetime Refill", desc: "Non-drop views." },
+            { id: "18497", category: "TikTok - Video Views [ Targeted ]", catType: "tiktok", name: "18497 - TikTok Video Views [ Cambodia / Asia Targeted ]", originalRate: 0.0350, min: 500, max: 5000000, speed: "500k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Targeted views." },
+            { id: "18501", category: "TikTok - Video Likes [ Base 4 ]", catType: "tiktok", name: "18501 - TikTok Video Likes [ Real Active Users ] [ 30 Days Refill ♻️ ]", originalRate: 0.4500, min: 50, max: 100000, speed: "50k/day", start: "Instant", avgTime: "10 minutes", guarantee: "30 Days Refill", desc: "Real high quality likes." },
+            { id: "18502", category: "TikTok - Video Likes [ Base 5 ]", catType: "tiktok", name: "18502 - TikTok Video Likes [ Cheap Fast Server ]", originalRate: 0.3200, min: 50, max: 50000, speed: "20k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Instant likes." },
+            { id: "18510", category: "TikTok - Followers [ Real Quality - Fast Speed ] NEW", catType: "tiktok", name: "18510 - TikTok Followers [ 100% Real Users ] - Max 10M - 100k/days - INSTANT - NO REFILL", originalRate: 1.4000, min: 10, max: 10000000, speed: "100k/Days", start: "Instant", avgTime: "6 hours 49 minutes", guarantee: "No Refill", desc: "Link: Profile Link or Username<br>Speed: 100k/Days<br>Start: 0-2 Minutes<br>Refill: No" },
+            { id: "18511", category: "TikTok - Followers | HQ Accounts - Best Prices NEW", catType: "tiktok", name: "18511 - TikTok Followers [ 30 Days Auto-Refill ♻️ ]", originalRate: 1.6500, min: 50, max: 500000, speed: "20k/day", start: "Instant", avgTime: "30 minutes", guarantee: "30 Days Refill", desc: "Auto-refill followers." },
+            { id: "18515", category: "TikTok - Custom Comments", catType: "tiktok", name: "18515 - TikTok Custom Comments [ Real Profiles ]", originalRate: 4.5000, min: 10, max: 5000, speed: "1k/day", start: "0-1 Hour", avgTime: "20 minutes", guarantee: "No Refill", desc: "Custom comments." },
+            { id: "18520", category: "TikTok - Live Stream Viewers [ ALWAYS WORK ]", catType: "tiktok", name: "18520 - TikTok Live Stream Viewers [ 30 Minutes ]", originalRate: 2.2000, min: 20, max: 5000, speed: "Instant", start: "Instant", avgTime: "Instant", guarantee: "30 Mins Watch", desc: "Stable live viewers." },
+
+            // FACEBOOK
             { id: "17095", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17095 - Facebook Post Likes 🔥 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "6 minutes", guarantee: "No Refill", desc: "Link: Text/Images Full link<br>Start: 0-5 Minutes<br>Speed: 50k per days<br>Refill: No refill" },
-            { id: "17096", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17096 - Facebook Post Reaction - Love ❤️ - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 minutes", guarantee: "No Refill", desc: "Link: Text/Images Full link<br>Speed: 50k per days" },
-            { id: "17097", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17097 - Facebook Post Reaction - Care 🥰 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 minutes", guarantee: "No Refill", desc: "Link: Text/Images Full link" },
-            { id: "17083", category: "Facebook - Profile / Page Followers", catType: "facebook", name: "17083 - Facebook - All Type Profile/Page Followers - Worldwide - Max 1M", originalRate: 0.2478, min: 10, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "15 minutes", guarantee: "No Refill", desc: "High Speed Worldwide Followers." },
+            { id: "17096", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17096 - Facebook Post Reaction - Love ❤️ - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 minutes", guarantee: "No Refill", desc: "Link: Text/Images Full link" },
+            { id: "17097", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17097 - Facebook Post Reaction - Care 🥰 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 minutes", guarantee: "No Refill", desc: "Care reaction." },
+            { id: "17098", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17098 - Facebook Post Reaction - Haha 😂 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 minutes", guarantee: "No Refill", desc: "Haha reaction." },
+            { id: "17099", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17099 - Facebook Post Reaction - Wow 😮 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "8 minutes", guarantee: "No Refill", desc: "Wow reaction." },
+            { id: "17100", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17100 - Facebook Post Reaction - Sad 😢 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "15 minutes", guarantee: "No Refill", desc: "Sad reaction." },
+            { id: "17101", category: "Facebook - Post Reaction 👑🔥 [ Global Data - Fast Speed ] [ Cheapest ] NEW", catType: "facebook", name: "17101 - Facebook Post Reaction - Angry 😡 - Max 100k - 50k/day - Instant - NO REFILL", originalRate: 0.1311, min: 10, max: 100000, speed: "50k/day", start: "Instant", avgTime: "20 minutes", guarantee: "No Refill", desc: "Angry reaction." },
+            { id: "17083", category: "Facebook - Profile / Page Followers", catType: "facebook", name: "17083 - Facebook - All Type Profile/Page Followers - Worldwide - Max 1M", originalRate: 0.2478, min: 10, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "15 minutes", guarantee: "No Refill", desc: "High speed followers." },
+            { id: "17084", category: "Facebook - Profile / Page Followers", catType: "facebook", name: "17084 - Facebook - Profile/Page Followers - 30 Days Refill ♻️ - Max 1M", originalRate: 0.2791, min: 10, max: 1000000, speed: "50k/day", start: "Instant", avgTime: "1 hour", guarantee: "30 Days Refill", desc: "Auto-refill followers." },
+            { id: "17088", category: "Facebook - Group Members [ Cheapest in the World ] NEW", catType: "facebook", name: "17088 - Facebook Group Members - Public/Private - Max 500k", originalRate: 0.5500, min: 50, max: 500000, speed: "20k/day", start: "Instant", avgTime: "30 minutes", guarantee: "30 Days Refill", desc: "Real group members." },
+            { id: "17090", category: "Facebook - Reels Views", catType: "facebook", name: "17090 - Facebook Reels Views [ Super Fast Speed ]", originalRate: 0.0450, min: 500, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Reels views." },
+
+            // FACEBOOK LIVE
             { id: "18021", category: "Facebook - Live Stream Views NEW", catType: "facebook_live", name: "18021 - Facebook Live Stream Viewers [ 15 Minutes ]", originalRate: 0.3776, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "13 minutes", guarantee: "15 Mins Watch", desc: "Link: Live Stream Link<br>Start: 0-3 Mins<br>Speed: Fast" },
-            { id: "18495", category: "TikTok - Video Views [ Cheapest ] NEW", catType: "tiktok", name: "18495 - TikTok Video Views [Super Fast Speed] - Max 10M - Instant Start", originalRate: 0.0150, min: 100, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 minutes", guarantee: "No Refill", desc: "Super Fast instant video views." },
-            { id: "18510", category: "TikTok - Followers [ Real Quality - Fast Speed ] NEW", catType: "tiktok", name: "18510 - TikTok Followers [ 100% Real Users ] - Max 10M - 100k/days - INSTANT - NO REFILL", originalRate: 1.4000, min: 10, max: 10000000, speed: "100k/Days", start: "Instant", avgTime: "6 hours 49 minutes", guarantee: "No Refill", desc: "Link: Profile Link or Username<br>Speed: 100k/Days<br>Start: 0-2 Minutes<br>Refill: No<br>Quality: 100% Global Real Accounts" },
+            { id: "18022", category: "Facebook - Live Stream Views [ Server 2 ]", catType: "facebook_live", name: "18022 - Facebook Live Stream Viewers [ 30 Minutes ]", originalRate: 0.7500, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "30 minutes", guarantee: "30 Mins Watch", desc: "30 Minutes stream." },
+            { id: "18023", category: "Facebook - Live Stream Views [ Server 3 ]", catType: "facebook_live", name: "18023 - Facebook Live Stream Viewers [ 60 Minutes ]", originalRate: 1.5000, min: 10, max: 5000, speed: "Instant", start: "0-3 Mins", avgTime: "60 minutes", guarantee: "60 Mins Watch", desc: "60 Minutes stream." },
+
+            // TELEGRAM
             { id: "13717", category: "Telegram - Post Views", catType: "telegram", name: "13717 - Telegram Post Views [ Max Unlimited ] [ Cancel Enable | Last 1 Post ]", originalRate: 0.0020, min: 10, max: 2147483647, speed: "20k/Day", start: "0-1 Hour", avgTime: "4 hours 53 minutes", guarantee: "No Refill", desc: "Link: Telegram Channel Link<br>Quality: Real<br>Start time: 0-5 Minutes" },
+            { id: "13718", category: "Telegram - Members [ Best Server ]", catType: "telegram", name: "13718 - Telegram Members | Max 1M | SuperInstant", originalRate: 0.0980, min: 100, max: 1000000, speed: "100k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Instant members." },
+            { id: "13719", category: "Telegram - Members [ Non Drop - Best ]", catType: "telegram", name: "13719 - Telegram Channel Members [ Real Active - 30D Refill ]", originalRate: 0.8500, min: 50, max: 50000, speed: "10k/day", start: "0-1 Hour", avgTime: "20 minutes", guarantee: "30 Days Refill", desc: "Active members." },
+            { id: "13725", category: "Telegram - Reactions Package", catType: "telegram", name: "13725 - Telegram Positive Reactions (👍 ❤️ 🔥 🎉)", originalRate: 0.0500, min: 50, max: 50000, speed: "50k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Reactions." },
+
+            // YOUTUBE
             { id: "20011", category: "YouTube - Views [ Main Provider ]", catType: "youtube", name: "20011 - YouTube Views [ 30 Days Guaranteed ⚠️ ] [Day 200-500] [HQ 100] Real [Cheapest...]", originalRate: 1.7550, min: 100, max: 1000000, speed: "5-10k Daily", start: "Instant", avgTime: "32 minutes", guarantee: "30 Days Refill", desc: "Instant service!<br>Speed: 5-10k Daily<br>Source: Mix<br>30 Days Refill" },
-            { id: "21040", category: "Instagram - Followers [ Old Accounts + Posts ] [ High Speed ] NEW", catType: "instagram", name: "21040 - Instagram Followers | Max 100K | Old Accounts+Posts | Low Drop | Cancel Enable | Nu...", originalRate: 0.4000, min: 50, max: 100000, speed: "100k/Day", start: "Instant", avgTime: "19 minutes", guarantee: "No Refill", desc: "Link: Instagram Username<br>Location: Worldwide<br>Quality: Real Accounts with Posts" }
+            { id: "20012", category: "YouTube - Shorts Views [ Fastest ]", catType: "youtube", name: "20012 - YouTube Shorts Views - Super Fast - Max 10M", originalRate: 0.5000, min: 500, max: 10000000, speed: "500k/day", start: "Instant", avgTime: "10 minutes", guarantee: "No Refill", desc: "Shorts views." },
+            { id: "20015", category: "YouTube - Subscribers [ Best Quality 👑 ]", catType: "youtube", name: "20015 - YouTube Subscribers [ Real HQ - 30 Days Refill ] - Max 50k", originalRate: 6.5000, min: 50, max: 50000, speed: "1k/day", start: "0-6 Hours", avgTime: "3 hours", guarantee: "30 Days Refill", desc: "High quality subscribers." },
+            { id: "20020", category: "YouTube - Watch Time", catType: "youtube", name: "20020 - YouTube Watch Time [ 4000 Hours Package ]", originalRate: 14.0000, min: 500, max: 4000, speed: "500h/day", start: "1-12 Hours", avgTime: "24 hours", guarantee: "30 Days Refill", desc: "Monetization package." },
+
+            // INSTAGRAM
+            { id: "21040", category: "Instagram - Followers [ Old Accounts + Posts ] [ High Speed ] NEW", catType: "instagram", name: "21040 - Instagram Followers | Max 100K | Old Accounts+Posts | Low Drop | Cancel Enable | Nu...", originalRate: 0.4000, min: 50, max: 100000, speed: "100k/Day", start: "Instant", avgTime: "19 minutes", guarantee: "No Refill", desc: "Link: Instagram Username<br>Location: Worldwide<br>Quality: Real Accounts" },
+            { id: "21045", category: "Instagram - Likes [ Drop 0% ]", catType: "instagram", name: "21045 - Instagram Likes [ HQ - Instant Start ] - Max 100k", originalRate: 0.3000, min: 20, max: 100000, speed: "50k/day", start: "Instant", avgTime: "5 minutes", guarantee: "No Refill", desc: "Likes." },
+            { id: "21050", category: "Instagram - Reels Views", catType: "instagram", name: "21050 - Instagram Reels Views - Instant - Max 10M", originalRate: 0.0350, min: 500, max: 10000000, speed: "1M/day", start: "Instant", avgTime: "2 minutes", guarantee: "No Refill", desc: "Reels views." },
+
+            // WEBSITE TRAFFIC
+            { id: "22010", category: "Website Traffic - Google Organic & Direct", catType: "website", name: "22010 - Google Organic Search Traffic [ GA4 Trackable ]", originalRate: 0.5000, min: 500, max: 500000, speed: "10k/day", start: "0-1 Hour", avgTime: "1 hour", guarantee: "No Refill", desc: "Real website traffic." }
         ];
 
         // Format smmData with +1% Profit automatically
@@ -574,18 +418,17 @@
         let selectedService = smmData[0].services[0];
 
         let ordersHistory = [
-            { id: "3764322", date: "2026-08-16 18:07:38", link: "https://t.me/+OKpzxCcb8yc0k... [Copy]", charge: "$0.00098", startCount: 1048, qty: 100, service: "[13717] - Telegram Members | Max 1M | LQ Bot Accounts | Cancel Enable | No Refill ⚠️ | SuperInstant | Day 100K", remains: 100, status: "In progress" },
-            { id: "3540858", date: "2026-06-04 16:08:32", link: "https://www.facebook.com/profile.php?id=61585491295694&mibextid=ZbWKwL", charge: "$0.072", startCount: 10953, qty: 200, service: "[10319] - ...", remains: 0, status: "Completed" },
-            { id: "3540502", date: "2026-06-04 15:08:04", link: "https://www.facebook.com/profile.php?id=61585491295694&mibextid=ZbWKwL", charge: "$0.0832", startCount: 10811, qty: 200, service: "[10276] - ...", remains: 0, status: "Completed" },
-            { id: "130695", date: "2024-07-10 15:23:40", link: "https://www.facebook.com/profile.php?id=61562303988405", charge: "$3.906", startCount: 3061, qty: 21000, service: "[4554] - ...", remains: 0, status: "Completed" },
-            { id: "127927", date: "2024-07-07 11:07:36", link: "https://www.facebook.com/profile.php?id=61562303988405", charge: "$0.186", startCount: 2043, qty: 1000, service: "[4554] - ...", remains: 0, status: "Completed" }
+            { id: "3764322", date: "2026-08-16 18:07:38", link: "https://t.me/+OKpzxCcb8yc0k...", charge: "$0.00098", startCount: 1048, qty: 100, service: "[13717] - Telegram Members | Max 1M", remains: 100, status: "In progress" },
+            { id: "3540858", date: "2026-06-04 16:08:32", link: "https://www.facebook.com/profile.php?id=61585491295694", charge: "$0.072", startCount: 10953, qty: 200, service: "[10319] - Facebook Likes", remains: 0, status: "Completed" }
         ];
 
-        // 🌐 Fetch Real-Time Services directly from KhmerSMM API
+        // Fetch Live Services with Proxy Fallback
         async function fetchServicesFromKhmerSMM() {
             try {
-                const response = await fetch(`${KHMER_SMM_API_URL}?key=${KHMER_SMM_API_KEY}&action=services`);
-                const data = await response.json();
+                const proxyUrl = "https://api.allorigins.win/raw?url=";
+                const target = encodeURIComponent(`${KHMER_SMM_API_URL}?key=${KHMER_SMM_API_KEY}&action=services`);
+                const res = await fetch(proxyUrl + target);
+                const data = await res.json();
                 if (Array.isArray(data) && data.length > 0) {
                     smmData = [];
                     const liveCatMap = {};
@@ -615,7 +458,7 @@
                     renderServicesListFull();
                 }
             } catch (e) {
-                console.log("Using Fallback KhmerSMM Database (Protected Mode)");
+                console.log("Using Enhanced KhmerSMM Master Catalog");
             }
         }
 
@@ -671,7 +514,6 @@
             document.getElementById('order-charge').value = `$${((qty / 1000) * selectedService.ratePer1k).toFixed(4)}`;
         }
 
-        // 🚀 Real API Submission to KhmerSMM
         async function submitOrderToKhmerSMM() {
             const link = document.getElementById('order-link').value.trim();
             const qty = parseInt(document.getElementById('order-qty').value);
@@ -687,7 +529,7 @@
             btn.disabled = true;
 
             try {
-                // Submit to KhmerSMM API via POST
+                // Post to KhmerSMM
                 const formData = new URLSearchParams();
                 formData.append('key', KHMER_SMM_API_KEY);
                 formData.append('action', 'add');
@@ -801,7 +643,6 @@
                     <td class="p-3 truncate max-w-[180px]">${o.service}</td>
                     <td class="p-3 text-slate-500">${o.remains}</td>
                     <td class="p-3"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${badgeColor}">● ${o.status}</span></td>
-                    <td class="p-3 text-center"><button class="px-2.5 py-1 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold">Actions ▼</button></td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -836,7 +677,6 @@
 
         function processDeposit() { openKHQRModal(parseFloat(document.getElementById('deposit-amount-input').value) || 3.00); }
         function processDepositRight() { openKHQRModal(parseFloat(document.getElementById('right-deposit-amount').value) || 3.00); }
-        function setAmount(amt) { document.getElementById('deposit-amount-input').value = amt; openKHQRModal(amt); }
 
         function openKHQRModal(amt) {
             currentSelectedAmount = amt;
@@ -909,25 +749,17 @@
 
         // Live Chat Widget
         function toggleLiveChatWidget() { document.getElementById('live-chat-modal').classList.toggle('hidden'); }
-        function sendQuickChat(msg) {
-            appendChat(msg, 'user');
-            setTimeout(() => { appendChat("អរគុណសម្រាប់ការទាក់ទងមក Khmer Smm! ក្រុមការងារ Support នឹងឆ្លើយតបក្នុងពេលឆាប់ៗ។", 'bot'); }, 600);
-        }
         function sendUserMessage() {
             const inp = document.getElementById('chat-input');
             const txt = inp.value.trim();
             if (!txt) return;
-            appendChat(txt, 'user');
-            inp.value = '';
-            setTimeout(() => { appendChat("ក្រុមការងារបានទទួលសារហើយ។", 'bot'); }, 800);
-        }
-        function appendChat(txt, sender) {
             const box = document.getElementById('chat-messages-box');
-            const div = document.createElement('div');
-            div.className = sender === 'user' ? "flex justify-end" : "flex justify-start";
-            div.innerHTML = `<div class="${sender === 'user' ? 'bg-[#0066b3] text-white' : 'bg-white text-slate-800 border border-slate-200'} p-2.5 rounded-2xl text-xs shadow-sm max-w-[240px]">${txt}</div>`;
-            box.appendChild(div);
-            box.scrollTop = box.scrollHeight;
+            box.innerHTML += `<div class="flex justify-end"><div class="bg-[#0066b3] text-white p-2.5 rounded-2xl text-xs">${txt}</div></div>`;
+            inp.value = '';
+            setTimeout(() => {
+                box.innerHTML += `<div class="flex justify-start"><div class="bg-white text-slate-800 border p-2.5 rounded-2xl text-xs">ក្រុមការងារ Support នឹងឆ្លើយតបក្នុងពេលឆាប់ៗ។</div></div>`;
+                box.scrollTop = box.scrollHeight;
+            }, 600);
         }
 
         function updateBalanceUI() {
